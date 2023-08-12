@@ -2,11 +2,7 @@
 import { ref } from "vue";
 import { Link } from "@inertiajs/vue3";
 import Navigations from "@/Components/Navigations.vue";
-import Locales from "@/Components/Locales.vue";
-import Actions from "@/Components/Actions.vue";
 import Hamburger from "@/Components/Hamburger.vue";
-import ChatGroups from "@/Components/ChatGroups.vue";
-import Projects from "@/Components/Projects.vue";
 
 const props = defineProps({
   joined_chat_groups: {

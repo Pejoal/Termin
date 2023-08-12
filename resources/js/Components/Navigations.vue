@@ -33,52 +33,10 @@ const props = defineProps({
           route().current('home') || route().current('home'),
       }"
     >
-      {{ $page.props.words.home }}
-    </Link>
-    <Link
-      :href="route('public.chat.index')"
-      class="text-gray-100 hover:text-white hover:font-bold"
-      :class="{
-        'text-zinc-700 hover:text-zinc-800': props.dark,
-        'underline text-white font-bold': route().current('public.chat.index'),
-      }"
-    >
-      {{ $page.props.words.public_chat }}
-    </Link>
-    <Link
-      :href="route('rooms.index')"
-      class="text-gray-100 hover:text-white hover:font-bold"
-      :class="{
-        'text-zinc-700 hover:text-zinc-800': props.dark,
-        'underline text-white font-bold': route().current('rooms.*'),
-      }"
-    >
-      {{ $page.props.words.rooms }}
-    </Link>
-    <Link
-      :href="route('project.index')"
-      class="text-gray-100 hover:text-white hover:font-bold"
-      :class="{
-        'text-zinc-700 hover:text-zinc-800': props.dark,
-        'underline text-white font-bold': route().current('project.*'),
-      }"
-    >
-      {{ $page.props.words.projects }}
-    </Link>
-    <Link
-      v-if="user.type == 'super admin'"
-      :href="route('dashboard.index')"
-      class="text-gray-100 hover:text-white hover:font-bold"
-      :class="{
-        'text-zinc-700 hover:text-zinc-800': props.dark,
-        'underline text-white font-bold': route().current('dashboard.index'),
-      }"
-    >
-      {{ $page.props.words.dashboard }}
+      Home
     </Link>
 
     <!-- Navigations For Small Pages -->
-    <!-- <template> -->
     <Link
       :href="route('profile.edit')"
       class="text-gray-100 hover:text-white hover:font-bold"
@@ -87,7 +45,7 @@ const props = defineProps({
         'underline text-white font-bold': route().current('profile.edit'),
       }"
     >
-      {{ $page.props.words.settings }}
+      Settings
     </Link>
     <Link
       :href="route('user.profile.me')"
@@ -97,18 +55,7 @@ const props = defineProps({
         'underline text-white font-bold': route().current('user.profile.me'),
       }"
     >
-      {{ $page.props.words.my_profile }}
+      My Profile
     </Link>
-    <Link
-      :href="route('chat.groups.index')"
-      class="md:hidden text-gray-100 hover:text-white hover:font-bold"
-      :class="{
-        'text-zinc-700 hover:text-zinc-800': props.dark,
-        'underline text-white font-bold': route().current('chat.groups.index'),
-      }"
-    >
-      {{ $page.props.words.chat_groups }}
-    </Link>
-    <!-- </template> -->
   </nav>
 </template>
