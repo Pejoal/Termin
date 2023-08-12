@@ -35,24 +35,16 @@ const updatePassword = () => {
 <template>
   <section>
     <header>
-      <h2 class="text-lg font-medium text-gray-200">
-        {{ $page.props.words.update_password }}
-      </h2>
+      <h2 class="text-lg font-medium text-gray-200">Update Password</h2>
 
       <p class="mt-1 text-sm text-gray-100">
-        {{
-          $page.props.words
-            .ensure_your_account_is_using_a_long_random_password_to_stay_secure
-        }}
+        Ensure your account is using a long, random password to stay secure
       </p>
     </header>
 
     <form @submit.prevent="updatePassword" class="mt-6 space-y-6">
       <div>
-        <InputLabel
-          for="current_password"
-          :value="$page.props.words.current_password"
-        />
+        <InputLabel for="current_password" value="Current Password" />
 
         <TextInput
           id="current_password"
@@ -60,6 +52,7 @@ const updatePassword = () => {
           v-model="form.current_password"
           type="password"
           class="mt-1 block w-full"
+          placeholder="Current Password"
           autocomplete="current-password"
         />
 
@@ -67,13 +60,14 @@ const updatePassword = () => {
       </div>
 
       <div>
-        <InputLabel for="password" :value="$page.props.words.new_password" />
+        <InputLabel for="password" value="New Password" />
 
         <TextInput
           id="password"
           ref="passwordInput"
           v-model="form.password"
           type="password"
+          aria-placeholder="New Password"
           class="mt-1 block w-full"
           autocomplete="new-password"
         />
@@ -84,7 +78,7 @@ const updatePassword = () => {
       <div>
         <InputLabel
           for="password_confirmation"
-          :value="$page.props.words.confirm_password"
+          value="Confirm Password"
         />
 
         <TextInput
@@ -100,7 +94,7 @@ const updatePassword = () => {
 
       <div class="flex items-center gap-4">
         <button class="btn btn-success" :disabled="form.processing">
-        {{$page.props.words.save}}
+          Save
         </button>
 
         <Transition
@@ -109,7 +103,7 @@ const updatePassword = () => {
           class="transition ease-in-out"
         >
           <p v-if="form.recentlySuccessful" class="text-sm text-gray-100">
-            {{ $page.props.words.saved }}
+            Saved
           </p>
         </Transition>
       </div>

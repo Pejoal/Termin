@@ -46,7 +46,7 @@ const submit = () => {
           :class="{ 'opacity-25': form.processing }"
           :disabled="form.processing"
         >
-          {{ $page.props.words.confirm }}
+          Confirm
         </button>
       </div>
     </form>

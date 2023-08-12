@@ -23,15 +23,10 @@ const form = useForm({
 <template>
   <section>
     <header>
-      <h2 class="text-lg font-medium text-white">
-        {{ $page.props.words.profile_information }}
-      </h2>
+      <h2 class="text-lg font-medium text-white">Profile Information</h2>
 
       <p class="mt-1 text-sm text-slate-200">
-        {{
-          $page.props.words
-            .update_your_account_profile_information_and_email_address
-        }}
+        Update your account's profile information and email address
       </p>
     </header>
 
@@ -40,7 +35,7 @@ const form = useForm({
       class="mt-6 space-y-6"
     >
       <div>
-        <InputLabel for="firstname" :value="$page.props.words.firstname" />
+        <InputLabel for="firstname" value="First Name" />
 
         <TextInput
           id="firstname"
@@ -56,7 +51,7 @@ const form = useForm({
       </div>
 
       <div>
-        <InputLabel for="lastname" :value="$page.props.words.lastname" />
+        <InputLabel for="lastname" value="Last Name" />
 
         <TextInput
           id="lastname"
@@ -72,7 +67,7 @@ const form = useForm({
       </div>
 
       <div>
-        <InputLabel for="username" :value="$page.props.words.username" />
+        <InputLabel for="username" value="User Name" />
 
         <TextInput
           id="username"
@@ -88,11 +83,11 @@ const form = useForm({
       </div>
 
       <div>
-        <InputLabel :value="$page.props.words.gender" />
+        <InputLabel value="Gender" />
         <div class="flex justify-center gap-12">
           <section>
             <input type="radio" id="male" value="male" v-model="form.gender" />
-            <label class="ml-2" for="male">{{ $page.props.words.male }}</label>
+            <label class="ml-2" for="male">Male</label>
           </section>
           <section>
             <input
@@ -101,16 +96,14 @@ const form = useForm({
               value="female"
               v-model="form.gender"
             />
-            <label class="ml-2" for="female">{{
-              $page.props.words.female
-            }}</label>
+            <label class="ml-2" for="female"> Female </label>
           </section>
         </div>
         <InputError class="mt-2" :message="form.errors.gender" />
       </div>
 
       <div>
-        <InputLabel for="email" :value="$page.props.words.email" />
+        <InputLabel for="email" value="Email" />
 
         <TextInput
           id="email"
@@ -126,14 +119,14 @@ const form = useForm({
 
       <div v-if="props.mustVerifyEmail && user.email_verified_at === null">
         <p class="text-sm mt-2 text-gray-50">
-          {{ $page.props.words.your_email_address_is_unverified }}
+          Your email address is unverified.
           <Link
             :href="route('verification.send')"
             method="post"
             as="button"
             class="underline text-sm text-gray-200 hover:text-gray-50 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            {{ $page.props.words.click_here_to_re_send_the_verification_email }}
+            Click here to re-send the verification email.
           </Link>
         </p>
 
@@ -141,16 +134,13 @@ const form = useForm({
           v-show="props.status === 'verification-link-sent'"
           class="mt-2 font-medium text-sm text-green-600"
         >
-          {{
-            $page.props.words
-              .a_new_verification_link_has_been_sent_to_your_email_address
-          }}
+          A new verification link has been sent to your email address.
         </div>
       </div>
 
       <div class="flex items-center gap-4">
         <button class="btn btn-success" :disabled="form.processing">
-          {{ $page.props.words.save }}
+          Save
         </button>
 
         <Transition
@@ -159,7 +149,7 @@ const form = useForm({
           class="transition ease-in-out"
         >
           <p v-if="form.recentlySuccessful" class="text-sm text-gray-100">
-            {{ $page.props.words.saved }}
+            Saved
           </p>
         </Transition>
       </div>

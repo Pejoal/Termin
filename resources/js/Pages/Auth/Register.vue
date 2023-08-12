@@ -34,50 +34,48 @@ const submit = () => {
       class="bg-zinc-800 w-full mt-2 mb-4 rounded-lg md:container px-8 py-4 flex flex-col gap-2"
     >
       <div>
-        <InputLabel for="firstname" :value="$page.props.words.firstname" />
+        <InputLabel for="firstname" value="First Name" />
 
         <TextInput
           id="firstname"
           type="text"
           class="mt-1 block w-full"
           v-model="form.firstname"
-          :placeholder="$page.props.words.firstname"
+          placeholder="First Name"
           required
-          autofocus
           autocomplete="firstname"
+          autofocus
         />
 
         <InputError class="mt-2" :message="form.errors.firstname" />
       </div>
 
       <div>
-        <InputLabel for="lastname" :value="$page.props.words.lastname" />
+        <InputLabel for="lastname" value="Last Name" />
 
         <TextInput
           id="lastname"
           type="text"
           class="mt-1 block w-full"
           v-model="form.lastname"
-          :placeholder="$page.props.words.lastname"
+          placeholder="Last Name"
+          autocomplete="lasstname"
           required
-          autofocus
-          autocomplete="lastname"
         />
 
         <InputError class="mt-2" :message="form.errors.lastname" />
       </div>
       <div>
-        <InputLabel for="username" :value="$page.props.words.user_name" />
+        <InputLabel for="username" value="username" />
 
         <TextInput
           id="username"
           type="text"
           class="mt-1 block w-full"
           v-model="form.username"
-          :placeholder="$page.props.words.user_name"
-          required
-          autofocus
+          placeholder="User Name"
           autocomplete="username"
+          required
         />
 
         <InputError class="mt-2" :message="form.errors.username" />
@@ -86,8 +84,14 @@ const submit = () => {
         <InputLabel value="Gender" />
         <div class="flex justify-center gap-12">
           <section>
-            <input type="radio" id="male" value="male" v-model="form.gender" />
-            <label class="ml-2" for="male">{{ $page.props.words.male }}</label>
+            <input
+              type="radio"
+              id="male"
+              value="male"
+              v-model="form.gender"
+              autocomplete="gender"
+            />
+            <label class="ml-2" for="male">Male</label>
           </section>
           <section>
             <input
@@ -95,40 +99,39 @@ const submit = () => {
               id="female"
               value="female"
               v-model="form.gender"
+              autocomplete="gender"
             />
-            <label class="ml-2" for="female">{{
-              $page.props.words.female
-            }}</label>
+            <label class="ml-2" for="female"> Female</label>
           </section>
         </div>
         <InputError class="mt-2" :message="form.errors.gender" />
       </div>
 
       <div class="mt-4">
-        <InputLabel for="email" :value="$page.props.words.email" />
+        <InputLabel for="email" value="Email" />
 
         <TextInput
           id="email"
           type="email"
           class="mt-1 block w-full"
           v-model="form.email"
-          :placeholder="$page.props.words.email"
+          placeholder="Email"
+          autocomplete="email"
           required
-          autocomplete="username"
         />
 
         <InputError class="mt-2" :message="form.errors.email" />
       </div>
 
       <div class="mt-4">
-        <InputLabel for="password" :value="$page.props.words.password" />
+        <InputLabel for="password" value="Password" />
 
         <TextInput
           id="password"
           type="password"
           class="mt-1 block w-full"
           v-model="form.password"
-          :placeholder="$page.props.words.password"
+          placeholder="Password"
           required
           autocomplete="new-password"
         />
@@ -137,17 +140,14 @@ const submit = () => {
       </div>
 
       <div class="mt-4">
-        <InputLabel
-          for="password_confirmation"
-          :value="$page.props.words.confirm_password"
-        />
+        <InputLabel for="password_confirmation" value="Confirm Password" />
 
         <TextInput
           id="password_confirmation"
           type="password"
           class="mt-1 block w-full"
           v-model="form.password_confirmation"
-          :placeholder="$page.props.words.confirm_password"
+          placeholder="Confirm Password"
           required
           autocomplete="new-password"
         />
@@ -157,9 +157,7 @@ const submit = () => {
 
       <section class="flex justify-between flex-col sm:flex-row">
         <div class="my-2">
-          <label class="pr-2" for="profile_photo">
-            {{ $page.props.words.profile_photo }}
-          </label>
+          <label class="pr-2" for="profile_photo"> Profile Photo </label>
           <input
             id="profile_photo"
             type="file"
@@ -186,7 +184,7 @@ const submit = () => {
         class="transition ease-in-out"
       >
         <p v-if="form.recentlySuccessful" class="text-sm text-gray-100">
-          {{ $page.props.words.uploaded }}
+          Uploaded
         </p>
       </Transition>
 
@@ -195,7 +193,7 @@ const submit = () => {
           :href="route('login')"
           class="underline text-sm text-gray-200 hover:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
-          {{ $page.props.words.already_registered }}
+          Already Registered
         </Link>
 
         <button
@@ -203,7 +201,7 @@ const submit = () => {
           :class="{ 'opacity-25': form.processing }"
           :disabled="form.processing"
         >
-          {{ $page.props.words.register }}
+          Register
         </button>
       </div>
     </form>
