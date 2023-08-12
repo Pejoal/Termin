@@ -21,13 +21,11 @@ const toggleNav = () => {
 };
 </script>
 <template>
-  <div class="min-h-screen bg-black text-white">
+  <div class="min-h-screen bg-slate-200">
     <header
-      class="flex items-center justify-between h-20 bg-zinc-900 py-2 px-4 sm:px-6 lg:px-8"
+      class="bg-zinc-400 flex items-center justify-between h-20 py-2 px-4 sm:px-6 lg:px-8"
     >
-      <Link class="text-white font-bold text-xl" :href="route('home')">
-        Zana
-      </Link>
+      <Link class="font-bold text-xl" :href="route('home')"> App Name </Link>
 
       <!-- Navigation Links -->
       <Navigations :horizontal="true" />
@@ -45,11 +43,9 @@ const toggleNav = () => {
       <transition name="slide">
         <div
           v-if="showNav"
-          class="md:hidden fixed inset-y-0 left-0 z-40 w-full h-screen bg-zinc-800 text-white shadow-lg px-8 py-4 overflow-y-auto"
+          class="md:hidden bg-slate-200 fixed inset-y-0 left-0 z-40 w-full h-screen shadow-lg px-8 py-4 overflow-y-auto"
         >
-          <h2 class="text-xl font-bold mb-2">
-            Navigation
-          </h2>
+          <h2 class="text-xl font-bold mb-2">Navigation</h2>
           <!-- Navigation Links -->
           <Navigations class="pb-4" :vertical="true" />
 
@@ -66,7 +62,7 @@ const toggleNav = () => {
           <!-- Button to close the menu -->
           <button
             @click="showNav = false"
-            class="mt-4 px-3 py-1 bg-zinc-900 text-white hover:font-bold rounded-md"
+            class="mt-4 px-3 py-1 hover:font-bold rounded-md"
           >
             Close
           </button>
@@ -83,7 +79,6 @@ const toggleNav = () => {
       <div class="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 lg:gap-10">
         <div class="hidden md:block">
           <slot name="left-sidebar">
-            
             <div class="py-2 border-t">
               <Link
                 class="btn btn-danger"

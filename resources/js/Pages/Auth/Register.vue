@@ -31,7 +31,7 @@ const submit = () => {
 
     <form
       @submit.prevent="submit"
-      class="bg-zinc-800 w-full mt-2 mb-4 rounded-lg md:container px-8 py-4 flex flex-col gap-2"
+      class="bg-zinc-300 w-full mt-2 mb-4 rounded-lg md:container px-8 py-4 flex flex-col gap-2"
     >
       <div>
         <InputLabel for="firstname" value="First Name" />
@@ -167,7 +167,7 @@ const submit = () => {
       </section>
       <p
         v-if="form.errors.profile_photo"
-        class="text-sm bg-red-600 text-white rounded-md my-1 px-2 py-1"
+        class="text-sm bg-red-600 rounded-md my-1 px-2 py-1"
       >
         {{ form.errors.profile_photo }}
       </p>
@@ -183,15 +183,13 @@ const submit = () => {
         leave-to-class="opacity-0"
         class="transition ease-in-out"
       >
-        <p v-if="form.recentlySuccessful" class="text-sm text-gray-100">
-          Uploaded
-        </p>
+        <p v-if="form.recentlySuccessful" class="text-sm">Uploaded</p>
       </Transition>
 
       <div class="flex items-center justify-end mt-2">
         <Link
           :href="route('login')"
-          class="underline text-sm text-gray-200 hover:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+          class="underline text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
           Already Registered
         </Link>

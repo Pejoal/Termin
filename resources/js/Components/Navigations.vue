@@ -26,10 +26,10 @@ const props = defineProps({
   >
     <Link
       :href="route('home')"
-      class="text-gray-100 hover:text-white hover:font-bold"
+      class="hover:font-bold"
       :class="{
         'text-zinc-700 hover:text-zinc-800': props.dark,
-        'underline text-white font-bold':
+        'underline  font-bold':
           route().current('home') || route().current('home'),
       }"
     >
@@ -39,20 +39,20 @@ const props = defineProps({
     <!-- Navigations For Small Pages -->
     <Link
       :href="route('profile.edit')"
-      class="text-gray-100 hover:text-white hover:font-bold"
+      class="hover:font-bold"
       :class="{
         'text-zinc-700 hover:text-zinc-800': props.dark,
-        'underline text-white font-bold': route().current('profile.edit'),
+        'underline  font-bold': route().current('profile.edit'),
       }"
     >
       Settings
     </Link>
     <Link
       :href="route('user.profile.me')"
-      class="text-gray-100 hover:text-white hover:font-bold"
+      class="hover:font-bold"
       :class="{
         'text-zinc-700 hover:text-zinc-800': props.dark,
-        'underline text-white font-bold': route().current('user.profile.me'),
+        'underline  font-bold': route().current('user.profile.me'),
       }"
     >
       My Profile

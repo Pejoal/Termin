@@ -13,7 +13,7 @@ defineProps({
       v-for="link in links"
       v-html="link.label"
       :href="link.url"
-      :class="{ 'text-gray-500': !link.url, 'font-bold': link.active }"
+      :class="{ 'text-gray-600': !link.url, 'font-bold': link.active }"
     />
   </div>
 </template>

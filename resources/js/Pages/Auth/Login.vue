@@ -27,14 +27,14 @@ const submit = () => {
 <template>
   <GuestLayout>
     <Head title="Login" />
-    <section class="p-8 my-4 bg-zinc-800 w-full rounded-lg md:container">
+    <section class="p-8 my-4 bg-zinc-300 w-full rounded-lg md:container">
       <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
         {{ status }}
       </div>
 
       <Link
         :href="route('register')"
-        class="underline float-right text-sm text-gray-200 hover:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        class="underline float-right text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
       >
         Sign up
       </Link>
@@ -74,7 +74,7 @@ const submit = () => {
         <div class="block mt-4">
           <label class="flex items-center">
             <Checkbox name="remember" v-model:checked="form.remember" />
-            <span class="ml-2 text-sm text-gray-200">Remember me</span>
+            <span class="ml-2 text-sm">Remember me</span>
           </label>
         </div>
 
@@ -82,7 +82,7 @@ const submit = () => {
           <Link
             v-if="canResetPassword"
             :href="route('password.request')"
-            class="underline text-sm text-gray-200 hover:text-white rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            class="underline text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Forgot your password?
           </Link>

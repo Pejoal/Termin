@@ -31,7 +31,7 @@ const enableNotifications = (event) => {
 
   <AuthLayout>
     <template #content>
-      <div class="bg-zinc-800 py-2">
+      <div class="bg-gray-50 py-2">
         <div class="p-4 sm:p-8 shadow sm:rounded-lg">
           <UpdateProfileInformationForm
             :must-verify-email="mustVerifyEmail"
@@ -41,7 +41,7 @@ const enableNotifications = (event) => {
         </div>
 
         <div class="p-4 sm:p-8 shadow sm:rounded-lg">
-          <UpdatePasswordForm class="max-w-xl text-white" />
+          <UpdatePasswordForm class="max-w-xl" />
         </div>
 
         <form
@@ -67,7 +67,7 @@ const enableNotifications = (event) => {
           </section>
           <p
             v-if="form.errors.profile_photo"
-            class="text-sm bg-red-600 text-white rounded-md my-1 px-2 py-1"
+            class="text-sm bg-red-600 rounded-md my-1 px-2 py-1"
           >
             {{ form.errors.profile_photo }}
           </p>
@@ -83,7 +83,7 @@ const enableNotifications = (event) => {
             leave-to-class="opacity-0"
             class="transition ease-in-out"
           >
-            <p v-if="form.recentlySuccessful" class="text-sm text-gray-100">
+            <p v-if="form.recentlySuccessful" class="text-sm">
               Uploaded
             </p>
           </Transition>
@@ -104,7 +104,7 @@ const enableNotifications = (event) => {
         </form>
 
         <div class="p-4 sm:p-8 shadow sm:rounded-lg">
-          <DeleteUserForm class="max-w-xl text-white" />
+          <DeleteUserForm class="max-w-xl" />
         </div>
       </div>
     </template>

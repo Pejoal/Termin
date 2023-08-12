@@ -35,9 +35,9 @@ const updatePassword = () => {
 <template>
   <section>
     <header>
-      <h2 class="text-lg font-medium text-gray-200">Update Password</h2>
+      <h2 class="text-lg font-medium">Update Password</h2>
 
-      <p class="mt-1 text-sm text-gray-100">
+      <p class="mt-1 text-sm">
         Ensure your account is using a long, random password to stay secure
       </p>
     </header>
@@ -102,7 +102,7 @@ const updatePassword = () => {
           leave-to-class="opacity-0"
           class="transition ease-in-out"
         >
-          <p v-if="form.recentlySuccessful" class="text-sm text-gray-100">
+          <p v-if="form.recentlySuccessful" class="text-sm">
             Saved
           </p>
         </Transition>
