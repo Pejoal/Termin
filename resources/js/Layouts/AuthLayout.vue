@@ -25,16 +25,16 @@ const toggleNav = () => {
     <header
       class="bg-zinc-400 flex items-center justify-between h-20 py-2 px-4 sm:px-6 lg:px-8"
     >
-      <Link class="font-bold text-xl" :href="route('home')"> App Name </Link>
+      <Link class="font-bold text-xl" :href="route('home')"> {{ $page.props.auth.user.firstname }} </Link>
 
       <!-- Navigation Links -->
       <Navigations :horizontal="true" />
 
       <img
         class="rounded-full w-14 h-14 md:w-16 md:h-16"
-        v-if="$page.props.auth.user.profile_photo_url"
-        :src="$page.props.auth.user.profile_photo_url"
-        :alt="$page.props.words.profile_photo"
+        v-if="$page?.props?.auth?.user.profile_photo_url"
+        :src="$page?.props?.auth?.user.profile_photo_url"
+        alt="Profile Photo"
       />
 
       <!-- Hamburger -->
