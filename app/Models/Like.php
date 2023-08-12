@@ -24,8 +24,7 @@ class Like extends Model {
     return $this->belongsTo(User::class);
   }
 
-  // Get the parent likeable model (post, comment or reply).
-
+  // Get the parent likeable model (comment or reply).
   public function likeable()
   {
       return $this->morphTo();

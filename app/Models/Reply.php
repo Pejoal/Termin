@@ -3,46 +3,39 @@
 namespace App\Models;
 
 use App\Models\Like;
-use App\Models\Post;
-use App\Models\Reply;
 use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Comment;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Comment extends Model {
+class Reply extends Model {
   use HasFactory, SoftDeletes;
 
-  protected $fillable = ['content', 'post_id'];
+  protected $fillable = ['content', 'comment_id'];
 
   public static function boot() {
     parent::boot();
 
-    static::deleting(function ($comment) {
-      $comment->deleted_by = auth()->id();
-      $comment->save();
-      $comment->replies()->update(['deleted_by' => auth()->id()]);
-      $comment->replies()->delete();
-      $comment->likes()->update(['deleted_by' => auth()->id()]);
-      $comment->likes()->delete();
+    static::deleting(function ($reply) {
+      $reply->deleted_by = auth()->id();
+      $reply->save();
+      $reply->likes()->delete();
     });
   }
-
   public function user() {
     return $this->belongsTo(User::class);
   }
+  public function comment() {
+    return $this->belongsTo(Comment::class);
+  }
 
-  // Get all of the comment's likes.
   public function likes() {
     return $this->morphMany(Like::class, 'likeable');
   }
 
   public function likedBy(User $user) {
     return $this->likes->contains('user_id', $user->id);
-  }
-
-  public function likers() {
-    return $this->likes();
   }
 
   public function trashLikedBy(User $user) {
@@ -56,7 +49,4 @@ class Comment extends Model {
     }
   }
 
-  public function replies() {
-    return $this->hasMany(Reply::class);
-  }
 }

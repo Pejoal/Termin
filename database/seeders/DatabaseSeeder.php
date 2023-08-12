@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use Database\Seeders\BusinessHourSeeder;
 use Database\Seeders\SetupSeeder;
 use Illuminate\Database\Seeder;
 
@@ -15,7 +16,10 @@ class DatabaseSeeder extends Seeder {
    */
   public function run() {
 
-    $this->call(SetupSeeder::class);
+    $this->call([
+      SetupSeeder::class,
+      BusinessHourSeeder::class,
+    ]);
 
   }
 

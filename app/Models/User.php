@@ -61,33 +61,19 @@ class User extends Authenticatable implements MustVerifyEmail {
     static::deleting(function ($user) {
       $user->deleted_by = auth()->id();
       $user->save();
-      $user->posts()->update(['deleted_by' => auth()->id()]);
-      $user->posts()->delete();
       $user->comments()->update(['deleted_by' => auth()->id()]);
       $user->comments()->delete();
       $user->replies()->update(['deleted_by' => auth()->id()]);
       $user->replies()->delete();
       $user->likes()->update(['deleted_by' => auth()->id()]);
       $user->likes()->delete();
-      $user->publicMessages()->update(['deleted_by' => auth()->id()]);
-      $user->publicMessages()->delete();
-      $user->privateMessages()->update(['deleted_by' => auth()->id()]);
-      $user->privateMessages()->delete();
     });
   }
 
-  public function posts() {
-    return $this->hasMany(Post::class);
-  }
 
   // all comments he did
   public function comments() {
     return $this->hasMany(Comment::class);
-  }
-
-  // all comments on their posts
-  public function postsComments() {
-    return $this->hasManyThrough(Comment::class, Post::class);
   }
 
   public function replies() {
@@ -95,53 +81,19 @@ class User extends Authenticatable implements MustVerifyEmail {
   }
 
   // Likes I Did
-
   public function likes() {
     return $this->hasMany(Like::class);
   }
 
-  // Likes I Got To My Posts      [likeable_id => posts.id]
-  public function postLikesGot() {
-    return $this->hasManyThrough(Like::class, Post::class, 'user_id', 'likeable_id', 'id', 'id')->where('likes.likeable_type', '=', "App\Models\Post");
-  }
 
   // Likes I Got To My Comments   [likeable_id => comments.id]
   public function commentLikesGot() {
     return $this->hasManyThrough(Like::class, Post::class, 'user_id', 'likeable_id', 'id', 'id')->where('likes.likeable_type', '=', "App\Models\Comment");
   }
 
-  // All Likes Got (Posts' Likes, Comments' Likes)
+  // All Likes Got (Reoplies & Comments' Likes)
   public function likesGot() {
     return $this->hasManyThrough(Like::class, Post::class, 'user_id', 'likeable_id', 'id', 'id');
-  }
-
-  public function publicMessages() {
-    return $this->hasMany(PublicMessage::class);
-  }
-
-  public function privateMessages() {
-    return $this->hasMany(PrivateMessage::class);
-  }
-
-  public function receivedMessages() {
-    return $this->hasMany(PrivateMessage::class, 'recipient_id');
-  }
-
-  public function createdChatGroups() {
-    return $this->hasMany(ChatGroup::class, 'creator_id');
-  }
-
-  public function projects() {
-    return $this->hasMany(Project::class, 'creator_id');
-  }
-
-  public function joinedChatGroups() {
-    return $this->belongsToMany(ChatGroup::class);
-  }
-
-  public function tasks()
-  {
-      return $this->belongsToMany(Task::class);
   }
 
   protected function firstname(): Attribute {

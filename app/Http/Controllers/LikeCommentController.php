@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\CommentLikedEmailJob;
-use App\Jobs\CommentLikeEmail;
 use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -58,10 +57,9 @@ class LikeCommentController extends Controller {
       ]);
     }
 
-    if (!$comment->likes()->onlyTrashed()->where('user_id', $request->user()->id)->count()) {
-      // Mail::to($comment->user->email)->send(new CommentLiked($request->user(), $comment));
-      CommentLikedEmailJob::dispatch($comment, $request->user());
-    }
+    // if (!$comment->likes()->onlyTrashed()->where('user_id', $request->user()->id)->count()) {
+    //   CommentLikedEmailJob::dispatch($comment, $request->user());
+    // }
     return back();
   }
 }
