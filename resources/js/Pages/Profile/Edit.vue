@@ -31,8 +31,8 @@ const enableNotifications = (event) => {
 
   <AuthLayout>
     <template #content>
-      <div class="bg-gray-50 py-2">
-        <div class="p-4 sm:p-8 shadow sm:rounded-lg">
+      <div class="bg-gray-50 pb-2">
+        <div class="p-2 shadow sm:rounded-lg">
           <UpdateProfileInformationForm
             :must-verify-email="mustVerifyEmail"
             :status="status"

@@ -19,7 +19,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
   // dd(auth()->check()); // return bool
-  // return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
   // return Inertia::render('Welcome', [
   //   'canLogin' => Route::has('login'),
   //   'canRegister' => Route::has('register'),
@@ -41,10 +40,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
   Route::post('/profile/photo/update', [ProfileController::class, 'updateProfilePhoto'])->name('profile.photo.update');
   
-
-  Route::get('business-hours', [BusinessHourController::class, 'index']);
+  Route::get('business-hours', [BusinessHourController::class, 'index'])->name('business_hours');
   Route::post('business-hours', [BusinessHourController::class, 'update'])->name('business_hours.update');
-  Route::get('reserve', [AppointmentController::class, 'index']);
-  Route::post('reserve', [AppointmentController::class, 'reserve'])->name('reserve');
+  Route::get('reserve', [AppointmentController::class, 'index'])->name('appointments');
+  Route::post('reserve', [AppointmentController::class, 'reserve'])->name('appointment.reserve');
 
 });
