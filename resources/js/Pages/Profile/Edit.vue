@@ -23,12 +23,11 @@ function uploadProfilePhoto() {
 
 const enableNotifications = (event) => {
   console.log(event.target.checked);
-}
-
+};
 </script>
 
 <template>
-  <Head :title="$page.props.words.profile" />
+  <Head title="Profile" />
 
   <AuthLayout>
     <template #content>
@@ -51,9 +50,7 @@ const enableNotifications = (event) => {
         >
           <section class="flex justify-between flex-col sm:flex-row">
             <div class="my-2">
-              <label class="pr-2" for="profile_photo">
-                {{ $page.props.words.profile_photo }}
-              </label>
+              <label class="pr-2" for="profile_photo"> Profile Photo </label>
               <input
                 id="profile_photo"
                 type="file"
@@ -65,7 +62,7 @@ const enableNotifications = (event) => {
               type="submit"
               :disabled="form.processing"
             >
-              {{ $page.props.words.upload }}
+              Upload
             </button>
           </section>
           <p
@@ -87,15 +84,22 @@ const enableNotifications = (event) => {
             class="transition ease-in-out"
           >
             <p v-if="form.recentlySuccessful" class="text-sm text-gray-100">
-              {{ $page.props.words.uploaded }}
+              Uploaded
             </p>
           </Transition>
         </form>
 
-        <form class="p-4 sm:p-8 shadow sm:rounded-lg" @submit.prevent="enableNotifications()">
+        <form
+          class="p-4 sm:p-8 shadow sm:rounded-lg"
+          @submit.prevent="enableNotifications()"
+        >
           <section class="flex justify-between">
             <label for="enable-notifications">Enable Notifications</label>
-            <Switcher id="enable-notifications" @change="(e) => enableNotifications(e)" name="notifications" />
+            <Switcher
+              id="enable-notifications"
+              @change="(e) => enableNotifications(e)"
+              name="notifications"
+            />
           </section>
         </form>
 
