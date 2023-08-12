@@ -10,7 +10,7 @@ import { Head } from "@inertiajs/vue3";
   <AuthLayout>
     <template #left-sidebar> </template>
     <template #content>
-      <section class="flex items-center justify-between px-4 md:px-0 pt-6 pb-4">
+      <section class="border-l border-white h-screen flex items-start p-4">
         Hi
       </section>
     </template>

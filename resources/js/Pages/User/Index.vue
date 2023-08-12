@@ -1,6 +1,6 @@
 <script setup>
-import AuthLayout from '@/Layouts/AuthLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import AuthLayout from "@/Layouts/AuthLayout.vue";
+import { Head } from "@inertiajs/vue3";
 
 let props = defineProps({});
 </script>
@@ -9,6 +9,10 @@ let props = defineProps({});
   <Head title="User" />
 
   <AuthLayout>
-    <template #content> User </template>
+    <template #content>
+      <section class="border-l border-white h-screen flex items-start p-4">
+        User Info
+      </section>
+    </template>
   </AuthLayout>
 </template>
