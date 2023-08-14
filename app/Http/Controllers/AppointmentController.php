@@ -18,7 +18,7 @@ class AppointmentController extends Controller {
       $appointments[] = (new AppointmentService)->generateTimeData($date);
     }
 
-    return Inertia::render('Home', [
+    return Inertia::render('Appointments/Index', [
       'appointments' => $appointments,
     ]);
   }

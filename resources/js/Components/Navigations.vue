@@ -44,11 +44,30 @@ const props = defineProps({
         class="hover:font-bold"
         :class="{
           'text-zinc-700 hover:text-zinc-800': props.dark,
-          'underline  font-bold':
-            route().current('home') || route().current('home'),
+          'underline  font-bold': route().current('home'),
         }"
       >
         Home
+      </Link>
+      <Link
+        :href="route('appointments.index')"
+        class="hover:font-bold"
+        :class="{
+          'text-zinc-700 hover:text-zinc-800': props.dark,
+          'underline  font-bold': route().current('appointments.index'),
+        }"
+      >
+        Appointments
+      </Link>
+      <Link
+        :href="route('quiz.index')"
+        class="hover:font-bold"
+        :class="{
+          'text-zinc-700 hover:text-zinc-800': props.dark,
+          'underline  font-bold': route().current('quiz.index'),
+        }"
+      >
+        Quiz
       </Link>
 
       <Link

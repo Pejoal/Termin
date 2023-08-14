@@ -5,6 +5,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\BusinessHourController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,8 +47,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
   // User
   Route::group(['middleware' => 'users-only'], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::get('appointments', [AppointmentController::class, 'index'])->name('appointments');
+    Route::get('appointments', [AppointmentController::class, 'index'])->name('appointments.index');
     Route::post('appointment/reserve', [AppointmentController::class, 'reserve'])->name('appointment.reserve');
+    Route::get('quiz', [QuizController::class, 'index'])->name('quiz.index');
   });
 
   // Admin

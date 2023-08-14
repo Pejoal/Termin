@@ -32,7 +32,7 @@ const enableNotifications = (event) => {
   <AuthLayout>
     <template #content>
       <div class="bg-gray-50 pb-2">
-        <div class="p-2 shadow sm:rounded-lg">
+        <div class="p-2 sm:p-4 shadow sm:rounded-lg">
           <UpdateProfileInformationForm
             :must-verify-email="mustVerifyEmail"
             :status="status"
@@ -40,12 +40,12 @@ const enableNotifications = (event) => {
           />
         </div>
 
-        <div class="p-4 sm:p-8 shadow sm:rounded-lg">
+        <div class="p-2 sm:p-4 shadow sm:rounded-lg">
           <UpdatePasswordForm class="max-w-xl" />
         </div>
 
         <form
-          class="p-4 sm:p-8 shadow sm:rounded-lg"
+          class="p-2 sm:p-4 shadow sm:rounded-lg"
           @submit.prevent="uploadProfilePhoto"
         >
           <section class="flex justify-between flex-col sm:flex-row">
@@ -90,7 +90,7 @@ const enableNotifications = (event) => {
         </form>
 
         <form
-          class="p-4 sm:p-8 shadow sm:rounded-lg"
+          class="p-2 sm:p-4 shadow sm:rounded-lg"
           @submit.prevent="enableNotifications()"
         >
           <section class="flex justify-between">
@@ -103,7 +103,7 @@ const enableNotifications = (event) => {
           </section>
         </form>
 
-        <div class="p-4 sm:p-8 shadow sm:rounded-lg">
+        <div class="p-2 sm:p-4 shadow sm:rounded-lg">
           <DeleteUserForm class="max-w-xl" />
         </div>
       </div>
