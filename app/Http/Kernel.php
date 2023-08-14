@@ -57,12 +57,11 @@ class Kernel extends HttpKernel {
   protected $routeMiddleware = [
     'joined-users-only' => \App\Http\Middleware\JoinedUsersOnlyMiddleware::class,
     'chat-group-admin-only' => \App\Http\Middleware\ChatGroupAdminOnly::class,
-    'can.update.chat.group.message' => \App\Http\Middleware\CanUpdateChatGroupMessage::class,
-    'can.update.post' => \App\Http\Middleware\CanUpdatePost::class,
     'can.update.comment' => \App\Http\Middleware\CanUpdateComment::class,
     'can.update.reply' => \App\Http\Middleware\CanUpdateReply::class,
     'can.send.friendship.request' => \App\Http\Middleware\FriendshipRequestSender::class,
     'admins-only' => \App\Http\Middleware\Admin::class,
+    'users-only' => \App\Http\Middleware\User::class,
     'auth' => \App\Http\Middleware\Authenticate::class,
     'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
     'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,

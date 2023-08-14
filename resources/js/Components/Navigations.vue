@@ -52,16 +52,6 @@ const props = defineProps({
       </Link>
 
       <Link
-        :href="route('profile.edit')"
-        class="hover:font-bold"
-        :class="{
-          'text-zinc-700 hover:text-zinc-800': props.dark,
-          'underline  font-bold': route().current('profile.edit'),
-        }"
-      >
-        Settings
-      </Link>
-      <Link
         :href="route('user.profile.me')"
         class="hover:font-bold"
         :class="{
@@ -72,5 +62,15 @@ const props = defineProps({
         My Profile
       </Link>
     </template>
+    <Link
+      :href="route('profile.edit')"
+      class="hover:font-bold"
+      :class="{
+        'text-zinc-700 hover:text-zinc-800': props.dark,
+        'underline  font-bold': route().current('profile.edit'),
+      }"
+    >
+      Settings
+    </Link>
   </nav>
 </template>
