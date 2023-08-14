@@ -31,7 +31,7 @@ const props = defineProps({
             </h5>
             <section v-if="!appointment.off">
               <section v-for="time in appointment.business_hours" class="my-2 flex items-center justify-center">
-                <template v-if="!appointment.business_hours.includes(time)">
+                <template v-if="!appointment.reserved_hours.includes(time)">
                   <form>
                     <input
                       type="hidden"
@@ -40,7 +40,7 @@ const props = defineProps({
                     />
                     <input type="hidden" name="time" :value="time" />
                     <button
-                      class="btn btn-secondary "
+                      class="btn btn-primary "
                       type="submit"
                     >
                       {{ time }}
@@ -49,7 +49,7 @@ const props = defineProps({
                 </template>
                 <template v-else>
                   <button
-                    class="btn btn-primary"
+                    class="btn btn-secondary"
                     disabled
                   >
                     {{ time }}
