@@ -1,6 +1,5 @@
 <script setup>
-import { Link, usePage } from "@inertiajs/vue3";
-const user = usePage().props.auth.user;
+import { Link } from "@inertiajs/vue3";
 
 const props = defineProps({
   horizontal: {
@@ -38,7 +37,7 @@ const props = defineProps({
         Admin Dashboard
       </Link>
     </template>
-    <template v-if="$page.props.auth.user.type === 'user'">
+    <template v-if="$page.props.auth.user.type === 'client'">
       <Link
         :href="route('home')"
         class="hover:font-bold"

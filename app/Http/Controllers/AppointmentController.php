@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AppointmentRequest;
-use App\Models\Appointment;
 use App\Services\AppointmentService;
 use Carbon\CarbonPeriod;
 use Inertia\Inertia;
@@ -25,11 +24,6 @@ class AppointmentController extends Controller {
   }
 
   public function reserve(AppointmentRequest $request) {
-
-    $data = $request->merge(['user_id' => auth()->id()])->toArray();
-
-    Appointment::create($data);
-
-    return 'created';
+    auth()->user()->appointment()->create($request->toArray());
   }
 }

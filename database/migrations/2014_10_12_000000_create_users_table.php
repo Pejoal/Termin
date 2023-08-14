@@ -17,7 +17,7 @@ return new class extends Migration {
       $table->string('lastname')->nullable();
       $table->string('username')->unique();
       $table->enum('gender', ['male', 'female'])->nullable();
-      $table->enum('type', ['user', 'admin', 'super admin'])->default('user');
+      $table->enum('type', ['client', 'admin', 'super admin'])->default('client');
       $table->string('email')->usnique();
       $table->timestamp('email_verified_at')->nullable();
       $table->string('password')->nullable();

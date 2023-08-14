@@ -61,7 +61,7 @@ class Kernel extends HttpKernel {
     'can.update.reply' => \App\Http\Middleware\CanUpdateReply::class,
     'can.send.friendship.request' => \App\Http\Middleware\FriendshipRequestSender::class,
     'admins-only' => \App\Http\Middleware\Admin::class,
-    'users-only' => \App\Http\Middleware\User::class,
+    'clients-only' => \App\Http\Middleware\Client::class,
     'auth' => \App\Http\Middleware\Authenticate::class,
     'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
     'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,

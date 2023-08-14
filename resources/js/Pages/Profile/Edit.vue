@@ -30,6 +30,8 @@ const enableNotifications = (event) => {
   <Head title="Profile" />
 
   <AuthLayout>
+    <template #left-sidebar>
+    </template>
     <template #content>
       <div class="bg-gray-50 pb-2">
         <div class="p-2 sm:p-4 shadow sm:rounded-lg">
@@ -83,9 +85,7 @@ const enableNotifications = (event) => {
             leave-to-class="opacity-0"
             class="transition ease-in-out"
           >
-            <p v-if="form.recentlySuccessful" class="text-sm">
-              Uploaded
-            </p>
+            <p v-if="form.recentlySuccessful" class="text-sm">Uploaded</p>
           </Transition>
         </form>
 

@@ -29,7 +29,7 @@ Route::get('/', function () {
   // ]);
   if (in_array(auth()->user()->type, ['super admin', 'admin'])) {
     return redirect(route('admin.dashboard'));
-  } else if (auth()->user()->type === 'user') {
+  } else if (auth()->user()->type === 'client') {
     return redirect(route('home'));
   }
 });
@@ -45,7 +45,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
   Route::post('/profile/photo/update', [ProfileController::class, 'updateProfilePhoto'])->name('profile.photo.update');
 
   // User
-  Route::group(['middleware' => 'users-only'], function () {
+  Route::group(['middleware' => 'clients-only'], function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('appointments', [AppointmentController::class, 'index'])->name('appointments.index');
     Route::post('appointment/reserve', [AppointmentController::class, 'reserve'])->name('appointment.reserve');

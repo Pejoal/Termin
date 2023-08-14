@@ -38,7 +38,7 @@ class SetupSeeder extends Seeder {
       'email' => 'jane.doe@example.com',
       'email_verified_at' => now(),
       'password' => bcrypt('11111111'),
-      'type' => 'user',
+      'type' => 'client',
     ]);
 
   

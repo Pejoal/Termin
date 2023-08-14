@@ -9,10 +9,10 @@ let props = defineProps({});
   <Head title="User" />
 
   <AuthLayout>
+    <template #left-sidebar>
+    </template>
     <template #content>
-      <section class="border-l border-white h-screen p-4">
-        User Info
-      </section>
+      <section class="border-l border-white h-screen p-4">User Info</section>
     </template>
   </AuthLayout>
 </template>

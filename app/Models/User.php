@@ -70,10 +70,12 @@ class User extends Authenticatable implements MustVerifyEmail {
     });
   }
 
-
-  // all comments he did
   public function comments() {
     return $this->hasMany(Comment::class);
+  }
+
+  public function appointment() {
+    return $this->hasMany(Appointment::class);
   }
 
   public function replies() {
