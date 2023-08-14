@@ -38,7 +38,6 @@ require __DIR__ . '/auth.php';
 
 Route::middleware(['auth', 'verified'])->group(function () {
 
-  Route::get('/user/profile', [ProfileController::class, 'myProfile'])->name('user.profile.me');
   Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
   Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
   Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -46,6 +45,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
   // User
   Route::group(['middleware' => 'clients-only'], function () {
+    Route::get('/user/profile', [ProfileController::class, 'myProfile'])->name('user.profile.me');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('appointments', [AppointmentController::class, 'index'])->name('appointments.index');
     Route::post('appointment/reserve', [AppointmentController::class, 'reserve'])->name('appointment.reserve');

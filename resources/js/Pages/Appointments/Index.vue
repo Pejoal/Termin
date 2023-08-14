@@ -33,18 +33,22 @@ const submit = (date, time) => {
     <template #left-sidebar> </template>
     <template #content>
       <section class="border-l border-white h-screen p-4 overflow-x-auto">
+        <section class="flex items-center justify-center">
+          <InputError class="mt-2" :message="form.errors.date" />
+          <InputError class="mt-2" :message="form.errors.time" />
+          <Transition
+            enter-from-class="opacity-0"
+            leave-to-class="opacity-0"
+            class="transition ease-in-out"
+          >
+            <p v-if="form.recentlySuccessful" class="font-bold">
+              Reserve Successful
+            </p>
+          </Transition>
+        </section>
         <header class="flex items-center justify-center">
           <h2 class="text-xl font-bold">Available Appointments</h2>
         </header>
-        <InputError class="mt-2" :message="form.errors.date" />
-        <InputError class="mt-2" :message="form.errors.time" />
-        <Transition
-          enter-from-class="opacity-0"
-          leave-to-class="opacity-0"
-          class="transition ease-in-out"
-        >
-          <p v-if="form.recentlySuccessful" class="text-sm">Reserve Successful</p>
-        </Transition>
         <main class="flex">
           <section v-for="appointment in props.appointments" class="flex-1">
             <h5 class="text-center">

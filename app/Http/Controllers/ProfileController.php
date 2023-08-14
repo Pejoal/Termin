@@ -15,9 +15,11 @@ use Inertia\Response;
 class ProfileController extends Controller {
 
   
-  public function myProfile(Request $request) {
+  public function myProfile() {
 
+    $appointments = auth()->user()->appointments()->get();
     return Inertia::render('User/Index', [
+      'appointments' => $appointments
     ]);
   }
 

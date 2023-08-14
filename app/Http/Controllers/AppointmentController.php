@@ -16,7 +16,6 @@ class AppointmentController extends Controller {
     foreach ($datePeriod as $date) {
       $appointments[] = (new AppointmentService)->generateTimeData($date);
     }
-    // dd($appointments);
 
     return Inertia::render('Appointments/Index', [
       'appointments' => $appointments,
@@ -24,6 +23,6 @@ class AppointmentController extends Controller {
   }
 
   public function reserve(AppointmentRequest $request) {
-    auth()->user()->appointment()->create($request->toArray());
+    auth()->user()->appointments()->create($request->toArray());
   }
 }
