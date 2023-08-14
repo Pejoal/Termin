@@ -17,6 +17,7 @@ class AppointmentController extends Controller {
     foreach ($datePeriod as $date) {
       $appointments[] = (new AppointmentService)->generateTimeData($date);
     }
+    // dd($appointments);
 
     return Inertia::render('Appointments/Index', [
       'appointments' => $appointments,

@@ -10,7 +10,7 @@ let props = defineProps({});
 
   <AuthLayout>
     <template #content>
-      <section class="border-l border-white h-screen flex items-start p-4">
+      <section class="border-l border-white h-screen p-4">
         User Info
       </section>
     </template>
