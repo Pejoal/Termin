@@ -51,9 +51,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
   });
 
   // Admin
-  Route::get('business-hours', [BusinessHourController::class, 'index'])->name('business_hours');
-  Route::post('business-hours', [BusinessHourController::class, 'update'])->name('business_hours.update');
-  Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-
+  Route::group(['middleware' => 'admins-only'], function () {
+    Route::get('business-hours', [BusinessHourController::class, 'index'])->name('business_hours');
+    Route::post('business-hours', [BusinessHourController::class, 'update'])->name('business_hours.update');
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+  });
 
 });
