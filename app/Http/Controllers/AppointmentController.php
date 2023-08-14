@@ -6,6 +6,7 @@ use App\Http\Requests\AppointmentRequest;
 use App\Models\Appointment;
 use App\Services\AppointmentService;
 use Carbon\CarbonPeriod;
+use Inertia\Inertia;
 
 class AppointmentController extends Controller {
   public function index() {
@@ -17,7 +18,9 @@ class AppointmentController extends Controller {
       $appointments[] = (new AppointmentService)->generateTimeData($date);
     }
 
-    return view('appointments.reserve', compact('appointments'));
+    return Inertia::render('Home', [
+      'appointments' => $appointments,
+    ]);
   }
 
   public function reserve(AppointmentRequest $request) {

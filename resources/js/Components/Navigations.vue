@@ -24,38 +24,53 @@ const props = defineProps({
       'flex flex-col space-y-2 px-4': props.vertical,
     }"
   >
-    <Link
-      :href="route('home')"
-      class="hover:font-bold"
-      :class="{
-        'text-zinc-700 hover:text-zinc-800': props.dark,
-        'underline  font-bold':
-          route().current('home') || route().current('home'),
-      }"
+    <template
+      v-if="['admin', 'super admin'].includes($page.props.auth.user.type)"
     >
-      Home
-    </Link>
+      <Link
+        :href="route('admin.dashboard')"
+        class="hover:font-bold"
+        :class="{
+          'text-zinc-700 hover:text-zinc-800': props.dark,
+          'underline font-bold': route().current('admin.dashboard'),
+        }"
+      >
+        Admin Dashboard
+      </Link>
+    </template>
+    <template v-if="$page.props.auth.user.type === 'user'">
+      <Link
+        :href="route('home')"
+        class="hover:font-bold"
+        :class="{
+          'text-zinc-700 hover:text-zinc-800': props.dark,
+          'underline  font-bold':
+            route().current('home') || route().current('home'),
+        }"
+      >
+        Home
+      </Link>
 
-    <!-- Navigations For Small Pages -->
-    <Link
-      :href="route('profile.edit')"
-      class="hover:font-bold"
-      :class="{
-        'text-zinc-700 hover:text-zinc-800': props.dark,
-        'underline  font-bold': route().current('profile.edit'),
-      }"
-    >
-      Settings
-    </Link>
-    <Link
-      :href="route('user.profile.me')"
-      class="hover:font-bold"
-      :class="{
-        'text-zinc-700 hover:text-zinc-800': props.dark,
-        'underline  font-bold': route().current('user.profile.me'),
-      }"
-    >
-      My Profile
-    </Link>
+      <Link
+        :href="route('profile.edit')"
+        class="hover:font-bold"
+        :class="{
+          'text-zinc-700 hover:text-zinc-800': props.dark,
+          'underline  font-bold': route().current('profile.edit'),
+        }"
+      >
+        Settings
+      </Link>
+      <Link
+        :href="route('user.profile.me')"
+        class="hover:font-bold"
+        :class="{
+          'text-zinc-700 hover:text-zinc-800': props.dark,
+          'underline  font-bold': route().current('user.profile.me'),
+        }"
+      >
+        My Profile
+      </Link>
+    </template>
   </nav>
 </template>

@@ -6,15 +6,16 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ControlUsers {
+class Admin {
   /**
    * Handle an incoming request.
    *
    * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
    */
   public function handle(Request $request, Closure $next): Response {
-    if (!in_array(auth()->user()->type, ['super admin', 'manager'])) {
+    if (!in_array(auth()->user()->type, ['super admin', 'admin'])) {
       abort(403);
+      // return redirect(route('home'));
     }
     return $next($request);
   }

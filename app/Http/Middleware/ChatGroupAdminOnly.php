@@ -16,8 +16,7 @@ class ChatGroupAdminOnly {
   public function handle(Request $request, Closure $next): Response {
     $chatGroupId = $request->route('chatGroup')->id; // Get the chat group ID from the route parameter
 
-    // Check if the authenticated user is a member of the chat group
-    // dd(ChatGroup::find($chatGroupId));
+    // Check if the authenticated user is an member of the chat group
     if (ChatGroup::find($chatGroupId)->creator_id != auth()->id()) {
       abort(403, "You are not admin in the chat group.");
     }

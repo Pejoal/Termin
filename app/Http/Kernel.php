@@ -62,7 +62,7 @@ class Kernel extends HttpKernel {
     'can.update.comment' => \App\Http\Middleware\CanUpdateComment::class,
     'can.update.reply' => \App\Http\Middleware\CanUpdateReply::class,
     'can.send.friendship.request' => \App\Http\Middleware\FriendshipRequestSender::class,
-    'control.users' => \App\Http\Middleware\ControlUsers::class,
+    'admins-only' => \App\Http\Middleware\Admin::class,
     'auth' => \App\Http\Middleware\Authenticate::class,
     'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
     'auth.session' => \Illuminate\Session\Middleware\AuthenticateSession::class,
