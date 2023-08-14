@@ -29,6 +29,34 @@ const props = defineProps({
             <h5 class="text-center">
               <b> {{ appointment.day_name }}</b>
             </h5>
+            <section v-if="!appointment.off">
+              <section v-for="time in appointment.business_hours" class="my-2 flex items-center justify-center">
+                <template v-if="!appointment.business_hours.includes(time)">
+                  <form>
+                    <input
+                      type="hidden"
+                      name="date"
+                      :value="appointment['full_date']"
+                    />
+                    <input type="hidden" name="time" :value="time" />
+                    <button
+                      class="btn btn-secondary "
+                      type="submit"
+                    >
+                      {{ time }}
+                    </button>
+                  </form>
+                </template>
+                <template v-else>
+                  <button
+                    class="btn btn-primary"
+                    disabled
+                  >
+                    {{ time }}
+                  </button>
+                </template>
+              </section>
+            </section>
           </section>
         </main>
       </section>
