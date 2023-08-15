@@ -18,7 +18,7 @@ class BusinessHourSeeder extends Seeder {
       ], [
         'from' => "09:00",
         'to' => '17:00',
-        'step' => 30,
+        'step' => 60,
       ]);
     }
   }

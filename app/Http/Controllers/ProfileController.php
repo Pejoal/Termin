@@ -14,12 +14,25 @@ use Inertia\Response;
 
 class ProfileController extends Controller {
 
-  
   public function myProfile() {
 
-    $appointments = auth()->user()->appointments()->get();
+    $appointments = auth()->user()->appointments;
+    $currentDate = now()->format('Y-m-d');
+
+    $comingDates = $appointments->filter(function ($item) use ($currentDate) {
+      return $item['date'] > $currentDate;
+    });
+
+    $previousDates = $appointments->filter(function ($item) use ($currentDate) {
+      return $item['date'] < $currentDate;
+    });
+
+    // Convert the collections back to arrays
+    // $comingDatesArray = $comingDates->all();
+
     return Inertia::render('User/Index', [
-      'appointments' => $appointments
+      'previousDates' => $previousDates,
+      'comingDates' => $comingDates,
     ]);
   }
 

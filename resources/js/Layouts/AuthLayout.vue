@@ -83,24 +83,6 @@ const toggleNav = () => {
         <div class="hidden md:block">
           <slot name="left-sidebar">
             <div class="space-y-2">
-              <section class="bg-gray-50 p-2 rounded-lg">
-                <h3 class="underline">Next Appointments</h3>
-                <ul class="space-y-2 px-2">
-                  <li>1. x at 02.07.2023 9 uhr</li>
-                  <li>2. y at 02.07.2023 12 uhr</li>
-                  <li>3. z at 02.07.2023 14 uhr</li>
-                </ul>
-                <a>Show All Next Appointments</a>
-              </section>
-              <section class="bg-gray-50 p-2 rounded-lg">
-                <h3 class="underline">Previous Appointments</h3>
-                <ul class="space-y-2 px-2">
-                  <li>1. x at 02.07.2023 9 uhr</li>
-                  <li>2. y at 02.07.2023 12 uhr</li>
-                  <li>3. z at 02.07.2023 14 uhr</li>
-                </ul>
-                <a>Show All Previous Appointments</a>
-              </section>
               <Link
                 class="btn btn-danger"
                 :href="route('logout')"
