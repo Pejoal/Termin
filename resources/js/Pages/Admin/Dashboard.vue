@@ -23,9 +23,18 @@ const props = defineProps({
           </h2>
         </header>
         <main class="bg-slate-100 space-y-2 rounded-lg">
-          <section v-for="appointment in props.pendingAppointments" :key="appointment.id" class="bg-white rounded-lg p-2">
-            <h3 class="font-bold">Requester: {{  }}</h3>
-            {{ appointment }}
+          <section
+            v-for="appointment in props.pendingAppointments"
+            :key="appointment.id"
+            class="flex items-center justify-between bg-white shadow-lg rounded-lg p-2"
+          >
+            <section>
+              <h3>
+                Requester: <strong> {{ appointment.requester }} </strong>
+              </h3>
+              <p>At: {{ appointment.date }} {{ appointment.time }}</p>
+            </section>
+            <section class="btn btn-info">{{ appointment.status }}</section>
           </section>
         </main>
       </section>

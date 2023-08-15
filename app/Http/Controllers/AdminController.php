@@ -12,15 +12,18 @@ class AdminController extends Controller {
   // }
   public function dashboard() {
 
+    // dd(Appointment::where('status', 'pending')->get());
     $pendingAppointments = Appointment::where('status', 'pending')->get()->map(function ($appointment) {
       return [
         'id' => $appointment->id,
         'requester' => $appointment->user->full_name,
         'date' => $appointment->date,
-        'time' => $appointment->time,
+        'time' => date_format($appointment->time, 'g:i A'),
         'status' => $appointment->status,
       ];
     });
+    // dd($pendingAppointments);
+
 
     return Inertia::render('Admin/Dashboard', [
       'pendingAppointments' => $pendingAppointments,

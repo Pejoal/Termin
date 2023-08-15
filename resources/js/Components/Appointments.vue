@@ -11,7 +11,7 @@ const props = defineProps({
   <section
     class="flex items-center justify-between my-2 bg-white p-2 rounded-lg"
   >
-    <p>At {{ props.date.date }} {{ props.date.time }}</p>
+    <p>At: {{ props.date.date }} {{ props.date.time }}</p>
     <section v-if="props.date.status == 'pending'" class="btn btn-info">
       {{ props.date.status }}
     </section>
