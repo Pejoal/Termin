@@ -13,11 +13,11 @@
 ## Installation
 
 ```shell
-git clone git@github.com:Pejoal/Social-Media-Platform.git
+git clone git@github.com:Pejoal/Termin.git
 ```
 
 ```shell
-cd Social-Media-Platform
+cd Termin
 ```
 
 ```shell
@@ -96,55 +96,11 @@ npm run dev
 
 ---
 
-#### No Need for This When Working Locally
-##### Sends The Queued Emails ( Need To Configure Email Variables In .env File)
-
-```shell
-sail artisan schedule:work
-```
-
-
----
-
-### This is Optional
-#### To Fill Database With More Dummy Data
-```shell
-sail artisan db:seed --class=DataSeeder
-```
-
----
-
 ### Features
 
 1. Register System Included ( Email / Username )
 > - Email Must Be Verified
 > - Forget Password ( Sending Reset Password Email Functionality )
-2. The Ability to Create, Edit, Delete & Like ( Posts, Comments & Replies )
-3. The Ability to See Post, Comment & Reply Likers
-4. Automatic Sending Notification Email To User With Appropriate Details When...
-> - Post, Coment & Reply Got Liked
-> - Someone Comment on a Post
-> -	Someone Reply on a Comment
-> -	Someone Send a Friendship Request
-5. User-Friendly & Responsive Web Design
-6. Can View Other Users Profile ( See All Their Posts & Number Of Likes They Got )
-7. Send, Cancel, Accept and Reject Friendship Requests
-8. Public Chat (Real-Time)
-9. Chat Rooms ( Real-Time )
-10. Private Chats ( Real-Time ) { Users Must Be Friends }
-11. The Ability to Create Groups and ..
-> - Add Friends to The Group
-> - Remove Friend From the Group
-> - Real-Time Chat
-12. Translations for Most Used 10 Languages
-13. Clean Code & Using OOP
-14. Dashboard For Super Admins
-> -	Control Users
-> -	Control Posts
-> -	Control Comments
-> -	Control Replies
-> -	Control Public Messages
-15. Much More...
 
 ---
 
