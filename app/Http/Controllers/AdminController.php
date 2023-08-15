@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use Inertia\Inertia;
 
 class AdminController extends Controller {
@@ -10,7 +11,19 @@ class AdminController extends Controller {
   //   $this->middleware('admins-only');
   // }
   public function dashboard() {
+
+    $pendingAppointments = Appointment::where('status', 'pending')->get()->map(function ($appointment) {
+      return [
+        'id' => $appointment->id,
+        'requester' => $appointment->user->full_name,
+        'date' => $appointment->date,
+        'time' => $appointment->time,
+        'status' => $appointment->status,
+      ];
+    });
+
     return Inertia::render('Admin/Dashboard', [
+      'pendingAppointments' => $pendingAppointments,
     ]);
   }
 }

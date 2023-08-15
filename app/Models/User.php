@@ -2,12 +2,9 @@
 
 namespace App\Models;
 
-use App\Models\ChatGroup;
 use App\Models\Comment;
 use App\Models\Like;
 use App\Models\Post;
-use App\Models\PrivateMessage;
-use App\Models\PublicMessage;
 use App\Models\Reply;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -87,7 +84,6 @@ class User extends Authenticatable implements MustVerifyEmail {
     return $this->hasMany(Like::class);
   }
 
-
   // Likes I Got To My Comments   [likeable_id => comments.id]
   public function commentLikesGot() {
     return $this->hasManyThrough(Like::class, Post::class, 'user_id', 'likeable_id', 'id', 'id')->where('likes.likeable_type', '=', "App\Models\Comment");
@@ -98,21 +94,30 @@ class User extends Authenticatable implements MustVerifyEmail {
     return $this->hasManyThrough(Like::class, Post::class, 'user_id', 'likeable_id', 'id', 'id');
   }
 
+  /**
+   * Get the user's full name.
+   *
+   * @return string
+   */
+  public function getFullNameAttribute() {
+    return "{$this->firstname} {$this->lastname}";
+  }
+
   protected function firstname(): Attribute {
     return Attribute::make(
-      get:fn($value) => ucfirst($value),
+      get: fn($value) => ucfirst($value),
     );
   }
 
   protected function lastname(): Attribute {
     return Attribute::make(
-      get:fn($value) => ucfirst($value),
+      get: fn($value) => ucfirst($value),
     );
   }
 
   protected function username(): Attribute {
     return Attribute::make(
-      get:fn($value) => strtolower($value),
+      get: fn($value) => strtolower($value),
     );
   }
 }

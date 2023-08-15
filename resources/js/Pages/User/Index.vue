@@ -6,11 +6,11 @@ import { Head } from "@inertiajs/vue3";
 let props = defineProps({
   previousDates: {
     type: Object,
-    required: {},
+    default: {},
   },
   comingDates: {
     type: Object,
-    required: {},
+    default: {},
   },
 });
 </script>
