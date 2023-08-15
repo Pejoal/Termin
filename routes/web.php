@@ -27,11 +27,15 @@ Route::get('/', function () {
   //   'laravelVersion' => Application::VERSION,
   //   'phpVersion' => PHP_VERSION,
   // ]);
-  if (in_array(auth()->user()->type, ['super admin', 'admin'])) {
-    return redirect(route('admin.dashboard'));
-  } else if (auth()->user()->type === 'client') {
-    return redirect(route('home'));
+  if (auth()->check()) {
+    if (in_array(auth()->user()->type, ['super admin', 'admin'])) {
+      return redirect(route('admin.dashboard'));
+    } else if (auth()->user()->type === 'client') {
+      return redirect(route('home'));
+    }
   }
+  return redirect(route('login'));
+
 });
 
 require __DIR__ . '/auth.php';
