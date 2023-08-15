@@ -16,7 +16,7 @@ const props = defineProps({
   <AdminLayout>
     <template #left-sidebar> </template>
     <template #content>
-      <section class="border-l border-white h-screen p-4">
+      <section class="border-l border-white min-h-screen p-4">
         <header class="flex items-center justify-center mb-2">
           <h2 class="text-xl font-bold pb-1 border-b border-b-black">
             Appointments Requests

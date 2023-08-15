@@ -10,7 +10,7 @@ import { Head } from "@inertiajs/vue3";
   <AuthLayout>
     <template #left-sidebar> </template>
     <template #content>
-      <section class="border-l border-white h-screen flex items-start p-4">
+      <section class="border-l border-white min-h-screen flex items-start p-4">
         Business Hours
       </section>
     </template>

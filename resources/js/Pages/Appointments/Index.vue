@@ -32,7 +32,7 @@ const submit = (date, time) => {
   <AuthLayout>
     <template #left-sidebar> </template>
     <template #content>
-      <section class="border-l border-white h-screen p-4 overflow-x-auto">
+      <section class="border-l border-white min-h-screen p-4 overflow-x-auto">
         <section class="flex items-center justify-center">
           <InputError class="mt-2" :message="form.errors.date" />
           <InputError class="mt-2" :message="form.errors.time" />
