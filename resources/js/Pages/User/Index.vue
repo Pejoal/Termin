@@ -1,4 +1,5 @@
 <script setup>
+import Appointments from "@/Components/Appointments.vue";
 import AuthLayout from "@/Layouts/AuthLayout.vue";
 import { Head } from "@inertiajs/vue3";
 
@@ -12,7 +13,6 @@ let props = defineProps({
     required: {},
   },
 });
-
 </script>
 
 <template>
@@ -29,10 +29,11 @@ let props = defineProps({
         </header>
         <h2 class="text-lg font-bold text-center">Coming Appointments</h2>
         <template v-if="props.comingDates != {}">
-          <section v-for="date in props.comingDates" :key="date.id" class="flex items-center justify-between my-2 bg-white p-2 rounded-lg">
-            <p>At {{ date.date }} {{ date.time }}</p>
-            <section class="btn btn-info">{{ date.status }}</section>
-          </section>
+          <Appointments
+            v-for="date in props.comingDates"
+            :key="date.id"
+            :date="date"
+          />
         </template>
         <template v-else>
           <h4 class="text-lg">There are no coming appointments</h4>
@@ -40,10 +41,11 @@ let props = defineProps({
 
         <h2 class="text-lg font-bold text-center">Previous Appointments</h2>
         <template v-if="props.previousDates != {}">
-          <section v-for="date in props.previousDates" :key="date.id" class="flex items-center justify-between my-2 bg-white p-2 rounded-lg">
-            <p>At {{ date.date }} {{ date.time }}</p>
-            <section class="btn btn-info">{{ date.status }}</section>
-          </section>
+          <Appointments
+            v-for="date in props.previousDates"
+            :key="date.id"
+            :date="date"
+          />
         </template>
         <template v-else>
           <h4 class="text-lg">There are no coming appointments</h4>
