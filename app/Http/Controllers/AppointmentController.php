@@ -6,8 +6,8 @@ use App\Http\Requests\AppointmentRequest;
 use App\Models\Appointment;
 use App\Services\AppointmentService;
 use Carbon\CarbonPeriod;
-use Inertia\Inertia;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class AppointmentController extends Controller {
   public function index() {
@@ -34,4 +34,17 @@ class AppointmentController extends Controller {
     }
     $appointment->update($request->all());
   }
+
+  public function cancel(Appointment $appointment) {
+    if (auth()->user()->cannot('update', $appointment)) {
+      abort(403); // Forbidden
+    }
+    // $appointment->delete();
+    // dd($appointment);
+    $appointment->update([
+      "status" => "cancelled",
+    ]);
+
+  }
+
 }

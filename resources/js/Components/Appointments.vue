@@ -41,7 +41,7 @@ let showModal = ref(false);
       akzeptiert
     </section>
     <section
-      v-else-if="props.date.status == 'canceled'"
+      v-else-if="props.date.status == 'cancelled'"
       class="btn btn-warning"
     >
       abgesagt

@@ -30,7 +30,7 @@ const form = useForm({
 });
 
 const update = () => {
-  form.post(route("appointment.update", [props.date.id]), {
+  form.put(route("appointment.update", [props.date.id]), {
     onSuccess: () => {
       emits("save");
     },
@@ -39,7 +39,12 @@ const update = () => {
 };
 
 const cancel = () => {
-  console.log("");
+  form.delete(route("appointment.cancel", [props.date.id]), {
+    onSuccess: () => {
+      emits("save");
+    },
+    onFinish: () => form.reset(["locations", "notes"]),
+  });
 };
 </script>
 
@@ -57,7 +62,7 @@ const cancel = () => {
         akzeptiert
       </section>
       <section
-        v-else-if="props.date.status == 'canceled'"
+        v-else-if="props.date.status == 'cancelled'"
         class="btn btn-warning"
       >
         abgesagt
@@ -96,7 +101,7 @@ const cancel = () => {
         <button type="submit" class="btn btn-primary">
           Termin aktualisieren
         </button>
-        <button type="button" class="btn btn-danger" @click.prevent="cancel">
+        <button type="button" class="btn btn-danger" @click="cancel">
           Termin absagen
         </button>
       </footer>
