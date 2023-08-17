@@ -1,7 +1,9 @@
 <script setup>
 import AuthLayout from "@/Layouts/AuthLayout.vue";
-import { Head, useForm } from "@inertiajs/vue3";
-import InputError from "@/Components/InputError.vue";
+import { Head } from "@inertiajs/vue3";
+import AvailableAppointment from "@/Components/AvailableAppointment.vue";
+import { ref } from "vue";
+import Toast from "@/Components/Toast.vue";
 
 const props = defineProps({
   appointments: {
@@ -10,18 +12,9 @@ const props = defineProps({
   },
 });
 
-const form = useForm({
-  date: "",
-  time: "",
-});
-
-const submit = (date, time) => {
-  form.date = date;
-  form.time = time;
-  form.post(route("appointment.reserve"), {
-    onSuccess: () => {},
-    onFinish: () => form.reset(["date", "time"]),
-  });
+let showUpdatedToast = ref(false);
+const save = () => {
+  showUpdatedToast.value = true;
 };
 </script>
 
@@ -33,23 +26,18 @@ const submit = (date, time) => {
     <template #left-sidebar> </template>
     <template #content>
       <section class="border-l border-white min-h-screen p-4 overflow-x-auto">
-        <section class="flex items-center justify-center">
-          <InputError class="mt-2" :message="form.errors.date" />
-          <InputError class="mt-2" :message="form.errors.time" />
-          <Transition
-            enter-from-class="opacity-0"
-            leave-to-class="opacity-0"
-            class="transition ease-in-out"
-          >
-            <p v-if="form.recentlySuccessful" class="font-bold">
-              Reservierung erfolgreich
-            </p>
-          </Transition>
-        </section>
         <header class="flex items-center justify-center">
           <h2 class="text-xl font-bold">Verfügbare Termine</h2>
         </header>
         <main class="flex">
+          <Teleport to="#toasts">
+            <Toast
+              :show="showUpdatedToast"
+              :type="'success'"
+              @close="showUpdatedToast = false"
+              :message="'Termin bestätigt'"
+            />
+          </Teleport>
           <section v-for="appointment in props.appointments" class="flex-1">
             <h5 class="text-center">
               {{ appointment.date }}
@@ -58,30 +46,13 @@ const submit = (date, time) => {
               <b> {{ appointment.day_name }}</b>
             </h5>
             <section v-if="!appointment.off">
-              <section
+              <AvailableAppointment
                 v-for="time in appointment.business_hours"
-                class="my-2 flex items-center justify-center"
-              >
-                <template v-if="!appointment.reserved_hours.includes(time)">
-                  <form
-                    @submit.prevent="submit(appointment['full_date'], time)"
-                  >
-                    <button
-                      class="btn btn-primary"
-                      type="submit"
-                      :class="{ 'opacity-25': form.processing }"
-                      :disabled="form.processing"
-                    >
-                      {{ time }}
-                    </button>
-                  </form>
-                </template>
-                <template v-else>
-                  <button class="btn btn-secondary" disabled>
-                    {{ time }}
-                  </button>
-                </template>
-              </section>
+                :key="time"
+                v-on:save="save"
+                :appointment="appointment"
+                :time="time"
+              />
             </section>
           </section>
         </main>

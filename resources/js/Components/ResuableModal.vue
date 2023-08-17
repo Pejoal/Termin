@@ -10,7 +10,7 @@ const props = defineProps({
 <template>
   <Transition name="modal">
     <div v-show="props.show" class="modal-mask" @click.self="$emit('close')">
-      <div class="modal-container m-auto bg-white overflow-y-auto transition-all shadow-2xl pb-4" :class="props.classes">
+      <div class="modal-container m-auto bg-white overflow-y-auto transition-all pb-4 rounded-lg" :class="props.classes">
         <slot name="header">
           <div class="flex items-center justify-between px-4 bg-gray-200">
             <h2 class="text-2xl">{{ props.header ? props.header : 'Header'  }}</h2>
@@ -31,7 +31,7 @@ const props = defineProps({
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.01);
   display: flex;
   transition: opacity 0.3s ease;
 }

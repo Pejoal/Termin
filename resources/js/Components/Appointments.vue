@@ -12,10 +12,6 @@ const props = defineProps({
   },
 });
 
-const form = useForm({
-  s: "s",
-});
-
 let showModal = ref(false);
 
 </script>
@@ -23,7 +19,7 @@ let showModal = ref(false);
   <Teleport to="#modal">
     <ResuableModal
       :classes="['w-[90%] md:w-[85%] lg:w-[80%] h-[90%]']"
-      :header="'Update Appointment'"
+      :header="'Termin aktualisieren'"
       :show="showModal"
       @close="showModal = false"
     >
