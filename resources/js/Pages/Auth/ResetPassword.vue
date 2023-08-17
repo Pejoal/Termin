@@ -30,7 +30,7 @@ const submit = () => {
 
     <form @submit.prevent="submit">
       <div>
-        <InputLabel for="input_type" value="Username / Email" />
+        <InputLabel for="input_type" value="Benutzername / E-Mail" />
 
         <TextInput
           id="input_type"
@@ -47,7 +47,7 @@ const submit = () => {
       </div>
 
       <div class="mt-4">
-        <InputLabel for="password" value="Password" />
+        <InputLabel for="password" value="Passwort" />
 
         <TextInput
           id="password"
@@ -62,7 +62,10 @@ const submit = () => {
       </div>
 
       <div class="mt-4">
-        <InputLabel for="password_confirmation" value="Confirm Password" />
+        <InputLabel
+          for="password_confirmation"
+          value="Bestätige das Passwort"
+        />
 
         <TextInput
           id="password_confirmation"
@@ -82,7 +85,7 @@ const submit = () => {
           :class="{ 'opacity-25': form.processing }"
           :disabled="form.processing"
         >
-          Reset Password
+          Passwort zurücksetzen
         </button>
       </div>
     </form>

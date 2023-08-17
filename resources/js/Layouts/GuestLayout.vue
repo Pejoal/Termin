@@ -8,7 +8,7 @@ import { Link } from "@inertiajs/vue3";
     <header
       class="flex items-center justify-center h-20 bg-zinc-400 py-2 px-4 sm:px-6 lg:px-8"
     >
-      <Link class="font-bold text-xl" :href="route('home')"> App Name </Link>
+      <Link class="font-bold text-xl" :href="route('home')"> Meine Fahrschule </Link>
     </header>
     <div class="grid place-items-center">
       <slot />

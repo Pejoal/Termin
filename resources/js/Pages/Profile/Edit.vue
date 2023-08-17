@@ -52,7 +52,7 @@ const enableNotifications = (event) => {
         >
           <section class="flex justify-between flex-col sm:flex-row">
             <div class="my-2">
-              <label class="pr-2" for="profile_photo"> Profile Photo </label>
+              <label class="pr-2" for="profile_photo"> Profilfoto </label>
               <input
                 id="profile_photo"
                 type="file"
@@ -85,7 +85,7 @@ const enableNotifications = (event) => {
             leave-to-class="opacity-0"
             class="transition ease-in-out"
           >
-            <p v-if="form.recentlySuccessful" class="text-sm">Uploaded</p>
+            <p v-if="form.recentlySuccessful" class="text-sm">Hochgeladen</p>
           </Transition>
         </form>
 
@@ -94,7 +94,7 @@ const enableNotifications = (event) => {
           @submit.prevent="enableNotifications()"
         >
           <section class="flex justify-between">
-            <label for="enable-notifications">Enable Notifications</label>
+            <label for="enable-notifications">Benachrichtigungen aktivieren</label>
             <Switcher
               id="enable-notifications"
               @change="(e) => enableNotifications(e)"

@@ -23,9 +23,10 @@ const submit = () => {
     <Head title="Forgot Password" />
 
     <div class="mb-4 text-sm">
-      Forgot your password? No problem. Just let us know your email address and
-      we will email you a password reset link that will allow you to choose a
-      new one.
+      Haben Sie Ihr Passwort vergessen? Kein Problem. Teilen Sie uns einfach
+      Ihre E-Mail-Adresse mit Wir senden Ihnen per E-Mail einen Link zum
+      Zurücksetzen des Passworts, über den Sie ein Passwort auswählen können ein
+      neues.
     </div>
 
     <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
@@ -51,12 +52,12 @@ const submit = () => {
       </div>
 
       <div class="flex items-center justify-end mt-4">
-        <button 
-          class = "btn btn-success"
+        <button
+          class="btn btn-success"
           :class="{ 'opacity-25': form.processing }"
           :disabled="form.processing"
         >
-          Email Password Reset Link
+          Link zum Zurücksetzen des Passworts per E-Mail senden
         </button>
       </div>
     </form>

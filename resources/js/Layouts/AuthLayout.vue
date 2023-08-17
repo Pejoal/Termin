@@ -59,7 +59,7 @@ const toggleNav = () => {
               method="post"
               as="button"
             >
-              Log out
+              Ausloggen
             </Link>
           </div>
           <!-- Button to close the menu -->
@@ -89,7 +89,7 @@ const toggleNav = () => {
                 method="post"
                 as="button"
               >
-                Log out
+                Ausloggen
               </Link>
             </div>
           </slot>

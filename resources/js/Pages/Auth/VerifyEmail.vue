@@ -23,17 +23,18 @@ const verificationLinkSent = computed(
     <Head title="Email Verification" />
 
     <div class="my-2">
-      Thanks for signing up! Before getting started, could you verify your email
-      address by clicking on the link we just emailed to you? If you didn't
-      receive the email, we will gladly send you another.
+      Danke für's Registrieren! Bevor Sie beginnen, können Sie Ihre
+      E-Mail-Adresse bestätigen Adresse, indem Sie auf den Link klicken, den wir
+      Ihnen gerade per E-Mail zugesandt haben? Wenn nicht Wenn Sie die E-Mail
+      erhalten, senden wir Ihnen gerne eine weitere zu.
     </div>
 
     <div
       class="my-2 font-medium text-sm text-green-700"
       v-if="verificationLinkSent"
     >
-      A new verification link has been sent to the email address you provided
-      during registration.
+      Ein neuer Bestätigungslink wurde an die von Ihnen angegebene
+      E-Mail-Adresse gesendet bei der Anmeldung.
     </div>
 
     <form @submit.prevent="submit">
@@ -43,7 +44,7 @@ const verificationLinkSent = computed(
           :class="{ 'opacity-25': form.processing }"
           :disabled="form.processing"
         >
-          Resend Verification Email
+          Bestätigungsmail erneut senden
         </button>
 
         <Link
@@ -51,7 +52,7 @@ const verificationLinkSent = computed(
           method="post"
           as="button"
           class="underline text-white ml-3 bg-red-600 px-2 py-1 rounded-md"
-          >Log Out</Link
+          >Ausloggen</Link
         >
       </div>
     </form>

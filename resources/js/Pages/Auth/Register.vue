@@ -34,14 +34,14 @@ const submit = () => {
       class="bg-zinc-300 w-full mt-2 mb-4 rounded-lg md:container px-8 py-4 flex flex-col gap-2"
     >
       <div>
-        <InputLabel for="firstname" value="First Name" />
+        <InputLabel for="firstname" value="Vorname" />
 
         <TextInput
           id="firstname"
           type="text"
           class="mt-1 block w-full"
           v-model="form.firstname"
-          placeholder="First Name"
+          placeholder="Vorname"
           required
           autocomplete="firstname"
           autofocus
@@ -51,14 +51,14 @@ const submit = () => {
       </div>
 
       <div>
-        <InputLabel for="lastname" value="Last Name" />
+        <InputLabel for="lastname" value="Nachname" />
 
         <TextInput
           id="lastname"
           type="text"
           class="mt-1 block w-full"
           v-model="form.lastname"
-          placeholder="Last Name"
+          placeholder="Nachname"
           autocomplete="lasstname"
           required
         />
@@ -66,14 +66,14 @@ const submit = () => {
         <InputError class="mt-2" :message="form.errors.lastname" />
       </div>
       <div>
-        <InputLabel for="username" value="username" />
+        <InputLabel for="username" value="Nutzername" />
 
         <TextInput
           id="username"
           type="text"
           class="mt-1 block w-full"
           v-model="form.username"
-          placeholder="User Name"
+          placeholder="Nutzername"
           autocomplete="username"
           required
         />
@@ -91,7 +91,7 @@ const submit = () => {
               v-model="form.gender"
               autocomplete="gender"
             />
-            <label class="ml-2" for="male">Male</label>
+            <label class="ml-2" for="male">Männlich</label>
           </section>
           <section>
             <input
@@ -101,7 +101,7 @@ const submit = () => {
               v-model="form.gender"
               autocomplete="gender"
             />
-            <label class="ml-2" for="female"> Female</label>
+            <label class="ml-2" for="female"> Weiblich</label>
           </section>
         </div>
         <InputError class="mt-2" :message="form.errors.gender" />
@@ -124,14 +124,14 @@ const submit = () => {
       </div>
 
       <div class="mt-4">
-        <InputLabel for="password" value="Password" />
+        <InputLabel for="password" value="Passwort" />
 
         <TextInput
           id="password"
           type="password"
           class="mt-1 block w-full"
           v-model="form.password"
-          placeholder="Password"
+          placeholder="Passwort"
           required
           autocomplete="new-password"
         />
@@ -140,14 +140,14 @@ const submit = () => {
       </div>
 
       <div class="mt-4">
-        <InputLabel for="password_confirmation" value="Confirm Password" />
+        <InputLabel for="password_confirmation" value="Bestätige das Passwort" />
 
         <TextInput
           id="password_confirmation"
           type="password"
           class="mt-1 block w-full"
           v-model="form.password_confirmation"
-          placeholder="Confirm Password"
+          placeholder="Bestätige das Passwort"
           required
           autocomplete="new-password"
         />
@@ -157,7 +157,7 @@ const submit = () => {
 
       <section class="flex justify-between flex-col sm:flex-row">
         <div class="my-2">
-          <label class="pr-2" for="profile_photo"> Profile Photo </label>
+          <label class="pr-2" for="profile_photo"> Profilfoto </label>
           <input
             id="profile_photo"
             type="file"
@@ -183,7 +183,7 @@ const submit = () => {
         leave-to-class="opacity-0"
         class="transition ease-in-out"
       >
-        <p v-if="form.recentlySuccessful" class="text-sm">Uploaded</p>
+        <p v-if="form.recentlySuccessful" class="text-sm">Hochgeladen</p>
       </Transition>
 
       <div class="flex items-center justify-end mt-2">
@@ -191,7 +191,7 @@ const submit = () => {
           :href="route('login')"
           class="underline text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
-          Already Registered
+          Bereits registriert
         </Link>
 
         <button
@@ -199,7 +199,7 @@ const submit = () => {
           :class="{ 'opacity-25': form.processing }"
           :disabled="form.processing"
         >
-          Register
+          Anmeldung
         </button>
       </div>
     </form>

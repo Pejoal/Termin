@@ -23,10 +23,11 @@ const form = useForm({
 <template>
   <section>
     <header>
-      <h2 class="text-lg font-medium">Profile Information</h2>
+      <h2 class="text-lg font-medium">Profil Information</h2>
 
       <p class="mt-1 text-sm">
-        Update your account's profile information and email address
+        Aktualisieren Sie die Profilinformationen und die E-Mail-Adresse Ihres
+        Kontos
       </p>
     </header>
 
@@ -35,7 +36,7 @@ const form = useForm({
       class="mt-6 space-y-6"
     >
       <div>
-        <InputLabel for="firstname" value="First Name" />
+        <InputLabel for="firstname" value="Vorname" />
 
         <TextInput
           id="firstname"
@@ -51,7 +52,7 @@ const form = useForm({
       </div>
 
       <div>
-        <InputLabel for="lastname" value="Last Name" />
+        <InputLabel for="lastname" value="Nachname" />
 
         <TextInput
           id="lastname"
@@ -67,7 +68,7 @@ const form = useForm({
       </div>
 
       <div>
-        <InputLabel for="username" value="User Name" />
+        <InputLabel for="username" value="Nutzername" />
 
         <TextInput
           id="username"
@@ -83,11 +84,11 @@ const form = useForm({
       </div>
 
       <div>
-        <InputLabel value="Gender" />
+        <InputLabel value="Geschlecht" />
         <div class="flex justify-center gap-12">
           <section>
             <input type="radio" id="male" value="male" v-model="form.gender" />
-            <label class="ml-2" for="male">Male</label>
+            <label class="ml-2" for="male">Männlich</label>
           </section>
           <section>
             <input
@@ -96,7 +97,7 @@ const form = useForm({
               value="female"
               v-model="form.gender"
             />
-            <label class="ml-2" for="female"> Female </label>
+            <label class="ml-2" for="female"> Weiblich </label>
           </section>
         </div>
         <InputError class="mt-2" :message="form.errors.gender" />
@@ -119,14 +120,14 @@ const form = useForm({
 
       <div v-if="props.mustVerifyEmail && user.email_verified_at === null">
         <p class="text-sm mt-2">
-          Your email address is unverified.
+          Ihre E-Mail-Adresse ist nicht bestätigt.
           <Link
             :href="route('verification.send')"
             method="post"
             as="button"
             class="underline text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            Click here to re-send the verification email.
+            Klicken Sie hier, um die Bestätigungs-E-Mail erneut zu senden.
           </Link>
         </p>
 
@@ -134,13 +135,13 @@ const form = useForm({
           v-show="props.status === 'verification-link-sent'"
           class="mt-2 font-medium text-sm text-green-600"
         >
-          A new verification link has been sent to your email address.
+          Ein neuer Bestätigungslink wurde an Ihre E-Mail-Adresse gesendet.
         </div>
       </div>
 
       <div class="flex items-center gap-4">
         <button class="btn btn-success" :disabled="form.processing">
-          Save
+          Speichern
         </button>
 
         <Transition
@@ -148,9 +149,7 @@ const form = useForm({
           leave-to-class="opacity-0"
           class="transition ease-in-out"
         >
-          <p v-if="form.recentlySuccessful" class="text-sm">
-            Saved
-          </p>
+          <p v-if="form.recentlySuccessful" class="text-sm">gespeichert</p>
         </Transition>
       </div>
     </form>

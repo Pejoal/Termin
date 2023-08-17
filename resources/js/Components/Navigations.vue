@@ -34,7 +34,7 @@ const props = defineProps({
           'underline font-bold': route().current('admin.dashboard'),
         }"
       >
-        Admin Dashboard
+        Admin-Dashboard
       </Link>
     </template>
     <template v-if="$page.props.auth.user.type === 'client'">
@@ -46,7 +46,7 @@ const props = defineProps({
           'underline  font-bold': route().current('home'),
         }"
       >
-        Home
+        Startseite
       </Link>
       <Link
         :href="route('appointments.index')"
@@ -56,7 +56,7 @@ const props = defineProps({
           'underline  font-bold': route().current('appointments.index'),
         }"
       >
-        Appointments
+        Termine
       </Link>
       <Link
         :href="route('quiz.index')"
@@ -77,7 +77,7 @@ const props = defineProps({
           'underline  font-bold': route().current('user.profile.me'),
         }"
       >
-        My Profile
+        Meine Daten
       </Link>
     </template>
     <Link
@@ -88,7 +88,7 @@ const props = defineProps({
         'underline  font-bold': route().current('profile.edit'),
       }"
     >
-      Settings
+      Einstellungen
     </Link>
   </nav>
 </template>

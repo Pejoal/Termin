@@ -27,7 +27,7 @@ const submit = (date, time) => {
 
 <template>
   <Head>
-    <title>Appointments</title>
+    <title>Termine</title>
   </Head>
   <AuthLayout>
     <template #left-sidebar> </template>
@@ -42,12 +42,12 @@ const submit = (date, time) => {
             class="transition ease-in-out"
           >
             <p v-if="form.recentlySuccessful" class="font-bold">
-              Reserve Successful
+              Reservierung erfolgreich
             </p>
           </Transition>
         </section>
         <header class="flex items-center justify-center">
-          <h2 class="text-xl font-bold">Available Appointments</h2>
+          <h2 class="text-xl font-bold">Verfügbare Termine</h2>
         </header>
         <main class="flex">
           <section v-for="appointment in props.appointments" class="flex-1">

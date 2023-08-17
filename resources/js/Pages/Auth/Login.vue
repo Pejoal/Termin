@@ -36,7 +36,7 @@ const submit = () => {
         :href="route('register')"
         class="underline float-right text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
       >
-        Sign up
+        registrieren
       </Link>
       <form @submit.prevent="submit">
         <div>
@@ -84,7 +84,7 @@ const submit = () => {
             :href="route('password.request')"
             class="underline text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            Forgot your password?
+            Haben Sie Ihr Passwort vergessen?
           </Link>
 
           <button
@@ -92,7 +92,7 @@ const submit = () => {
             :class="{ 'opacity-25': form.processing }"
             :disabled="form.processing"
           >
-            Login
+            Anmeldung
           </button>
         </div>
       </form>

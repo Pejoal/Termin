@@ -35,16 +35,16 @@ const updatePassword = () => {
 <template>
   <section>
     <header>
-      <h2 class="text-lg font-medium">Update Password</h2>
+      <h2 class="text-lg font-medium">Passwort aktualisieren</h2>
 
       <p class="mt-1 text-sm">
-        Ensure your account is using a long, random password to stay secure
+        Stellen Sie sicher, dass Ihr Konto ein langes, zufälliges Passwort verwendet, um die Sicherheit zu gewährleisten
       </p>
     </header>
 
     <form @submit.prevent="updatePassword" class="mt-6 space-y-6">
       <div>
-        <InputLabel for="current_password" value="Current Password" />
+        <InputLabel for="current_password" value="Aktuelles Passwort" />
 
         <TextInput
           id="current_password"
@@ -52,7 +52,7 @@ const updatePassword = () => {
           v-model="form.current_password"
           type="password"
           class="mt-1 block w-full"
-          placeholder="Current Password"
+          placeholder="Aktuelles Passwort"
           autocomplete="current-password"
         />
 
@@ -60,14 +60,14 @@ const updatePassword = () => {
       </div>
 
       <div>
-        <InputLabel for="password" value="New Password" />
+        <InputLabel for="password" value="Neues Passwort" />
 
         <TextInput
           id="password"
           ref="passwordInput"
           v-model="form.password"
           type="password"
-          aria-placeholder="New Password"
+          placeholder="Neues Passwort"
           class="mt-1 block w-full"
           autocomplete="new-password"
         />
@@ -78,7 +78,7 @@ const updatePassword = () => {
       <div>
         <InputLabel
           for="password_confirmation"
-          value="Confirm Password"
+          value="Bestätige das Passwort"
         />
 
         <TextInput
@@ -94,7 +94,7 @@ const updatePassword = () => {
 
       <div class="flex items-center gap-4">
         <button class="btn btn-success" :disabled="form.processing">
-          Save
+          Speichern
         </button>
 
         <Transition
@@ -103,7 +103,7 @@ const updatePassword = () => {
           class="transition ease-in-out"
         >
           <p v-if="form.recentlySuccessful" class="text-sm">
-            Saved
+            gespeichert
           </p>
         </Transition>
       </div>

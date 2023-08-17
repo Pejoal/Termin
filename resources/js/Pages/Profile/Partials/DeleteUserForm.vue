@@ -39,27 +39,29 @@ const closeModal = () => {
 <template>
   <section class="space-y-6">
     <header>
-      <h2 class="text-lg font-medium">Delete Account</h2>
+      <h2 class="text-lg font-medium">Konto löschen</h2>
 
       <p class="mt-1 text-sm">
-        Once your account is deleted, all of its resources and data will be
-        permanently deleted. Before deleting your account, please download any
-        data or information that you wish to retain.
+        Sobald Ihr Konto gelöscht wird, sind alle seine Ressourcen und Daten
+        gelöscht dauerhaft gelöscht. Bevor Sie Ihr Konto löschen, laden Sie
+        bitte eines herunter Daten oder Informationen, die Sie behalten möchten.
       </p>
     </header>
 
-    <DangerButton @click="confirmUserDeletion" class="text-white"> Delete Account </DangerButton>
+    <DangerButton @click="confirmUserDeletion" class="text-white">
+      Konto löschen
+    </DangerButton>
 
     <Modal :show="confirmingUserDeletion" @close="closeModal">
       <div class="p-6">
         <h2 class="text-lg font-medium">
-          Are you sure you want to delete your account?
+          Sind Sie sicher, dass Sie Ihr Konto löschen möchten?
         </h2>
 
         <p class="mt-1 text-sm">
-          Once your account is deleted, all of its resources and data will be
-          permanently deleted. Please enter your password to confirm you would
-          like to permanently delete your account.
+          Sobald Ihr Konto gelöscht wird, sind alle seine Ressourcen und Daten
+          gelöscht dauerhaft gelöscht. Bitte geben Sie zur Bestätigung Ihr
+          Passwort ein Ich möchte Ihr Konto dauerhaft löschen.
         </p>
 
         <div class="mt-6">
@@ -87,7 +89,7 @@ const closeModal = () => {
             :disabled="form.processing"
             @click="deleteUser"
           >
-            Delete Account
+            Konto löschen
           </DangerButton>
         </div>
       </div>

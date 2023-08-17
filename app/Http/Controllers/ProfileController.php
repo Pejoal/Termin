@@ -19,7 +19,7 @@ class ProfileController extends Controller {
     $appointments = auth()->user()->appointments;
     $currentDate = now()->format('Y-m-d');
 
-    $comingDates = $appointments->filter(function ($item) use ($currentDate) {
+    $upcomingDates = $appointments->filter(function ($item) use ($currentDate) {
       return $item['date'] > $currentDate;
     });
 
@@ -28,11 +28,11 @@ class ProfileController extends Controller {
     });
 
     // Convert the collections back to arrays
-    // $comingDatesArray = $comingDates->all();
+    // $upcomingDatesArray = $upcomingDates->all();
 
     return Inertia::render('User/Index', [
       'previousDates' => $previousDates,
-      'comingDates' => $comingDates,
+      'upcomingDates' => $upcomingDates,
     ]);
   }
 

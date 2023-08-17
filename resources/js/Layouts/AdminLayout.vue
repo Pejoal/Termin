@@ -59,7 +59,7 @@ const toggleNav = () => {
               method="post"
               as="button"
             >
-              Log out
+              Ausloggen
             </Link>
           </div>
           <!-- Button to close the menu -->
@@ -67,7 +67,7 @@ const toggleNav = () => {
             @click="showNav = false"
             class="mt-4 px-3 py-1 hover:font-bold rounded-md"
           >
-            Close
+            Schließen
           </button>
         </div>
       </transition>
@@ -89,7 +89,7 @@ const toggleNav = () => {
                 method="post"
                 as="button"
               >
-                Log out
+                Ausloggen
               </Link>
             </div>
           </slot>
