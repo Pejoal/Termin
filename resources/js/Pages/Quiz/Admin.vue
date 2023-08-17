@@ -11,7 +11,7 @@ import { Head } from "@inertiajs/vue3";
     <template #left-sidebar> </template>
     <template #content>
       <section class="border-l border-white min-h-screen p-4">
-        Quiz
+        Quiz Admin
       </section>
     </template>
   </AuthLayout>

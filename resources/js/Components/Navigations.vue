@@ -36,6 +36,16 @@ const props = defineProps({
       >
         Admin-Dashboard
       </Link>
+      <Link
+        :href="route('quiz.admin')"
+        class="hover:font-bold"
+        :class="{
+          'text-zinc-700 hover:text-zinc-800': props.dark,
+          'underline  font-bold': route().current('quiz.admin'),
+        }"
+      >
+        Quiz
+      </Link>
     </template>
     <template v-if="$page.props.auth.user.type === 'client'">
       <Link
@@ -59,11 +69,11 @@ const props = defineProps({
         Termine
       </Link>
       <Link
-        :href="route('quiz.index')"
+        :href="route('quiz.client')"
         class="hover:font-bold"
         :class="{
           'text-zinc-700 hover:text-zinc-800': props.dark,
-          'underline  font-bold': route().current('quiz.index'),
+          'underline  font-bold': route().current('quiz.client'),
         }"
       >
         Quiz

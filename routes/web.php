@@ -51,18 +51,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
   Route::delete('appointment/{appointment}/cancel', [AppointmentController::class, 'cancel'])->name('appointment.cancel');
   Route::put('appointment/{appointment}/approve', [AppointmentController::class, 'approve'])->name('appointment.approve');
   Route::put('appointment/{appointment}/decline', [AppointmentController::class, 'decline'])->name('appointment.decline');
-  Route::get('quiz', [QuizController::class, 'index'])->name('quiz.index');
-
+  
   // User
   Route::group(['middleware' => 'clients-only'], function () {
+    Route::get('quiz/client', [QuizController::class, 'client'])->name('quiz.client');
     Route::get('/user/profile', [ProfileController::class, 'myProfile'])->name('user.profile.me');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('appointments', [AppointmentController::class, 'index'])->name('appointments.index');
     Route::post('appointment/reserve', [AppointmentController::class, 'reserve'])->name('appointment.reserve');
   });
-
+  
   // Admin
   Route::group(['middleware' => 'admins-only'], function () {
+    Route::get('quiz/admin', [QuizController::class, 'admin'])->name('quiz.admin');
     Route::get('business-hours', [BusinessHourController::class, 'index'])->name('business_hours');
     Route::post('business-hours', [BusinessHourController::class, 'update'])->name('business_hours.update');
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
