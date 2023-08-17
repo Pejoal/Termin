@@ -29,6 +29,9 @@ class AppointmentController extends Controller {
   }
 
   public function update(Appointment $appointment, Request $request) {
+    if (auth()->user()->cannot('update', $appointment)) {
+      abort(403); // Forbidden
+    }
     $appointment->update($request->all());
   }
 }

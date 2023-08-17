@@ -2,8 +2,6 @@
 
 namespace App\Providers;
 
-use App\Policies\FriendshipRequestPolicy;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider {
@@ -14,7 +12,7 @@ class AuthServiceProvider extends ServiceProvider {
    */
   protected $policies = [
     // 'App\Models\Model' => 'App\Policies\ModelPolicy',
-    Post::class => PostPolicy::class,
+    Appointment::class => AppointmentPolicy::class,
     Comment::class => CommentPolicy::class,
     Reply::class => ReplyPolicy::class,
     // Friendship::class => FriendshipRequestPolicy::class,

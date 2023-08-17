@@ -58,6 +58,7 @@ class Kernel extends HttpKernel {
     'joined-users-only' => \App\Http\Middleware\JoinedUsersOnlyMiddleware::class,
     'chat-group-admin-only' => \App\Http\Middleware\ChatGroupAdminOnly::class,
     'can.update.comment' => \App\Http\Middleware\CanUpdateComment::class,
+    'can.update.appointment' => \App\Http\Middleware\CanUpdateAppointment::class,
     'can.update.reply' => \App\Http\Middleware\CanUpdateReply::class,
     'can.send.friendship.request' => \App\Http\Middleware\FriendshipRequestSender::class,
     'admins-only' => \App\Http\Middleware\Admin::class,
