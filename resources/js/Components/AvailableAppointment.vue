@@ -1,10 +1,9 @@
 <script setup>
-
 import ResuableModal from "@/Components/ResuableModal.vue";
 import { ref } from "vue";
 import { useForm } from "@inertiajs/vue3";
 
-const emits = defineEmits(['save']);
+const emits = defineEmits(["save"]);
 const props = defineProps({
   appointment: {
     type: Object,
@@ -30,12 +29,11 @@ const submit = (date, time) => {
   form.time = time;
   form.post(route("appointment.reserve"), {
     onSuccess: () => {
-      emits('save')
+      emits("save");
     },
     onFinish: () => form.reset(["date", "time"]),
   });
 };
-
 </script>
 <template>
   <main class="my-2 flex items-center justify-center">
@@ -74,14 +72,14 @@ const submit = (date, time) => {
             </p>
             <section class="flex items-center justify-start my-2">
               <label for="notes" class="w-36 px-4">Notizen</label>
-              <input
-                type="text"
-                class="block rounded-lg flex-1 px-2 mx-2 h-10"
+              <textarea
+                class="rounded-lg flex-1 px-2 mx-2 h-40"
                 name="notes"
                 id="notes"
                 placeholder="Notizen"
                 v-model="form.notes"
-              />
+              >
+              </textarea>
             </section>
             <footer class="flex items-center justify-center">
               <button

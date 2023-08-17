@@ -53,6 +53,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::get('appointments', [AppointmentController::class, 'index'])->name('appointments.index');
     Route::post('appointment/reserve', [AppointmentController::class, 'reserve'])->name('appointment.reserve');
+    Route::post('appointment/{appointment}/update', [AppointmentController::class, 'update'])->name('appointment.update');
     Route::get('quiz', [QuizController::class, 'index'])->name('quiz.index');
   });
 

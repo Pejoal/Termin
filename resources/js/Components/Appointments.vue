@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from "vue";
 import ResuableModal from "./ResuableModal.vue";
-import { useForm } from "@inertiajs/vue3";
 import AppintmentModal from "./AppintmentModal.vue";
 
 const props = defineProps({
@@ -18,13 +17,13 @@ let showModal = ref(false);
 <template>
   <Teleport to="#modal">
     <ResuableModal
-      :classes="['w-[90%] md:w-[85%] lg:w-[80%] h-[90%]']"
+      :classes="['w-[90%] md:w-[85%] lg:w-[80%] h-[60%]']"
       :header="'Termin aktualisieren'"
       :show="showModal"
       @close="showModal = false"
     >
       <template #content>
-        <AppintmentModal />
+        <AppintmentModal :date="date" v-on:save="showModal = false" />
       </template>
     </ResuableModal>
   </Teleport>
@@ -32,7 +31,7 @@ let showModal = ref(false);
     class="flex items-center justify-between my-2 bg-white p-2 rounded-lg"
     @click="showModal = true"
   >
-    <p>At: {{ props.date.date }} {{ props.date.time }}</p>
+    <p>{{ props.date.date }} Um {{ props.date.time }}</p>
     <section v-if="props.date.status == 'pending'" class="btn btn-info">
       {{ props.date.status }}
     </section>

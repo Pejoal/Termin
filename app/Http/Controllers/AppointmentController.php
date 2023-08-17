@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AppointmentRequest;
+use App\Models\Appointment;
 use App\Services\AppointmentService;
 use Carbon\CarbonPeriod;
 use Inertia\Inertia;
+use Illuminate\Http\Request;
 
 class AppointmentController extends Controller {
   public function index() {
@@ -24,5 +26,9 @@ class AppointmentController extends Controller {
 
   public function reserve(AppointmentRequest $request) {
     auth()->user()->appointments()->create($request->toArray());
+  }
+
+  public function update(Appointment $appointment, Request $request) {
+    $appointment->update($request->all());
   }
 }
