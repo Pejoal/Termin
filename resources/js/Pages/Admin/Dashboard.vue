@@ -1,6 +1,9 @@
 <script setup>
+import AppintmentModal from "@/Components/AppintmentModal.vue";
+import ResuableModal from "@/Components/ResuableModal.vue";
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import { Head } from "@inertiajs/vue3";
+import { ref } from "vue";
 
 const props = defineProps({
   pendingAppointments: {
@@ -8,6 +11,7 @@ const props = defineProps({
     default: [],
   },
 });
+let showModal = ref(false);
 </script>
 
 <template>
@@ -27,7 +31,23 @@ const props = defineProps({
             v-for="appointment in props.pendingAppointments"
             :key="appointment.id"
             class="flex items-center justify-between bg-white shadow-lg rounded-lg p-2"
+            @click="showModal = true"
           >
+            <Teleport to="#modal">
+              <ResuableModal
+                :classes="['w-[90%] md:w-[85%] lg:w-[80%] h-[60%]']"
+                :header="'Termin aktualisieren'"
+                :show="showModal"
+                @close="showModal = false"
+              >
+                <template #content>
+                  <AppintmentModal
+                    :date="appointment"
+                    v-on:save="showModal = false"
+                  />
+                </template>
+              </ResuableModal>
+            </Teleport>
             <section>
               <h3>
                 Anforderer: <strong> {{ appointment.requester }} </strong>

@@ -46,6 +46,24 @@ const cancel = () => {
     onFinish: () => form.reset(["locations", "notes"]),
   });
 };
+
+const approve = () => {
+  form.put(route("appointment.approve", [props.date.id]), {
+    onSuccess: () => {
+      emits("save");
+    },
+    onFinish: () => form.reset(["locations", "notes"]),
+  });
+};
+
+const decline = () => {
+  form.put(route("appointment.decline", [props.date.id]), {
+    onSuccess: () => {
+      emits("save");
+    },
+    onFinish: () => form.reset(["locations", "notes"]),
+  });
+};
 </script>
 
 <template>
@@ -101,9 +119,26 @@ const cancel = () => {
         <button type="submit" class="btn btn-primary">
           Termin aktualisieren
         </button>
-        <button type="button" class="btn btn-danger" @click="cancel">
+        <button
+          v-if="$page.props.auth.user.type === 'client'"
+          type="button"
+          class="btn btn-danger"
+          @click="cancel"
+        >
           Termin absagen
         </button>
+        <template
+          v-else-if="
+            ['super admin', 'admin'].includes($page.props.auth.user.type)
+          "
+        >
+          <button type="button" class="btn btn-success" @click="approve">
+            Termin annehmen
+          </button>
+          <button type="button" class="btn btn-danger" @click="decline">
+            Termin ablehnen
+          </button>
+        </template>
       </footer>
     </form>
   </main>

@@ -20,10 +20,10 @@ class AdminController extends Controller {
         'date' => $appointment->date,
         'time' => date_format($appointment->time, 'g:i A'),
         'status' => $appointment->status,
+        'location' => $appointment->location,
+        'notes' => $appointment->notes,
       ];
     });
-    // dd($pendingAppointments);
-
 
     return Inertia::render('Admin/Dashboard', [
       'pendingAppointments' => $pendingAppointments,
