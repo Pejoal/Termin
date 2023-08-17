@@ -12,7 +12,6 @@ const props = defineProps({
 });
 
 let showModal = ref(false);
-
 </script>
 <template>
   <Teleport to="#modal">
@@ -33,22 +32,22 @@ let showModal = ref(false);
   >
     <p>{{ props.date.date }} Um {{ props.date.time }}</p>
     <section v-if="props.date.status == 'pending'" class="btn btn-info">
-      {{ props.date.status }}
+      ausstehend
     </section>
     <section
       v-else-if="props.date.status == 'approved'"
       class="btn btn-success"
     >
-      {{ props.date.status }}
+      akzeptiert
     </section>
     <section
       v-else-if="props.date.status == 'canceled'"
       class="btn btn-warning"
     >
-      {{ props.date.status }}
+      abgesagt
     </section>
     <section v-else-if="props.date.status == 'declined'" class="btn btn-danger">
-      {{ props.date.status }}
+      abgelehnt
     </section>
   </section>
 </template>

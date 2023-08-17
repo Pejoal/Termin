@@ -2,7 +2,7 @@
 import { useForm } from "@inertiajs/vue3";
 import { computed, watch, ref } from "vue";
 
-const emits = defineEmits(['save']);
+const emits = defineEmits(["save"]);
 
 const props = defineProps({
   date: {
@@ -48,25 +48,25 @@ const cancel = () => {
     <section class="flex items-center justify-between">
       <p>{{ props.date.date }} Um {{ props.date.time }}</p>
       <section v-if="props.date.status == 'pending'" class="btn btn-info">
-        {{ props.date.status }}
+        ausstehend
       </section>
       <section
         v-else-if="props.date.status == 'approved'"
         class="btn btn-success"
       >
-        {{ props.date.status }}
+        akzeptiert
       </section>
       <section
         v-else-if="props.date.status == 'canceled'"
         class="btn btn-warning"
       >
-        {{ props.date.status }}
+        abgesagt
       </section>
       <section
         v-else-if="props.date.status == 'declined'"
         class="btn btn-danger"
       >
-        {{ props.date.status }}
+        abgelehnt
       </section>
     </section>
     <form @submit.prevent="update">
