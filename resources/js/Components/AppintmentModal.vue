@@ -64,6 +64,15 @@ const decline = () => {
     onFinish: () => form.reset(["locations", "notes"]),
   });
 };
+
+const delete_appointment = () => {
+  form.delete(route("appointment.delete", [props.date.id]), {
+    onSuccess: () => {
+      emits("save");
+    },
+    onFinish: () => form.reset(["locations", "notes"]),
+  });
+};
 </script>
 
 <template>
@@ -139,6 +148,9 @@ const decline = () => {
             Termin ablehnen
           </button>
         </template>
+        <button type="button" class="btn btn-danger" @click="delete_appointment">
+          Termin löschen
+        </button>
       </footer>
     </form>
   </main>

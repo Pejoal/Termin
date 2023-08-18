@@ -30,14 +30,14 @@ class AppointmentController extends Controller {
 
   public function update(Appointment $appointment, Request $request) {
     if (auth()->user()->cannot('update', $appointment)) {
-      abort(403); // Forbidden
+      abort(403);
     }
     $appointment->update($request->all());
   }
 
   public function cancel(Appointment $appointment) {
     if (auth()->user()->cannot('update', $appointment)) {
-      abort(403); // Forbidden
+      abort(403);
     }
     $appointment->update([
       "status" => "cancelled",
@@ -46,20 +46,27 @@ class AppointmentController extends Controller {
 
   public function approve(Appointment $appointment) {
     if (auth()->user()->cannot('update', $appointment)) {
-      abort(403); // Forbidden
+      abort(403);
     }
     $appointment->update([
       "status" => "approved",
     ]);
   }
-  
+
   public function decline(Appointment $appointment) {
     if (auth()->user()->cannot('update', $appointment)) {
-      abort(403); // Forbidden
+      abort(403);
     }
     $appointment->update([
       "status" => "declined",
     ]);
+  }
+
+  public function delete(Appointment $appointment) {
+    if (auth()->user()->cannot('update', $appointment)) {
+      abort(403);
+    }
+    $appointment->delete();
   }
 
 }
