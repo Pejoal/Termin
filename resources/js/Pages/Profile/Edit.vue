@@ -52,7 +52,7 @@ const enableNotifications = (event) => {
         >
           <section class="flex justify-between flex-col sm:flex-row">
             <div class="my-2">
-              <label class="pr-2" for="profile_photo"> Profilfoto </label>
+              <label class="pr-2" for="profile_photo"> {{ trans('words.profile_photo') }} </label>
               <input
                 id="profile_photo"
                 type="file"
@@ -64,7 +64,7 @@ const enableNotifications = (event) => {
               type="submit"
               :disabled="form.processing"
             >
-              Upload
+              {{ trans('words.upload') }}
             </button>
           </section>
           <p
@@ -85,7 +85,9 @@ const enableNotifications = (event) => {
             leave-to-class="opacity-0"
             class="transition ease-in-out"
           >
-            <p v-if="form.recentlySuccessful" class="text-sm">Hochgeladen</p>
+            <p v-if="form.recentlySuccessful" class="text-sm">
+              {{ trans('words.uploaded') }}
+            </p>
           </Transition>
         </form>
 
@@ -94,7 +96,7 @@ const enableNotifications = (event) => {
           @submit.prevent="enableNotifications()"
         >
           <section class="flex justify-between">
-            <label for="enable-notifications">Benachrichtigungen aktivieren</label>
+            <label for="enable-notifications">{{ trans('activate_notifications') }}</label>
             <Switcher
               id="enable-notifications"
               @change="(e) => enableNotifications(e)"

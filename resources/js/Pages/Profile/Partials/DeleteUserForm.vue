@@ -39,33 +39,29 @@ const closeModal = () => {
 <template>
   <section class="space-y-6">
     <header>
-      <h2 class="text-lg font-medium">Konto löschen</h2>
+      <h2 class="text-lg font-medium">{{ trans('words.delete_account') }}</h2>
 
       <p class="mt-1 text-sm">
-        Sobald Ihr Konto gelöscht wird, sind alle seine Ressourcen und Daten
-        gelöscht dauerhaft gelöscht. Bevor Sie Ihr Konto löschen, laden Sie
-        bitte eines herunter Daten oder Informationen, die Sie behalten möchten.
+        {{ trans('words.once_your_account_is_deleted_all_of_its_resources_and_data_will_be_permanently_deleted_before_deleting_your_account_please_download_any_data_or_information_that_you_wish_to_retain') }}
       </p>
     </header>
 
     <DangerButton @click="confirmUserDeletion" class="text-white">
-      Konto löschen
+      {{ trans('words.delete_account') }}
     </DangerButton>
 
     <Modal :show="confirmingUserDeletion" @close="closeModal">
       <div class="p-6">
         <h2 class="text-lg font-medium">
-          Sind Sie sicher, dass Sie Ihr Konto löschen möchten?
+          {{ trans('words.are_you_sure_you_want_to_delete_your_account') }}
         </h2>
-
+        
         <p class="mt-1 text-sm">
-          Sobald Ihr Konto gelöscht wird, sind alle seine Ressourcen und Daten
-          gelöscht dauerhaft gelöscht. Bitte geben Sie zur Bestätigung Ihr
-          Passwort ein Ich möchte Ihr Konto dauerhaft löschen.
+          {{ trans('words.once_your_account_is_deleted_all_of_its_resources_and_data_will_be_permanently_deleted_please_enter_your_password_to_confirm_you_would_like_to_permanently_delete_your_account') }}
         </p>
 
         <div class="mt-6">
-          <InputLabel for="password" value="Password" class="sr-only" />
+          <InputLabel for="password" :value="trans('words.password')" class="sr-only" />
 
           <TextInput
             id="password"
@@ -73,7 +69,7 @@ const closeModal = () => {
             v-model="form.password"
             type="password"
             class="mt-1 block w-3/4"
-            placeholder="Password"
+            :placeholder="trans('words.password')"
             @keyup.enter="deleteUser"
           />
 
@@ -81,7 +77,7 @@ const closeModal = () => {
         </div>
 
         <div class="mt-6 flex justify-end">
-          <button class="btn btn-secondary" @click="closeModal">Cancel</button>
+          <button class="btn btn-secondary" @click="closeModal">{{ trans('words.cancel') }}</button>
 
           <DangerButton
             class="ml-3 text-white"
@@ -89,7 +85,7 @@ const closeModal = () => {
             :disabled="form.processing"
             @click="deleteUser"
           >
-            Konto löschen
+            {{ trans('words.delete_account') }}
           </DangerButton>
         </div>
       </div>

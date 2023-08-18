@@ -22,7 +22,7 @@ createInertiaApp({
       .use(plugin)
       .use(ZiggyVue, Ziggy)
       .use(i18nVue, {
-        lang: "de",
+        lang: "en",
         resolve: (lang) => {
           const langs = import.meta.glob("../../lang/*.json", { eager: true });
           return langs[`../../lang/${lang}.json`].default;
