@@ -2,9 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\User;
 use Illuminate\Support\ServiceProvider;
-use Laravel\Pennant\Feature;
+use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider {
   /**
@@ -26,8 +25,9 @@ class AppServiceProvider extends ServiceProvider {
       \URL::forceScheme('https');
     }
 
-    // Feature::define('new-design', function (User $user) {
-    //   return $user->id == 1;
-    // });
+    $locales = config('locales');
+    Inertia::share([
+      'locales' => $locales,
+    ]);
   }
 }

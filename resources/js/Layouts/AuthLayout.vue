@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { Link } from "@inertiajs/vue3";
 import Navigations from "@/Components/Navigations.vue";
 import Hamburger from "@/Components/Hamburger.vue";
+import Locales from "@/Components/Locales.vue";
 
 const props = defineProps({
   joined_chat_groups: {
@@ -36,6 +37,8 @@ const toggleNav = () => {
           {{ $page.props.auth.user.firstname }}
         </Link>
       </section>
+      <!-- Translations -->
+      <Locales :horizontal="true" />
 
       <!-- Navigation Links -->
       <Navigations :horizontal="true" />
@@ -51,6 +54,9 @@ const toggleNav = () => {
           <h2 class="text-xl font-bold mb-2">Navigation</h2>
           <!-- Navigation Links -->
           <Navigations class="pb-4" :vertical="true" />
+
+          <!-- Translations -->
+          <Locales class="border-t" :vertical="true" />
 
           <div class="py-2 border-b">
             <Link

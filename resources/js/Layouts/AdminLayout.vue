@@ -37,6 +37,9 @@ const toggleNav = () => {
         </Link>
       </section>
 
+      <!-- Translations -->
+      <Locales :horizontal="true" />
+
       <!-- Navigation Links -->
       <Navigations :horizontal="true" />
 
@@ -51,6 +54,9 @@ const toggleNav = () => {
           <h2 class="text-xl font-bold mb-2">Navigation</h2>
           <!-- Navigation Links -->
           <Navigations class="pb-4" :vertical="true" />
+
+          <!-- Translations -->
+          <Locales class="border-t" :vertical="true" />
 
           <div class="py-2 border-b">
             <Link

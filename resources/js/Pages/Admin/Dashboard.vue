@@ -1,5 +1,6 @@
 <script setup>
 import AppintmentModal from "@/Components/AppintmentModal.vue";
+import Locales from "@/Components/Locales.vue";
 import ResuableModal from "@/Components/ResuableModal.vue";
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import { Head } from "@inertiajs/vue3";
