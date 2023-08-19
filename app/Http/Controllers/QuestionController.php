@@ -11,13 +11,8 @@ class QuestionController extends Controller {
   public function index() {
   }
 
-  public function store(Request $request) {
+  public function store(QuestionRequest $request) {
     dd($request->all());
-    // $data = $request->validate([
-    //   'questionText' => 'required|string',
-    //   'answers' => 'required|array|size:4',
-    //   'correctAnswerIndex' => 'required|integer|between:0,3',
-    // ]);
 
     // $question = Question::create([
     //   'text' => $data['questionText'],

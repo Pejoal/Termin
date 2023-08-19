@@ -25,18 +25,15 @@ const form = useForm({
 });
 
 const showModal = ref(false);
-const add_question = () => {
-  showModal.value = true;
-  // form.post(route("question.store"));
-};
 
 const saveQuestion = () => {
-  if (form.value.correctAnswerIndex === null) {
+  if (form.correctAnswerIndex === null) {
     alert("Please select the correct answer.");
     return;
   }
 
-  console.log(form.value);
+  // console.log(form.value);
+  form.post(route("question.store"));
 };
 </script>
 <template>
@@ -71,11 +68,11 @@ const saveQuestion = () => {
                 :key="index"
                 class="flex items-center gap-2 p-2"
               >
-                <label :for="'answer' + index" class="">
+                <label :for="'answer' + index" class="w-3/4">
                   <input
                     type="text"
                     v-model="form.answers[index]"
-                    class="rounded-md"
+                    class="block w-full rounded-md"
                     required
                   />
                 </label>
@@ -84,7 +81,6 @@ const saveQuestion = () => {
                   :id="'answer' + index"
                   :value="index"
                   v-model="form.correctAnswerIndex"
-                  class=""
                 />
               </section>
             </section>
@@ -101,7 +97,7 @@ const saveQuestion = () => {
         <button class="btn btn-primary">
           {{ trans("words.show_questions") }}
         </button>
-        <button class="btn btn-primary" @click="add_question">
+        <button class="btn btn-primary" @click="showModal = true">
           {{ trans("words.add_question") }}
         </button>
       </section>

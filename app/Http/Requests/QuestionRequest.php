@@ -21,7 +21,9 @@ class QuestionRequest extends FormRequest {
   public function rules(): array
   {
     return [
-      'content' => ['required', 'string'],
+      'content' => 'required|string',
+      'answers' => 'required|array|size:4',
+      'correctAnswerIndex' => 'required|integer|between:0,3',
       'type' => ['required', 'string', Rule::in(['text', 'math', 'photo', 'video'])],
     ];
   }
