@@ -5,13 +5,13 @@ import { Head } from "@inertiajs/vue3";
 
 <template>
   <Head>
-    <title>Home</title>
+    <title>{{ trans("words.home") }}</title>
   </Head>
   <AuthLayout>
     <template #left-sidebar> </template>
     <template #content>
       <section class="border-l border-white min-h-screen p-4">
-        {{ trans('words.welcome') }}
+        {{ trans("words.welcome") }}
       </section>
     </template>
   </AuthLayout>

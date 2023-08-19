@@ -16,7 +16,7 @@ let props = defineProps({
 </script>
 
 <template>
-  <Head title="User" />
+  <Head :title="trans('words.my_data')" />
 
   <AuthLayout>
     <template #left-sidebar> </template>
@@ -24,10 +24,12 @@ let props = defineProps({
       <section class="border-l border-white min-h-screen p-4">
         <header class="flex items-center justify-center mb-2">
           <h2 class="text-xl font-bold pb-1 border-b border-b-black">
-            Meine Termine
+            {{ trans("words.my_appointments") }}
           </h2>
         </header>
-        <h2 class="text-lg font-bold text-center">Bevorstehende Termine</h2>
+        <h2 class="text-lg font-bold text-center">
+          {{ trans("words.upcoming_appointments") }}
+        </h2>
         <template v-if="props.upcomingDates != {}">
           <Appointments
             v-for="date in props.upcomingDates"
@@ -36,10 +38,14 @@ let props = defineProps({
           />
         </template>
         <template v-else>
-          <h4 class="text-lg">Es stehen keine Termine an</h4>
+          <h4 class="text-lg">
+            {{ trans("words.there_are_no_upcoming_appointments") }}
+          </h4>
         </template>
 
-        <h2 class="text-lg font-bold text-center">Frühere Termine</h2>
+        <h2 class="text-lg font-bold text-center">
+          {{ trans("words.previous_appointments") }}
+        </h2>
         <template v-if="props.previousDates != {}">
           <Appointments
             v-for="date in props.previousDates"
@@ -48,7 +54,9 @@ let props = defineProps({
           />
         </template>
         <template v-else>
-          <h4 class="text-lg">Es gibt keine vorherigen Termine</h4>
+          <h4 class="text-lg">
+            {{ trans("words.there_are_no_previous_appointments") }}
+          </h4>
         </template>
       </section>
     </template>

@@ -51,7 +51,9 @@ const toggleNav = () => {
           v-if="showNav"
           class="md:hidden bg-slate-200 fixed inset-y-0 left-0 z-40 w-full h-screen shadow-lg px-8 py-4 overflow-y-auto"
         >
-          <h2 class="text-xl font-bold mb-2">Navigation</h2>
+          <h2 class="text-xl font-bold mb-2">
+            {{ trans("words.navigation") }}
+          </h2>
           <!-- Navigation Links -->
           <Navigations class="pb-4" :vertical="true" />
 
@@ -65,7 +67,7 @@ const toggleNav = () => {
               method="post"
               as="button"
             >
-              Ausloggen
+              {{ trans("words.logout") }}
             </Link>
           </div>
           <!-- Button to close the menu -->
@@ -73,7 +75,7 @@ const toggleNav = () => {
             @click="showNav = false"
             class="mt-4 px-3 py-1 hover:font-bold rounded-md"
           >
-            Close
+            {{ trans("words.close") }}
           </button>
         </div>
       </transition>
@@ -95,7 +97,7 @@ const toggleNav = () => {
                 method="post"
                 as="button"
               >
-                Ausloggen
+                {{ trans("words.logout") }}
               </Link>
             </div>
           </slot>

@@ -23,18 +23,22 @@ const verificationLinkSent = computed(
     <Head title="Email Verification" />
 
     <div class="my-2">
-      Danke für's Registrieren! Bevor Sie beginnen, können Sie Ihre
-      E-Mail-Adresse bestätigen Adresse, indem Sie auf den Link klicken, den wir
-      Ihnen gerade per E-Mail zugesandt haben? Wenn nicht Wenn Sie die E-Mail
-      erhalten, senden wir Ihnen gerne eine weitere zu.
+      {{
+        trans(
+          "words.thanks_for_signing_up_before_getting_started_could_you_verify_your_email_address_by_clicking_on_the_link_we_just_emailed_to_you_If_you_didnt_receive_the_email_we_will_gladly_send_you_another"
+        )
+      }}
     </div>
 
     <div
       class="my-2 font-medium text-sm text-green-700"
       v-if="verificationLinkSent"
     >
-      Ein neuer Bestätigungslink wurde an die von Ihnen angegebene
-      E-Mail-Adresse gesendet bei der Anmeldung.
+      {{
+        trans(
+          "words.a_new_verification_link_has_been_sent_to_the_email_address_you_provided_during_registration"
+        )
+      }}
     </div>
 
     <form @submit.prevent="submit">
@@ -44,7 +48,7 @@ const verificationLinkSent = computed(
           :class="{ 'opacity-25': form.processing }"
           :disabled="form.processing"
         >
-          Bestätigungsmail erneut senden
+          {{ trans("words.resend_verification_email") }}
         </button>
 
         <Link
@@ -52,7 +56,9 @@ const verificationLinkSent = computed(
           method="post"
           as="button"
           class="underline text-white ml-3 bg-red-600 px-2 py-1 rounded-md"
-          >Ausloggen</Link
+          >
+          {{ trans("words.logout") }}
+          </Link
         >
       </div>
     </form>

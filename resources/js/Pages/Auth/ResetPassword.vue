@@ -30,7 +30,7 @@ const submit = () => {
 
     <form @submit.prevent="submit">
       <div>
-        <InputLabel for="input_type" value="Benutzername / E-Mail" />
+        <InputLabel for="input_type" :value="trans('words.emai_username')" />
 
         <TextInput
           id="input_type"
@@ -47,7 +47,7 @@ const submit = () => {
       </div>
 
       <div class="mt-4">
-        <InputLabel for="password" value="Passwort" />
+        <InputLabel for="password" :value="trans('words.password')" />
 
         <TextInput
           id="password"
@@ -64,7 +64,7 @@ const submit = () => {
       <div class="mt-4">
         <InputLabel
           for="password_confirmation"
-          value="Bestätige das Passwort"
+          :value="trans('words.confirm_password')"
         />
 
         <TextInput
@@ -85,7 +85,7 @@ const submit = () => {
           :class="{ 'opacity-25': form.processing }"
           :disabled="form.processing"
         >
-          Passwort zurücksetzen
+        {{ trans('words.reset_password') }}
         </button>
       </div>
     </form>

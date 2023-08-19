@@ -27,7 +27,7 @@ const enableNotifications = (event) => {
 </script>
 
 <template>
-  <Head title="Profile" />
+  <Head :title="trans('words.profile')" />
 
   <AuthLayout>
     <template #left-sidebar>

@@ -13,6 +13,8 @@ return [
   |
    */
 
+  'my_drive_school' => 'My Drive School',
+  'home' => 'Home',
   'welcome' => 'Welcome',
   'choose_locale' => 'Choose Locale',
   'profile_photo' => 'Profile Photo',
@@ -61,8 +63,24 @@ return [
   'email_password_reset_link' => 'Email Password Reset Link',
   'register' => 'Register',
   'login' => 'Login',
+  'logout' => 'Logout',
   'remember_me' => 'Remember me',
   'forgot_your_password' => 'Forgot your password?',
+  'reset_password' => 'Reset Password',
+  'thanks_for_signing_up_before_getting_started_could_you_verify_your_email_address_by_clicking_on_the_link_we_just_emailed_to_you_If_you_didnt_receive_the_email_we_will_gladly_send_you_another' =>
+  "Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another.",
+  'a_new_verification_link_has_been_sent_to_the_email_address_you_provided_during_registration' => 'A new verification link has been sent to the email address you provided during registration',
+  'resend_verification_email' => 'Resend Verification Email',
+  'business_hours' => 'Business Hours',
+  'profile' => 'Profile',
+  'quiz' => 'Quiz',
+  'my_data' => 'My Data',
+  'my_appointments' => 'My Appointments',
+  'previous_appointments' => 'Previous Appointments',
+  'upcoming_appointments' => 'Upcoming Appointments',
+  'there_are_no_upcoming_appointments' => 'There are no upcoming appointments',
+  'there_are_no_previous_appointments' => 'There are no previous appointments',
+  'navigation' => 'Navigation',
   'welcome' => 'Welcome',
 
 ];
