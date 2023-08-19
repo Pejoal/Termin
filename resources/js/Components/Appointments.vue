@@ -17,7 +17,7 @@ let showModal = ref(false);
   <Teleport to="#modal">
     <ResuableModal
       :classes="['w-[90%] md:w-[85%] lg:w-[80%] h-[60%]']"
-      :header="'Termin aktualisieren'"
+      :header="trans('words.update_appointment')"
       :show="showModal"
       @close="showModal = false"
     >
