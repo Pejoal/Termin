@@ -15,7 +15,6 @@ const props = defineProps({
 });
 
 const page = usePage().props;
-console.log(page.active_locale_code);
 if (page.active_locale_code) {
   loadLanguageAsync(page.active_locale_code);
 }
