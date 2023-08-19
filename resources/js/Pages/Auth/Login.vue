@@ -57,7 +57,7 @@ const submit = () => {
         </div>
 
         <div class="mt-4">
-          <InputLabel for="password" :value="trnas('words.password')" />
+          <InputLabel for="password" :value="trans('words.password')" />
 
           <TextInput
             id="password"
