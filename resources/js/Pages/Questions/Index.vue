@@ -27,21 +27,24 @@ const form = useForm({
 });
 
 const edit = (id) => {
-  axios.post(route("question.edit", id)).then((response) => {
+  axios.get(route("question.get", id)).then((response) => {
     showModal.value = true;
     form.id = response.data.id;
     form.content = response.data.content;
     form.correctAnswerIndex = response.data.correct_answer;
     form.answers = response.data.answers;
 
-    // form.post(route("question.store"), {
-    //   onSuccess: () => {
-    //     showToast.value = true;
-    //     showModal.value = false;
-    //   },
-    // });
   });
 };
+
+const update = () => {
+  form.put(route("question.update", [form.id]), {
+    onSuccess: () => {
+      showToast.value = true;
+      showModal.value = false;
+    },
+  });
+}
 
 const destroy = (id) => {
   form.delete(route("question.destroy", id));
@@ -74,7 +77,7 @@ const destroy = (id) => {
             <h3 class="w-full text-center font-bold text-xl">
               {{ trans(`words.${type}_questions`) }}
             </h3>
-            <form @submit.prevent="saveQuestion">
+            <form @submit.prevent="update">
               <section class="flex items-center p-2">
                 <label for="question" class="w-24"
                   >{{ trans("words.question") }}:</label

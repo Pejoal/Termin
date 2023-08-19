@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\QuestionRequest;
 use App\Models\Answer;
 use App\Models\Question;
-use Illuminate\Http\Request;
 
 class QuestionController extends Controller {
   public function showByType($type) {
@@ -34,12 +33,26 @@ class QuestionController extends Controller {
     }
   }
 
-  public function edit(Question $question) {
+  public function get(Question $question) {
     $question->load('answers');
     return $question;
   }
 
-  public function update(Request $request, Question $question) {
+  public function update(QuestionRequest $request, Question $question) {
+    // dd($request->input('answers'));
+    $question->update([
+      'content' => $request->input('content'),
+      'correct_answer' => $request->input('correctAnswerIndex'),
+    ]);
+
+    foreach ($request->input('answers') as $index => $answer) {
+      $answerModel = Answer::find($answer['id']);
+      $answerModel->update([
+        'content' => $answer['content'],
+        'is_correct' => $index === $request->input('correctAnswerIndex'),
+      ]);
+    }
+
   }
 
   public function destroy(Question $question) {
