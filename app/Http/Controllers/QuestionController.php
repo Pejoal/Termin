@@ -8,8 +8,12 @@ use App\Models\Question;
 use Illuminate\Http\Request;
 
 class QuestionController extends Controller {
+  public function showByType($type) {
+    $questions = Question::where('type', $type)->get();
 
-  public function index() {
+    return inertia('Questions/Index', [
+      'questions' => $questions,
+    ]);
   }
 
   public function store(QuestionRequest $request) {
@@ -17,7 +21,7 @@ class QuestionController extends Controller {
     $question = Question::create([
       'content' => $data['content'],
       'type' => $data['type'],
-    //   'correct_answer' => $data['correctAnswerIndex'],
+      //   'correct_answer' => $data['correctAnswerIndex'],
     ]);
 
     foreach ($data['answers'] as $index => $answer) {

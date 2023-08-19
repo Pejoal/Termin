@@ -1,5 +1,5 @@
 <script setup>
-import { useForm } from "@inertiajs/vue3";
+import { Link, useForm } from "@inertiajs/vue3";
 import ResuableModal from "./ResuableModal.vue";
 import Toast from "@/Components/Toast.vue";
 import { ref } from "vue";
@@ -119,9 +119,12 @@ const saveQuestion = () => {
     <section class="flex items-center justify-between">
       <p>{{ questions_count }} {{ trans("words.questions") }}</p>
       <section class="flex gap-2">
-        <button class="btn btn-primary">
+        <Link
+          class="btn btn-primary"
+          :href="route('questions.showByType', db_type)"
+        >
           {{ trans("words.show_questions") }}
-        </button>
+        </Link>
         <button class="btn btn-primary" @click="showModal = true">
           {{ trans("words.add_question") }}
         </button>

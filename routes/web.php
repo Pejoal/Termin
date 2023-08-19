@@ -84,6 +84,7 @@ Route::group([], function () {
       Route::put('appointment/{appointment}/decline', [AppointmentController::class, 'decline'])->name('appointment.decline');
 
       Route::get('quiz/admin', [QuizController::class, 'admin'])->name('quiz.admin');
+      Route::get('/questions/{type}', [QuestionController::class, 'showByType'])->name('questions.showByType');
       Route::post('question/store', [QuestionController::class, 'store'])->name('question.store');
 
       Route::get('business-hours', [BusinessHourController::class, 'index'])->name('business_hours');
