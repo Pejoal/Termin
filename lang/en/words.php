@@ -60,7 +60,7 @@ return [
   before continuing',
   'forgot_your_password_no_problem_just_let_us_know_your_email_address_and_we_will_email_you_a_password_reset_link_that_will_allow_you_to_choose_a_new_one' =>
   'Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.',
-  'emai_username' => 'Email / Username',
+  'email_username' => 'Email / Username',
   'email_password_reset_link' => 'Email Password Reset Link',
   'register' => 'Register',
   'login' => 'Login',

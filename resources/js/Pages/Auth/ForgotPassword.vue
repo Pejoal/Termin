@@ -36,7 +36,7 @@ const submit = () => {
 
     <form @submit.prevent="submit">
       <div>
-        <InputLabel for="input_type" :value="trans('words.emai_username')" />
+        <InputLabel for="input_type" :value="trans('words.email_username')" />
 
         <TextInput
           id="input_type"

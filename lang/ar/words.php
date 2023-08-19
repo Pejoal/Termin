@@ -59,7 +59,7 @@ return [
   'this_is_a_secure_area_of_the_application_please_confirm_your_password_before_continuing' => 'هذه منطقة آمنة في التطبيق. يرجى تأكيد كلمة المرور قبل المتابعة',
   'forgot_your_password_no_problem_just_let_us_know_your_email_address_and_we_will_email_you_a_password_reset_link_that_will_allow_you_to_choose_a_new_one' =>
   'هل نسيت كلمة المرور؟ لا مشكلة. فقط اعلمنا عنوان البريد الإلكتروني الخاص بك وسنرسل لك رابط إعادة تعيين كلمة المرور سيسمح لك باختيار كلمة مرور جديدة.',
-  'emai_username' => 'البريد الإلكتروني / اسم المستخدم',
+  'email_username' => 'البريد الإلكتروني / اسم المستخدم',
   'email_password_reset_link' => 'إرسال رابط إعادة تعيين كلمة المرور عبر البريد الإلكتروني',
   'register' => 'التسجيل',
   'login' => 'تسجيل الدخول',

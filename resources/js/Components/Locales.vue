@@ -1,5 +1,6 @@
 <script setup>
 import Dropdown from "@/Components/Dropdown.vue";
+import { usePage } from "@inertiajs/vue3";
 import { loadLanguageAsync } from "laravel-vue-i18n";
 
 const props = defineProps({
@@ -13,10 +14,17 @@ const props = defineProps({
   },
 });
 
+const page = usePage().props;
+console.log(page.active_locale_code);
+if (page.active_locale_code) {
+  loadLanguageAsync(page.active_locale_code);
+}
+
 const active_locale = (locale, url) => {
   loadLanguageAsync(locale);
   location.href = url;
 };
+
 </script>
 <template>
   <div
