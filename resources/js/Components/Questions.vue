@@ -19,6 +19,8 @@ const props = defineProps({
 
 const form = useForm({
   content: "",
+  correctAnswerIndex: null,
+  answers: ["", "", "", ""],
   type: props.db_type,
 });
 
@@ -28,25 +30,13 @@ const add_question = () => {
   // form.post(route("question.store"));
 };
 
-const questionText = ref('');
-const answers = ref(['', '', '', '']);
-const correctAnswerIndex = ref(null);
-
 const saveQuestion = () => {
-  if (correctAnswerIndex.value === null) {
-    alert('Please select the correct answer.');
+  if (form.value.correctAnswerIndex === null) {
+    alert("Please select the correct answer.");
     return;
   }
 
-  const question = {
-    questionText: questionText.value,
-    answers: answers.value,
-    correctAnswerIndex: correctAnswerIndex.value,
-  };
-
-  // Send the question to the Laravel backend using Inertia
-  // You can use `emit()` to send an event to the parent component for redirection.
-  // For example, `emit('question-saved', question);`
+  console.log(form.value);
 };
 </script>
 <template>
@@ -62,48 +52,46 @@ const saveQuestion = () => {
         @close="showModal = false"
       >
         <template #content>
-          <div>
-            <h2>Create a Question</h2>
-            <form @submit.prevent="saveQuestion">
-              <div class="form-group">
-                <label for="question">Question:</label>
-                <input
-                  type="text"
-                  id="question"
-                  v-model="questionText"
-                  class="form-control"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <label>Answers:</label>
-                <div
-                  v-for="(answer, index) in answers"
-                  :key="index"
-                  class="form-check"
-                >
+          <form @submit.prevent="saveQuestion">
+            <section class="flex items-center p-2">
+              <label for="question" class="w-24"
+                >{{ trans("words.question") }}:</label
+              >
+              <textarea
+                id="question"
+                v-model="form.content"
+                class="flex-1 rounded-md h-24"
+                required
+              ></textarea>
+            </section>
+            <section class="p-2">
+              <label>{{ trans("words.answers") }}:</label>
+              <section
+                v-for="(answer, index) in form.answers"
+                :key="index"
+                class="flex items-center gap-2 p-2"
+              >
+                <label :for="'answer' + index" class="">
                   <input
-                    type="radio"
-                    :id="'answer' + index"
-                    :value="index"
-                    v-model="correctAnswerIndex"
-                    class="form-check-input"
+                    type="text"
+                    v-model="form.answers[index]"
+                    class="rounded-md"
+                    required
                   />
-                  <label :for="'answer' + index" class="form-check-label">
-                    <input
-                      type="text"
-                      v-model="answers[index]"
-                      class="form-control"
-                      required
-                    />
-                  </label>
-                </div>
-              </div>
-              <button type="submit" class="btn btn-primary">
-                Save Question
-              </button>
-            </form>
-          </div>
+                </label>
+                <input
+                  type="radio"
+                  :id="'answer' + index"
+                  :value="index"
+                  v-model="form.correctAnswerIndex"
+                  class=""
+                />
+              </section>
+            </section>
+            <button type="submit" class="btn btn-primary mx-auto">
+              {{ trans("words.add_question") }}
+            </button>
+          </form>
         </template>
       </ResuableModal>
     </Teleport>

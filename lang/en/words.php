@@ -99,7 +99,9 @@ return [
   'photo_questions' => "Photo Questions",
   'video_questions' => "Video Questions",
   'add_question' => "Add Question",
+  'question' => "Question",
   'questions' => "Questions",
+  'answers' => "Answers",
   'show_questions' => "Show Questions",
 
 ];
