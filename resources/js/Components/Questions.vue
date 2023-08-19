@@ -65,6 +65,9 @@ const saveQuestion = () => {
         @close="showModal = false"
       >
         <template #content>
+          <h3 class="w-full text-center font-bold text-xl">
+            {{ trans(`words.${type}`) }}
+          </h3>
           <form @submit.prevent="saveQuestion">
             <section class="flex items-center p-2">
               <label for="question" class="w-24"
