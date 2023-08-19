@@ -35,7 +35,6 @@ Route::group([], function () {
   ]);
 
   Route::get('/', function () {
-    // dd(auth()->check()); // return bool
     // return Inertia::render('Welcome', [
     //   'canLogin' => Route::has('login'),
     //   'canRegister' => Route::has('register'),
