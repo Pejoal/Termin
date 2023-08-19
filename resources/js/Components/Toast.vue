@@ -20,8 +20,8 @@ setTimeout(() => {
         :class="[{ 'bg-red-500': props.type == 'danger' }]"
       >
         <span class="text-xl inline-block mr-4 align-middle">
-          <i v-if="props.type == 'success'" class="fa-solid fa-check pr-2"></i>
-          <i v-if="props.type == 'danger'" class="fa-solid fa-exclamation pr-2"></i>
+          <i v-if="type == 'success'" class="fa-solid fa-check"></i>
+          <i v-if="type == 'danger'" class="fa-solid fa-exclamation"></i>
         </span>
         <span class="inline-block align-middle mr-8">
           {{ props.message }}
