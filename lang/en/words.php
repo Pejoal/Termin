@@ -104,5 +104,7 @@ return [
   'questions' => "Questions",
   'answers' => "Answers",
   'show_questions' => "Show Questions",
+  'delete' => "Delete",
+  'edit' => "Edit",
 
 ];
