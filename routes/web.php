@@ -5,6 +5,7 @@ use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\BusinessHourController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -83,11 +84,13 @@ Route::group([], function () {
       Route::put('appointment/{appointment}/decline', [AppointmentController::class, 'decline'])->name('appointment.decline');
 
       Route::get('quiz/admin', [QuizController::class, 'admin'])->name('quiz.admin');
+      Route::post('question/store', [QuestionController::class, 'store'])->name('question.store');
 
       Route::get('business-hours', [BusinessHourController::class, 'index'])->name('business_hours');
       Route::post('business-hours', [BusinessHourController::class, 'update'])->name('business_hours.update');
 
       Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+      
     });
 
   });
