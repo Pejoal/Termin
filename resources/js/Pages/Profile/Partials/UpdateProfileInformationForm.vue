@@ -134,7 +134,7 @@ const form = useForm({
             as="button"
             class="underline text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            {{ trnas("words.click_here_to_re_send_the_verification_email") }}
+            {{ trans("words.click_here_to_re_send_the_verification_email") }}
           </Link>
         </p>
 
@@ -143,7 +143,7 @@ const form = useForm({
           class="mt-2 font-medium text-sm text-green-600"
         >
           {{
-            trnas(
+            trans(
               "words.a_new_verification_link_has_been_sent_to_your_email_address"
             )
           }}
@@ -152,7 +152,7 @@ const form = useForm({
 
       <div class="flex items-center gap-4">
         <button class="btn btn-success" :disabled="form.processing">
-          {{ trnas("words.save") }}
+          {{ trans("words.save") }}
         </button>
 
         <Transition
@@ -161,7 +161,7 @@ const form = useForm({
           class="transition ease-in-out"
         >
           <p v-if="form.recentlySuccessful" class="text-sm">
-            {{ trnas("words.saved") }}
+            {{ trans("words.saved") }}
           </p>
         </Transition>
       </div>
