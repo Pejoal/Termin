@@ -97,8 +97,9 @@ return [
   'text_questions' => "Text Questions",
   'math_questions' => "Math Questions",
   'photo_questions' => "Photo Questions",
-  'video_questions' => "Video Question",
+  'video_questions' => "Video Questions",
   'add_question' => "Add Question",
   'questions' => "Questions",
+  'show_questions' => "Show Questions",
 
 ];
