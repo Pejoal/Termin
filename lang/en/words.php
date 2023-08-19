@@ -100,6 +100,7 @@ return [
   'video_questions' => "Video Questions",
   'add_question' => "Add Question",
   'question' => "Question",
+  'question_added' => "Question Added",
   'questions' => "Questions",
   'answers' => "Answers",
   'show_questions' => "Show Questions",

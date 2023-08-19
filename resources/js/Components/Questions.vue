@@ -1,7 +1,9 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
 import ResuableModal from "./ResuableModal.vue";
+import Toast from "@/Components/Toast.vue";
 import { ref } from "vue";
+
 const props = defineProps({
   type: {
     type: String,
@@ -25,6 +27,7 @@ const form = useForm({
 });
 
 const showModal = ref(false);
+let showUpdatedToast = ref(false);
 
 const saveQuestion = () => {
   if (form.correctAnswerIndex === null) {
@@ -33,7 +36,12 @@ const saveQuestion = () => {
   }
 
   // console.log(form.value);
-  form.post(route("question.store"));
+  form.post(route("question.store"), {
+    onSuccess: () => {
+      showUpdatedToast.value = true;
+      showModal.value = false;
+    },
+  });
 };
 </script>
 <template>
@@ -41,6 +49,14 @@ const saveQuestion = () => {
     <h3 class="text-center text-lg font-bold mt-2 mb-3">
       {{ trans(`words.${type}`) }}
     </h3>
+    <Teleport to="#toasts">
+      <Toast
+        :show="showUpdatedToast"
+        :type="'success'"
+        @close="showUpdatedToast = false"
+        :message="trans('words.question_added')"
+      />
+    </Teleport>
     <Teleport to="#modal">
       <ResuableModal
         :classes="['w-[90%] md:w-[85%] lg:w-[80%] h-[60%]']"
@@ -61,6 +77,9 @@ const saveQuestion = () => {
                 required
               ></textarea>
             </section>
+            <p v-if="form.errors.content" class="error">
+              {{ form.errors.content }}
+            </p>
             <section class="p-2">
               <label>{{ trans("words.answers") }}:</label>
               <section
@@ -84,6 +103,9 @@ const saveQuestion = () => {
                 />
               </section>
             </section>
+            <p v-if="form.errors.answers" class="error">
+              {{ form.errors.answers }}
+            </p>
             <button type="submit" class="btn btn-primary mx-auto">
               {{ trans("words.add_question") }}
             </button>
