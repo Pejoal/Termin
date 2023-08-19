@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class AppServiceProvider extends ServiceProvider {
   /**
@@ -25,9 +26,19 @@ class AppServiceProvider extends ServiceProvider {
       \URL::forceScheme('https');
     }
 
-    $locales = config('locales');
+
+    $locales = collect(LaravelLocalization::getSupportedLocales())->map(function ($properties, $localeCode) {
+      return [
+        'code' => $localeCode,
+        'native' => $properties['native'],
+        'url' => LaravelLocalization::getLocalizedURL($localeCode, null, [], true),
+        'emoji' => $properties['emoji'],
+      ];
+    });
     Inertia::share([
       'locales' => $locales,
+      'active_locale_code' => LaravelLocalization::getCurrentLocale(),
     ]);
+
   }
 }

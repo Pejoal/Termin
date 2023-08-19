@@ -12,6 +12,11 @@ const props = defineProps({
     default: false,
   },
 });
+
+const active_locale = (locale, url) => {
+  loadLanguageAsync(locale);
+  location.href = url;
+};
 </script>
 <template>
   <div
@@ -20,7 +25,7 @@ const props = defineProps({
       'py-2 my-2 border-b flex justify-between items-center': props.vertical,
     }"
   >
-    <p>{{ trans('words.choose_locale') }}</p>
+    <p>{{ trans("words.choose_locale") }}</p>
     <Dropdown width="48">
       <template #trigger>
         <span class="inline-flex rounded-md">
@@ -48,7 +53,7 @@ const props = defineProps({
         <button
           v-for="(locale, code) in $page.props.locales"
           class="flex justify-between items-center w-full p-2 text-gray-900 hover:text-white bg-white hover:bg-zinc-900"
-          @click="loadLanguageAsync(code)"
+          @click="active_locale(code, locale.url)"
           :key="code"
         >
           <span>{{ locale.native }}</span>
