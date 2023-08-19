@@ -106,5 +106,7 @@ return [
   'show_questions' => "Show Questions",
   'delete' => "Delete",
   'edit' => "Edit",
+  'update_question' => "Update Question",
+  'question_updated' => "Question Updated",
 
 ];

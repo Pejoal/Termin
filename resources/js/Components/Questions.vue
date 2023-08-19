@@ -1,15 +1,11 @@
 <script setup>
 import { Link, useForm } from "@inertiajs/vue3";
-import ResuableModal from "./ResuableModal.vue";
+import ResuableModal from "@/Components/ResuableModal.vue";
 import Toast from "@/Components/Toast.vue";
 import { ref } from "vue";
 
 const props = defineProps({
   type: {
-    type: String,
-    required: true,
-  },
-  db_type: {
     type: String,
     required: true,
   },
@@ -23,7 +19,7 @@ const form = useForm({
   content: "",
   correctAnswerIndex: null,
   answers: ["", "", "", ""],
-  type: props.db_type,
+  type: props.type,
 });
 
 const showModal = ref(false);
@@ -66,7 +62,7 @@ const saveQuestion = () => {
       >
         <template #content>
           <h3 class="w-full text-center font-bold text-xl">
-            {{ trans(`words.${type}`) }}
+            {{ trans(`words.${type}_questions`) }}
           </h3>
           <form @submit.prevent="saveQuestion">
             <section class="flex items-center p-2">
@@ -121,7 +117,7 @@ const saveQuestion = () => {
       <section class="flex gap-2">
         <Link
           class="btn btn-primary"
-          :href="route('questions.showByType', db_type)"
+          :href="route('questions.showByType', type)"
         >
           {{ trans("words.show_questions") }}
         </Link>

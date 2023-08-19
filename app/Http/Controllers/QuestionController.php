@@ -13,6 +13,7 @@ class QuestionController extends Controller {
 
     return inertia('Questions/Index', [
       'questions' => $questions,
+      'type' => $type,
     ]);
   }
 
@@ -31,6 +32,11 @@ class QuestionController extends Controller {
         'is_correct' => $index === $data['correctAnswerIndex'],
       ]);
     }
+  }
+
+  public function edit(Question $question) {
+    dd($question);
+    return $question;
   }
 
   public function update(Request $request, Question $question) {

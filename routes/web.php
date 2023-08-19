@@ -87,6 +87,7 @@ Route::group([], function () {
 
       Route::get('/questions/{type}', [QuestionController::class, 'showByType'])->name('questions.showByType');
       Route::post('question/store', [QuestionController::class, 'store'])->name('question.store');
+      Route::post('question/{question}/edit', [QuestionController::class, 'edit'])->name('question.edit');
       Route::delete('question/{question}/delete', [QuestionController::class, 'destroy'])->name('question.destroy');
 
       Route::get('business-hours', [BusinessHourController::class, 'index'])->name('business_hours');
