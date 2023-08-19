@@ -25,7 +25,7 @@ const save = () => {
   <AuthLayout>
     <template #left-sidebar> </template>
     <template #content>
-      <section class="border-l border-white min-h-screen p-4 overflow-x-auto">
+      <section class="p-4 overflow-x-auto">
         <header class="flex items-center justify-center">
           <h2 class="text-xl font-bold">
             {{ trans("words.available_appointments") }}

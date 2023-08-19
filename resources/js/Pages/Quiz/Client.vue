@@ -10,7 +10,7 @@ import { Head } from "@inertiajs/vue3";
   <AuthLayout>
     <template #left-sidebar> </template>
     <template #content>
-      <section class="border-l border-white min-h-screen p-4">
+      <section class="p-4">
         {{ trans('words.quiz') }} Client
       </section>
     </template>

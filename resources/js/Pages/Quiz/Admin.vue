@@ -12,7 +12,7 @@ import { Head } from "@inertiajs/vue3";
   <AuthLayout>
     <template #left-sidebar> </template>
     <template #content>
-      <main class="border-l border-white min-h-screen p-4 space-y-2">
+      <main class="p-4 space-y-2">
         <Questions :type="'text_questions'" :db_type="'text'" />
         <Questions :type="'math_questions'" :db_type="'math'" />
         <Questions :type="'photo_questions'" :db_type="'photo'" />

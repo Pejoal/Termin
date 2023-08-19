@@ -16,6 +16,7 @@ return new class extends Migration {
       // $table->string('likeable_type');
       $table->foreignId('user_id')->constrained()->onDelete('cascade');
       $table->unique(['user_id', 'likeable_id', 'likeable_type']);
+      $table->foreignId('deleted_by')->nullable()->constrained('users');
       $table->softDeletes();
       $table->timestamps();
     });

@@ -87,19 +87,17 @@ const toggleNav = () => {
       ></div>
     </header>
     <main class="lg:container lg:mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-4 lg:gap-10">
-        <div class="hidden md:block">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4 lg:gap-10">
+        <div class="hidden">
           <slot name="left-sidebar">
-            <div class="space-y-2">
-              <Link
-                class="btn btn-danger"
-                :href="route('logout')"
-                method="post"
-                as="button"
-              >
-                {{ trans("words.logout") }}
-              </Link>
-            </div>
+            <Link
+              class="btn btn-danger"
+              :href="route('logout')"
+              method="post"
+              as="button"
+            >
+              {{ trans("words.logout") }}
+            </Link>
           </slot>
         </div>
         <section class="md:col-span-2">
