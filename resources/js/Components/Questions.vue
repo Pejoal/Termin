@@ -43,7 +43,7 @@ const saveQuestion = () => {
 <template>
   <section class="bg-slate-300 rounded-lg p-2">
     <h3 class="text-center text-lg font-bold mt-2 mb-3">
-      {{ trans(`words.${type}`) }}
+      {{ trans(`words.${type}_questions`) }}
     </h3>
     <Teleport to="#toasts">
       <Toast

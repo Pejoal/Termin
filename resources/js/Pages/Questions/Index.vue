@@ -32,6 +32,7 @@ const edit = (id) => {
     form.id = response.data.id;
     form.content = response.data.content;
     form.correctAnswerIndex = response.data.correct_answer;
+    form.answers = response.data.answers;
 
     // form.post(route("question.store"), {
     //   onSuccess: () => {
@@ -98,7 +99,7 @@ const destroy = (id) => {
                   <label :for="'answer' + index" class="w-3/4">
                     <input
                       type="text"
-                      v-model="form.answers[index]"
+                      v-model="form.answers[index].content"
                       class="block w-full rounded-md"
                       required
                     />
