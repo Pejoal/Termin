@@ -93,3 +93,6 @@ Route::group([], function () {
   });
 
 });
+Route::fallback(function () {
+  return redirect('/');
+});
