@@ -1,7 +1,7 @@
 <script setup>
 import AppointmentModal from "@/Components/AppointmentModal.vue";
 import ResuableModal from "@/Components/ResuableModal.vue";
-import AdminLayout from "@/Layouts/AdminLayout.vue";
+import AuthLayout from "@/Layouts/AuthLayout.vue";
 import { Head } from "@inertiajs/vue3";
 import { ref } from "vue";
 
@@ -17,7 +17,7 @@ let showModal = ref(false);
 <template>
   <Head :title="trans('words.admin_dashboard')" />
 
-  <AdminLayout>
+  <AuthLayout>
     <template #left-sidebar> </template>
     <template #content>
       <section class="border-l border-white min-h-screen p-4">
@@ -63,5 +63,5 @@ let showModal = ref(false);
         </main>
       </section>
     </template>
-  </AdminLayout>
+  </AuthLayout>
 </template>
