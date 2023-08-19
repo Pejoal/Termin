@@ -53,17 +53,20 @@ const submit = (date, time) => {
               <h2
                 class="text-lg font-bold w-1/3 py-3 rounded-lg flex justify-center items-center bg-blue-500"
               >
-                {{ appointment["full_date"] }} Um {{ time }}
+                {{ appointment["full_date"] }} {{ trans("words.at") }}
+                {{ time }}
               </h2>
             </header>
             <section class="flex items-center justify-start my-2">
-              <label for="location" class="w-36 px-4">Wo</label>
+              <label for="location" class="w-36 px-4">{{
+                trans("words.wo")
+              }}</label>
               <input
                 type="text"
                 class="block rounded-lg flex-1 px-2 mx-2 h-10"
                 name="location"
                 id="location"
-                placeholder="Wo"
+                :placeholder="trans('words.wo')"
                 v-model="form.location"
               />
             </section>
@@ -71,12 +74,14 @@ const submit = (date, time) => {
               {{ form.errors.location }}
             </p>
             <section class="flex items-center justify-start my-2">
-              <label for="notes" class="w-36 px-4">Notizen</label>
+              <label for="notes" class="w-36 px-4">
+                {{ trans("words.notes") }}
+              </label>
               <textarea
                 class="rounded-lg flex-1 px-2 mx-2 h-40"
                 name="notes"
                 id="notes"
-                placeholder="Notizen"
+                :placeholder="trans('words.notes')"
                 v-model="form.notes"
               >
               </textarea>
@@ -88,7 +93,7 @@ const submit = (date, time) => {
                 :class="{ 'opacity-25': form.processing }"
                 :disabled="form.processing"
               >
-                Bestätigen
+                {{ trans("words.confirm") }}
               </button>
             </footer>
           </form>

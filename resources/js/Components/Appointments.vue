@@ -30,24 +30,24 @@ let showModal = ref(false);
     class="flex items-center justify-between my-2 bg-white p-2 rounded-lg"
     @click="showModal = true"
   >
-    <p>{{ props.date.date }} Um {{ props.date.time }}</p>
+    <p>{{ props.date.date }} {{ trans("words.at") }} {{ props.date.time }}</p>
     <section v-if="props.date.status == 'pending'" class="btn btn-info">
-      ausstehend
+      {{ trans("words.pending") }}
     </section>
     <section
       v-else-if="props.date.status == 'approved'"
       class="btn btn-success"
     >
-      akzeptiert
+      {{ trans("words.approved") }}
     </section>
     <section
       v-else-if="props.date.status == 'cancelled'"
       class="btn btn-warning"
     >
-      abgesagt
+      {{ trans("words.cancelled") }}
     </section>
     <section v-else-if="props.date.status == 'declined'" class="btn btn-danger">
-      abgelehnt
+      {{ trans("words.declined") }}
     </section>
   </section>
 </template>

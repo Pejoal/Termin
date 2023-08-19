@@ -34,7 +34,7 @@ const props = defineProps({
           'underline font-bold': route().current('admin.dashboard'),
         }"
       >
-        Admin-Dashboard
+        {{ trans("words.admin_dashboard") }}
       </Link>
       <Link
         :href="route('quiz.admin')"
@@ -44,7 +44,7 @@ const props = defineProps({
           'underline  font-bold': route().current('quiz.admin'),
         }"
       >
-        Quiz
+        {{ trans("words.quiz") }}
       </Link>
     </template>
     <template v-if="$page.props.auth.user.type === 'client'">
@@ -56,7 +56,7 @@ const props = defineProps({
           'underline  font-bold': route().current('home'),
         }"
       >
-        Startseite
+        {{ trans("words.home") }}
       </Link>
       <Link
         :href="route('appointments.index')"
@@ -66,7 +66,7 @@ const props = defineProps({
           'underline  font-bold': route().current('appointments.index'),
         }"
       >
-        Termine
+        {{ trans("words.appointments") }}
       </Link>
       <Link
         :href="route('quiz.client')"
@@ -76,7 +76,7 @@ const props = defineProps({
           'underline  font-bold': route().current('quiz.client'),
         }"
       >
-        Quiz
+        {{ trans("words.quiz") }}
       </Link>
 
       <Link
@@ -87,7 +87,7 @@ const props = defineProps({
           'underline  font-bold': route().current('user.profile.me'),
         }"
       >
-        Meine Daten
+        {{ trans("words.my_data") }}
       </Link>
     </template>
     <Link
@@ -98,7 +98,7 @@ const props = defineProps({
         'underline  font-bold': route().current('profile.edit'),
       }"
     >
-      Einstellungen
+      {{ trans("words.settings") }}
     </Link>
   </nav>
 </template>

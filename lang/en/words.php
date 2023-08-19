@@ -55,6 +55,7 @@ return [
   'appointments' => 'Appointments',
   'available_appointments' => 'Available Appointments',
   'admin_dashboard' => 'Admin Dashboard',
+  'settings' => 'Settings',
   'this_is_a_secure_area_of_the_application_please_confirm_your_password_before_continuing' => 'This is a secure area of the application. Please confirm your password
   before continuing',
   'forgot_your_password_no_problem_just_let_us_know_your_email_address_and_we_will_email_you_a_password_reset_link_that_will_allow_you_to_choose_a_new_one' =>
@@ -81,6 +82,20 @@ return [
   'there_are_no_upcoming_appointments' => 'There are no upcoming appointments',
   'there_are_no_previous_appointments' => 'There are no previous appointments',
   'navigation' => 'Navigation',
+  'pending' => 'Pending',
+  'approved' => 'Approved',
+  'cancelled' => 'Cancelled',
+  'declined' => 'Declined',
+  'wo' => 'Wo',
+  'notes' => 'Notes',
+  'update_appointment' => "Update Appointment",
+  'cancel_appointment' => "Cancel Appointment",
+  'approve_appointment' => "Approve Appointment",
+  'decline_appointment' => "Decline Appointment",
+  'delete_appointment' => "Delete Appointment",
+  'appointment_confirmed' => "Appointment Confirmed",
+  'welcome' => 'Welcome',
+  'welcome' => 'Welcome',
   'welcome' => 'Welcome',
 
 ];

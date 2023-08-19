@@ -37,7 +37,7 @@ const save = () => {
               :show="showUpdatedToast"
               :type="'success'"
               @close="showUpdatedToast = false"
-              :message="'Termin bestätigt'"
+              :message="trans('words.appointment_confirmed')"
             />
           </Teleport>
           <section v-for="appointment in props.appointments" class="flex-1">

@@ -1,5 +1,6 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
+import { trans } from "laravel-vue-i18n/*";
 import { computed, watch, ref } from "vue";
 
 const emits = defineEmits(["save"]);
@@ -78,55 +79,59 @@ const delete_appointment = () => {
 <template>
   <main class="my-2 bg-zinc-300 mx-2 p-3 rounded-lg">
     <section class="flex items-center justify-between">
-      <p>{{ props.date.date }} Um {{ props.date.time }}</p>
+      <p>{{ props.date.date }} {{ trans("words.at") }} {{ props.date.time }}</p>
       <section v-if="props.date.status == 'pending'" class="btn btn-info">
-        ausstehend
+        {{ trans("words.pending") }}
       </section>
       <section
         v-else-if="props.date.status == 'approved'"
         class="btn btn-success"
       >
-        akzeptiert
+        {{ trans("words.approved") }}
       </section>
       <section
         v-else-if="props.date.status == 'cancelled'"
         class="btn btn-warning"
       >
-        abgesagt
+        {{ trans("words.cancelled") }}
       </section>
       <section
         v-else-if="props.date.status == 'declined'"
         class="btn btn-danger"
       >
-        abgelehnt
+        {{ trans("words.declined") }}
       </section>
     </section>
     <form @submit.prevent="update">
       <section class="flex items-center my-2">
-        <label for="location" class="w-36 px-4">Wo</label>
+        <label for="location" class="w-36 px-4">
+          {{ trans("words.wo") }}
+        </label>
         <input
           type="text"
           class="block rounded-lg flex-1 px-2 mx-2 h-10"
           name="location"
           id="location"
-          placeholder="Wo"
+          :placeholder="trans('words.wo')"
           v-model="form.location"
         />
       </section>
       <section class="flex items-center my-2">
-        <label for="notes" class="w-36 px-4">Notizen</label>
+        <label for="notes" class="w-36 px-4">
+          {{ trans("words.notes") }}
+        </label>
         <textarea
           class="rounded-lg flex-1 px-2 mx-2 h-40"
           name="notes"
           id="notes"
-          placeholder="Notizen"
+          :placeholder="trans('words.notes')"
           v-model="form.notes"
         >
         </textarea>
       </section>
       <footer class="flex items-center justify-center gap-3">
         <button type="submit" class="btn btn-primary">
-          Termin aktualisieren
+          {{ trans("words.update_appointment") }}
         </button>
         <button
           v-if="$page.props.auth.user.type === 'client'"
@@ -134,7 +139,7 @@ const delete_appointment = () => {
           class="btn btn-danger"
           @click="cancel"
         >
-          Termin absagen
+          {{ trans("words.cancel_appointment") }}
         </button>
         <template
           v-else-if="
@@ -142,14 +147,18 @@ const delete_appointment = () => {
           "
         >
           <button type="button" class="btn btn-success" @click="approve">
-            Termin annehmen
+            {{ trans("words.approve_appointment") }}
           </button>
           <button type="button" class="btn btn-danger" @click="decline">
-            Termin ablehnen
+            {{ trans("words.decline_appointment") }}
           </button>
         </template>
-        <button type="button" class="btn btn-danger" @click="delete_appointment">
-          Termin löschen
+        <button
+          type="button"
+          class="btn btn-danger"
+          @click="delete_appointment"
+        >
+          {{ trans("words.delete_appointment") }}
         </button>
       </footer>
     </form>
