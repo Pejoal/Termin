@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { Link } from "@inertiajs/vue3";
 import Navigations from "@/Components/Navigations.vue";
 import Hamburger from "@/Components/Hamburger.vue";
+import Locales from "@/Components/Locales.vue";
 
 const props = defineProps({
   joined_chat_groups: {

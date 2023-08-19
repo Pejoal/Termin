@@ -59,14 +59,14 @@ const submit = (date, time) => {
             </header>
             <section class="flex items-center justify-start my-2">
               <label for="location" class="w-36 px-4">{{
-                trans("words.wo")
+                trans("words.address")
               }}</label>
               <input
                 type="text"
                 class="block rounded-lg flex-1 px-2 mx-2 h-10"
                 name="location"
                 id="location"
-                :placeholder="trans('words.wo')"
+                :placeholder="trans('words.address')"
                 v-model="form.location"
               />
             </section>

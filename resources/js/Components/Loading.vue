@@ -1,7 +1,7 @@
 <script setup></script>
 <template>
   <div class="flex items-center justify-center bg-slate-900 rounded-lg py-6" role="status">
-    <span class="px-4">{{ $page.props.words.loading }}</span>
+    <span class="px-4">{{ trans('words.loading') }}</span>
     <svg
       aria-hidden="true"
       class="w-8 h-8 mr-2 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"

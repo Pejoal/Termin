@@ -1,6 +1,5 @@
 <script setup>
-import AppintmentModal from "@/Components/AppintmentModal.vue";
-import Locales from "@/Components/Locales.vue";
+import AppointmentModal from "@/Components/AppointmentModal.vue";
 import ResuableModal from "@/Components/ResuableModal.vue";
 import AdminLayout from "@/Layouts/AdminLayout.vue";
 import { Head } from "@inertiajs/vue3";
@@ -42,7 +41,7 @@ let showModal = ref(false);
                 @close="showModal = false"
               >
                 <template #content>
-                  <AppintmentModal
+                  <AppointmentModal
                     :date="appointment"
                     v-on:save="showModal = false"
                   />

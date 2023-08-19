@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
 import ResuableModal from "./ResuableModal.vue";
-import AppintmentModal from "./AppintmentModal.vue";
+import AppointmentModal from "./AppointmentModal.vue";
 
 const props = defineProps({
   date: {
@@ -22,7 +22,7 @@ let showModal = ref(false);
       @close="showModal = false"
     >
       <template #content>
-        <AppintmentModal :date="date" v-on:save="showModal = false" />
+        <AppointmentModal :date="date" v-on:save="showModal = false" />
       </template>
     </ResuableModal>
   </Teleport>

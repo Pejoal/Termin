@@ -86,7 +86,7 @@ return [
   'approved' => 'Approved',
   'cancelled' => 'Cancelled',
   'declined' => 'Declined',
-  'wo' => 'Wo',
+  'address' => 'address',
   'notes' => 'Notes',
   'update_appointment' => "Update Appointment",
   'cancel_appointment' => "Cancel Appointment",
@@ -94,8 +94,6 @@ return [
   'decline_appointment' => "Decline Appointment",
   'delete_appointment' => "Delete Appointment",
   'appointment_confirmed' => "Appointment Confirmed",
-  'welcome' => 'Welcome',
-  'welcome' => 'Welcome',
-  'welcome' => 'Welcome',
+  'loading' => "Loading",
 
 ];
