@@ -16,7 +16,7 @@ let showModal = ref(false);
 </script>
 
 <template>
-  <Head title="Admin Dashboard" />
+  <Head :title="trans('words.admin_dashboard')" />
 
   <AdminLayout>
     <template #left-sidebar> </template>
@@ -24,7 +24,7 @@ let showModal = ref(false);
       <section class="border-l border-white min-h-screen p-4">
         <header class="flex items-center justify-center mb-2">
           <h2 class="text-xl font-bold pb-1 border-b border-b-black">
-            Terminanfragen
+            {{ trans("words.appointment_requests") }}
           </h2>
         </header>
         <main class="bg-slate-100 space-y-2 rounded-lg">
@@ -51,9 +51,13 @@ let showModal = ref(false);
             </Teleport>
             <section>
               <h3>
-                Anforderer: <strong> {{ appointment.requester }} </strong>
+                {{ trans("words.requester") }}
+                : <strong> {{ appointment.requester }} </strong>
               </h3>
-              <p>{{ appointment.date }} Um {{ appointment.time }}</p>
+              <p>
+                {{ appointment.date }} {{ trans("words.at") }}
+                {{ appointment.time }}
+              </p>
             </section>
             <section class="btn btn-info">{{ appointment.status }}</section>
           </section>

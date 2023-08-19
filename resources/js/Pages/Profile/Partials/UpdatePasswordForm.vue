@@ -35,16 +35,23 @@ const updatePassword = () => {
 <template>
   <section>
     <header>
-      <h2 class="text-lg font-medium">Passwort aktualisieren</h2>
+      <h2 class="text-lg font-medium">{{ trans("words.update_password") }}</h2>
 
       <p class="mt-1 text-sm">
-        Stellen Sie sicher, dass Ihr Konto ein langes, zufälliges Passwort verwendet, um die Sicherheit zu gewährleisten
+        {{
+          trans(
+            "words.ensure_your_account_is_using_a_long_random_password_to_stay_secure"
+          )
+        }}
       </p>
     </header>
 
     <form @submit.prevent="updatePassword" class="mt-6 space-y-6">
       <div>
-        <InputLabel for="current_password" value="Aktuelles Passwort" />
+        <InputLabel
+          for="current_password"
+          :value="trans('words.current_password')"
+        />
 
         <TextInput
           id="current_password"
@@ -52,7 +59,7 @@ const updatePassword = () => {
           v-model="form.current_password"
           type="password"
           class="mt-1 block w-full"
-          placeholder="Aktuelles Passwort"
+          :placeholder="trans('words.current_password')"
           autocomplete="current-password"
         />
 
@@ -60,14 +67,14 @@ const updatePassword = () => {
       </div>
 
       <div>
-        <InputLabel for="password" value="Neues Passwort" />
+        <InputLabel for="password" :value="trans('words.new_password')" />
 
         <TextInput
           id="password"
           ref="passwordInput"
           v-model="form.password"
           type="password"
-          placeholder="Neues Passwort"
+          :placeholder="trans('words.new_password')"
           class="mt-1 block w-full"
           autocomplete="new-password"
         />
@@ -78,13 +85,14 @@ const updatePassword = () => {
       <div>
         <InputLabel
           for="password_confirmation"
-          value="Bestätige das Passwort"
+          :value="trans('words.confirm_password')"
         />
 
         <TextInput
           id="password_confirmation"
           v-model="form.password_confirmation"
           type="password"
+          :placeholder="trans('words.confirm_password')"
           class="mt-1 block w-full"
           autocomplete="new-password"
         />
@@ -94,7 +102,7 @@ const updatePassword = () => {
 
       <div class="flex items-center gap-4">
         <button class="btn btn-success" :disabled="form.processing">
-          Speichern
+          {{ trans("words.save") }}
         </button>
 
         <Transition
@@ -103,7 +111,7 @@ const updatePassword = () => {
           class="transition ease-in-out"
         >
           <p v-if="form.recentlySuccessful" class="text-sm">
-            gespeichert
+            {{ trans("words.saved") }}
           </p>
         </Transition>
       </div>

@@ -21,13 +21,12 @@ const submit = () => {
     <Head title="Confirm Password" />
 
     <div class="mb-4 text-sm">
-      Dies ist ein sicherer Bereich der Anwendung. Bitte bestätigen Sie Ihr
-      Passwort vor dem Fortfahren.
+      {{ trans('words.this_is_a_secure_area_of_the_application_please_confirm_your_password_before_continuing') }}
     </div>
 
     <form @submit.prevent="submit">
       <div>
-        <InputLabel for="password" value="Password" />
+        <InputLabel for="password" :value="trans('words.password')" />
         <TextInput
           id="password"
           type="password"
@@ -46,7 +45,7 @@ const submit = () => {
           :class="{ 'opacity-25': form.processing }"
           :disabled="form.processing"
         >
-          Bestätigen
+          {{ trans('words.confirm') }}
         </button>
       </div>
     </form>

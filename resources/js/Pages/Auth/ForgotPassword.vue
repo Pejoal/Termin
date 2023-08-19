@@ -23,10 +23,11 @@ const submit = () => {
     <Head title="Forgot Password" />
 
     <div class="mb-4 text-sm">
-      Haben Sie Ihr Passwort vergessen? Kein Problem. Teilen Sie uns einfach
-      Ihre E-Mail-Adresse mit Wir senden Ihnen per E-Mail einen Link zum
-      Zurücksetzen des Passworts, über den Sie ein Passwort auswählen können ein
-      neues.
+      {{
+        trans(
+          "words.forgot_your_password_no_problem_just_let_us_know_your_email_address_and_we_will_email_you_a_password_reset_link_that_will_allow_you_to_choose_a_new_one"
+        )
+      }}
     </div>
 
     <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
@@ -35,7 +36,7 @@ const submit = () => {
 
     <form @submit.prevent="submit">
       <div>
-        <InputLabel for="input_type" value="Email / Username" />
+        <InputLabel for="input_type" :value="trans('words.emai_username')" />
 
         <TextInput
           id="input_type"
@@ -57,7 +58,7 @@ const submit = () => {
           :class="{ 'opacity-25': form.processing }"
           :disabled="form.processing"
         >
-          Link zum Zurücksetzen des Passworts per E-Mail senden
+          {{ trans("words.email_password_reset_link") }}
         </button>
       </div>
     </form>

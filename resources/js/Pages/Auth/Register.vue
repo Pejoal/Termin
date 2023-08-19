@@ -34,14 +34,14 @@ const submit = () => {
       class="bg-zinc-300 w-full mt-2 mb-4 rounded-lg md:container px-8 py-4 flex flex-col gap-2"
     >
       <div>
-        <InputLabel for="firstname" value="Vorname" />
+        <InputLabel for="firstname" :value="trans('words.firstname')" />
 
         <TextInput
           id="firstname"
           type="text"
           class="mt-1 block w-full"
           v-model="form.firstname"
-          placeholder="Vorname"
+          :placeholder="trans('words.firstname')"
           required
           autocomplete="firstname"
           autofocus
@@ -51,14 +51,14 @@ const submit = () => {
       </div>
 
       <div>
-        <InputLabel for="lastname" value="Nachname" />
+        <InputLabel for="lastname" :value="trans('words.lastname')" />
 
         <TextInput
           id="lastname"
           type="text"
           class="mt-1 block w-full"
           v-model="form.lastname"
-          placeholder="Nachname"
+          :placeholder="trans('words.lastname')"
           autocomplete="lasstname"
           required
         />
@@ -66,14 +66,14 @@ const submit = () => {
         <InputError class="mt-2" :message="form.errors.lastname" />
       </div>
       <div>
-        <InputLabel for="username" value="Nutzername" />
+        <InputLabel for="username" :value="trans('words.username')" />
 
         <TextInput
           id="username"
           type="text"
           class="mt-1 block w-full"
           v-model="form.username"
-          placeholder="Nutzername"
+          :placeholder="trans('words.username')"
           autocomplete="username"
           required
         />
@@ -81,7 +81,7 @@ const submit = () => {
         <InputError class="mt-2" :message="form.errors.username" />
       </div>
       <div>
-        <InputLabel value="Gender" />
+        <InputLabel :value="trans('words.gender')" />
         <div class="flex justify-center gap-12">
           <section>
             <input
@@ -91,7 +91,7 @@ const submit = () => {
               v-model="form.gender"
               autocomplete="gender"
             />
-            <label class="ml-2" for="male">Männlich</label>
+            <label class="ml-2" for="male">{{ trans("words.male") }}</label>
           </section>
           <section>
             <input
@@ -101,21 +101,23 @@ const submit = () => {
               v-model="form.gender"
               autocomplete="gender"
             />
-            <label class="ml-2" for="female"> Weiblich</label>
+            <label class="ml-2" for="female">
+              {{ trans("words.female") }}
+            </label>
           </section>
         </div>
         <InputError class="mt-2" :message="form.errors.gender" />
       </div>
 
       <div class="mt-4">
-        <InputLabel for="email" value="Email" />
+        <InputLabel for="email" :value="trans('words.email')" />
 
         <TextInput
           id="email"
           type="email"
           class="mt-1 block w-full"
           v-model="form.email"
-          placeholder="Email"
+          :placeholder="trans('words.email')"
           autocomplete="email"
           required
         />
@@ -124,14 +126,14 @@ const submit = () => {
       </div>
 
       <div class="mt-4">
-        <InputLabel for="password" value="Passwort" />
+        <InputLabel for="password" :value="trans('words.passwort')" />
 
         <TextInput
           id="password"
           type="password"
           class="mt-1 block w-full"
           v-model="form.password"
-          placeholder="Passwort"
+          :placeholder="trans('words.passwort')"
           required
           autocomplete="new-password"
         />
@@ -140,14 +142,17 @@ const submit = () => {
       </div>
 
       <div class="mt-4">
-        <InputLabel for="password_confirmation" value="Bestätige das Passwort" />
+        <InputLabel
+          for="password_confirmation"
+          :value="trans('words.confirm_password')"
+        />
 
         <TextInput
           id="password_confirmation"
           type="password"
           class="mt-1 block w-full"
           v-model="form.password_confirmation"
-          placeholder="Bestätige das Passwort"
+          :placeholder="trans('words.confirm_password')"
           required
           autocomplete="new-password"
         />
@@ -157,7 +162,9 @@ const submit = () => {
 
       <section class="flex justify-between flex-col sm:flex-row">
         <div class="my-2">
-          <label class="pr-2" for="profile_photo"> Profilfoto </label>
+          <label class="pr-2" for="profile_photo">
+            {{ trans("words.profile_photo") }}
+          </label>
           <input
             id="profile_photo"
             type="file"
@@ -183,7 +190,9 @@ const submit = () => {
         leave-to-class="opacity-0"
         class="transition ease-in-out"
       >
-        <p v-if="form.recentlySuccessful" class="text-sm">Hochgeladen</p>
+        <p v-if="form.recentlySuccessful" class="text-sm">
+          {{ trans("words.uploaded") }}
+        </p>
       </Transition>
 
       <div class="flex items-center justify-end mt-2">
@@ -191,7 +200,7 @@ const submit = () => {
           :href="route('login')"
           class="underline text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
         >
-          Bereits registriert
+          {{ trans("words.already_registered") }}
         </Link>
 
         <button
@@ -199,7 +208,7 @@ const submit = () => {
           :class="{ 'opacity-25': form.processing }"
           :disabled="form.processing"
         >
-          Anmeldung
+          {{ trans("words.login") }}
         </button>
       </div>
     </form>

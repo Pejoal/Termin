@@ -23,11 +23,16 @@ const form = useForm({
 <template>
   <section>
     <header>
-      <h2 class="text-lg font-medium">Profil Information</h2>
+      <h2 class="text-lg font-medium">
+        {{ trans("words.profile_information") }}
+      </h2>
 
       <p class="mt-1 text-sm">
-        Aktualisieren Sie die Profilinformationen und die E-Mail-Adresse Ihres
-        Kontos
+        {{
+          trans(
+            "words.update_your_account_profile_information_and_email_address"
+          )
+        }}
       </p>
     </header>
 
@@ -36,7 +41,7 @@ const form = useForm({
       class="mt-6 space-y-6"
     >
       <div>
-        <InputLabel for="firstname" value="Vorname" />
+        <InputLabel for="firstname" :value="trans('words.firstname')" />
 
         <TextInput
           id="firstname"
@@ -52,7 +57,7 @@ const form = useForm({
       </div>
 
       <div>
-        <InputLabel for="lastname" value="Nachname" />
+        <InputLabel for="lastname" :value="trans('words.lastname')" />
 
         <TextInput
           id="lastname"
@@ -68,7 +73,7 @@ const form = useForm({
       </div>
 
       <div>
-        <InputLabel for="username" value="Nutzername" />
+        <InputLabel for="username" :value="trans('words.username')" />
 
         <TextInput
           id="username"
@@ -84,11 +89,11 @@ const form = useForm({
       </div>
 
       <div>
-        <InputLabel value="Geschlecht" />
+        <InputLabel :value="trans('words.gender')" />
         <div class="flex justify-center gap-12">
           <section>
             <input type="radio" id="male" value="male" v-model="form.gender" />
-            <label class="ml-2" for="male">Männlich</label>
+            <label class="ml-2" for="male">{{ trans("words.male") }}</label>
           </section>
           <section>
             <input
@@ -97,14 +102,16 @@ const form = useForm({
               value="female"
               v-model="form.gender"
             />
-            <label class="ml-2" for="female"> Weiblich </label>
+            <label class="ml-2" for="female">
+              {{ trans("words.female") }}
+            </label>
           </section>
         </div>
         <InputError class="mt-2" :message="form.errors.gender" />
       </div>
 
       <div>
-        <InputLabel for="email" value="Email" />
+        <InputLabel for="email" :value="trans('words.email')" />
 
         <TextInput
           id="email"
@@ -120,14 +127,14 @@ const form = useForm({
 
       <div v-if="props.mustVerifyEmail && user.email_verified_at === null">
         <p class="text-sm mt-2">
-          Ihre E-Mail-Adresse ist nicht bestätigt.
+          {{ trans("words.your_email_address_is_unverified") }}
           <Link
             :href="route('verification.send')"
             method="post"
             as="button"
             class="underline text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            Klicken Sie hier, um die Bestätigungs-E-Mail erneut zu senden.
+            {{ trnas("words.click_here_to_re_send_the_verification_email") }}
           </Link>
         </p>
 
@@ -135,13 +142,17 @@ const form = useForm({
           v-show="props.status === 'verification-link-sent'"
           class="mt-2 font-medium text-sm text-green-600"
         >
-          Ein neuer Bestätigungslink wurde an Ihre E-Mail-Adresse gesendet.
+          {{
+            trnas(
+              "words.a_new_verification_link_has_been_sent_to_your_email_address"
+            )
+          }}
         </div>
       </div>
 
       <div class="flex items-center gap-4">
         <button class="btn btn-success" :disabled="form.processing">
-          Speichern
+          {{ trnas("words.save") }}
         </button>
 
         <Transition
@@ -149,7 +160,9 @@ const form = useForm({
           leave-to-class="opacity-0"
           class="transition ease-in-out"
         >
-          <p v-if="form.recentlySuccessful" class="text-sm">gespeichert</p>
+          <p v-if="form.recentlySuccessful" class="text-sm">
+            {{ trnas("words.saved") }}
+          </p>
         </Transition>
       </div>
     </form>

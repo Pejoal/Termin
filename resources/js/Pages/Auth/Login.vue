@@ -36,11 +36,11 @@ const submit = () => {
         :href="route('register')"
         class="underline float-right text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
       >
-        registrieren
+        {{ trans("words.register") }}
       </Link>
       <form @submit.prevent="submit">
         <div>
-          <InputLabel for="input_type" value="Email Or Username" />
+          <InputLabel for="input_type" :value="trans('words.emai_username')" />
 
           <TextInput
             id="input_type"
@@ -57,7 +57,7 @@ const submit = () => {
         </div>
 
         <div class="mt-4">
-          <InputLabel for="password" value="Password" />
+          <InputLabel for="password" :value="trnas('words.password')" />
 
           <TextInput
             id="password"
@@ -74,7 +74,9 @@ const submit = () => {
         <div class="block mt-4">
           <label class="flex items-center">
             <Checkbox name="remember" v-model:checked="form.remember" />
-            <span class="ml-2 text-sm">Remember me</span>
+            <span class="ml-2 text-sm">
+              {{ trans("words.remember_me") }}
+            </span>
           </label>
         </div>
 
@@ -84,7 +86,7 @@ const submit = () => {
             :href="route('password.request')"
             class="underline text-sm rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
-            Haben Sie Ihr Passwort vergessen?
+            {{ trans("words.forgot_your_password") }}
           </Link>
 
           <button
@@ -92,7 +94,7 @@ const submit = () => {
             :class="{ 'opacity-25': form.processing }"
             :disabled="form.processing"
           >
-            Anmeldung
+            {{ trans("words.login") }}
           </button>
         </div>
       </form>

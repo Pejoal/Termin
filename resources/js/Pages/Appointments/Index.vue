@@ -20,14 +20,16 @@ const save = () => {
 
 <template>
   <Head>
-    <title>Termine</title>
+    <title>{{ trans("words.appointments") }}</title>
   </Head>
   <AuthLayout>
     <template #left-sidebar> </template>
     <template #content>
       <section class="border-l border-white min-h-screen p-4 overflow-x-auto">
         <header class="flex items-center justify-center">
-          <h2 class="text-xl font-bold">Verfügbare Termine</h2>
+          <h2 class="text-xl font-bold">
+            {{ trans("words.available_appointments") }}
+          </h2>
         </header>
         <main class="flex">
           <Teleport to="#toasts">
