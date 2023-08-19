@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model {
   use HasFactory;
 
-  protected $fillable = ['content', 'type'];
+  protected $fillable = ['content', 'type', 'correct_answer'];
 
   public function answers() {
     return $this->hasMany(Answer::class);

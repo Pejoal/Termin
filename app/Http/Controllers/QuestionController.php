@@ -22,7 +22,7 @@ class QuestionController extends Controller {
     $question = Question::create([
       'content' => $data['content'],
       'type' => $data['type'],
-      //   'correct_answer' => $data['correctAnswerIndex'],
+      'correct_answer' => $data['correctAnswerIndex'],
     ]);
 
     foreach ($data['answers'] as $index => $answer) {
@@ -35,7 +35,6 @@ class QuestionController extends Controller {
   }
 
   public function edit(Question $question) {
-    dd($question);
     return $question;
   }
 

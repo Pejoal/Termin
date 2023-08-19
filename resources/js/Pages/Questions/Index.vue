@@ -19,6 +19,7 @@ const showModal = ref(false);
 let showToast = ref(false);
 
 const form = useForm({
+  id: 0,
   content: "",
   correctAnswerIndex: null,
   answers: ["", "", "", ""],
@@ -26,10 +27,11 @@ const form = useForm({
 });
 
 const edit = (id) => {
-  axios.get(route("question.edit", id)).then((response) => {
+  axios.post(route("question.edit", id)).then((response) => {
     showModal.value = true;
-
-    // console.log(response);
+    form.id = response.data.id;
+    form.content = response.data.content;
+    form.correctAnswerIndex = response.data.correct_answer;
 
     // form.post(route("question.store"), {
     //   onSuccess: () => {
