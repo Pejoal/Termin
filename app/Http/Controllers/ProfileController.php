@@ -16,7 +16,7 @@ class ProfileController extends Controller {
 
   public function myProfile() {
 
-    $appointments = auth()->user()->appointments;
+    $appointments = auth()->user()->appointments()->orderBy('date', 'DESC')->orderBy('time', 'DESC')->get();
     $currentDate = now()->format('Y-m-d');
 
     $upcomingDates = $appointments->filter(function ($item) use ($currentDate) {
