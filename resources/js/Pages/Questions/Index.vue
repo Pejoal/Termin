@@ -20,6 +20,10 @@ const props = defineProps({
 const showModal = ref(false);
 let showToast = ref(false);
 
+const photoForm = useForm({
+  photo: null,
+});
+
 const form = useForm({
   id: 0,
   photo: "",
@@ -48,6 +52,15 @@ const update = () => {
     },
   });
 };
+
+function uploadPhoto() {
+  photoForm.post(route("question.photo.update", [form.id]), {
+    preserveScroll: true,
+    onSuccess: () => {
+      edit(form.id);
+    },
+  });
+}
 
 const destroy = (id) => {
   new swal({
@@ -114,50 +127,20 @@ const destroy = (id) => {
                   class="flex-1 rounded-md h-24"
                   required
                 ></textarea>
+                <section
+                  v-if="props.type === 'photo'"
+                  class="border mx-2 w-40 flex items-center justify-center"
+                >
+                  <img
+                    v-if="form.photo"
+                    :src="form.photo"
+                    :alt="trans('words.photo')"
+                  />
+                </section>
               </section>
               <p v-if="form.errors.content" class="error">
                 {{ form.errors.content }}
               </p>
-
-              <template v-if="props.type === 'photo'">
-                <img
-                  class="rounded-full w-14 h-14 md:w-16 md:h-16"
-                  v-if="form.photo"
-                  :src="form.photo"
-                  :alt="trans('words.profile_photo')"
-                />
-                <section class="flex justify-between flex-col sm:flex-row">
-                  <div class="my-2">
-                    <label class="pr-2" for="photo">
-                      {{ trans("words.photo") }}
-                    </label>
-                    <input
-                      id="photo"
-                      type="file"
-                      @input="form.photo = $event.target.files[0]"
-                    />
-                  </div>
-                </section>
-                <p v-if="form.errors.photo" class="error">
-                  {{ form.errors.photo }}
-                </p>
-                <progress
-                  v-if="form.progress"
-                  :value="form.progress.percentage"
-                  max="100"
-                >
-                  {{ form.progress.percentage }}%
-                </progress>
-                <Transition
-                  enter-from-class="opacity-0"
-                  leave-to-class="opacity-0"
-                  class="transition ease-in-out"
-                >
-                  <p v-if="form.recentlySuccessful" class="text-sm">
-                    {{ trans("words.uploaded") }}
-                  </p>
-                </Transition>
-              </template>
 
               <section class="p-2">
                 <label>{{ trans("words.answers") }}:</label>
@@ -189,6 +172,52 @@ const destroy = (id) => {
                 {{ trans("words.update_question") }}
               </button>
             </form>
+
+            <template v-if="props.type === 'photo'">
+              <form @submit.prevent="uploadPhoto" class="p-2">
+                <section class="flex justify-between flex-col sm:flex-row">
+                  <div class="my-2">
+                    <label class="pr-2" for="photo">
+                      {{ trans("words.photo") }}
+                    </label>
+                    <input
+                      id="photo"
+                      type="file"
+                      @input="photoForm.photo = $event.target.files[0]"
+                    />
+                  </div>
+                  <button
+                    class="btn btn-success"
+                    type="submit"
+                    :disabled="photoForm.processing"
+                  >
+                    {{ trans("words.upload") }}
+                  </button>
+                </section>
+                <p
+                  v-if="photoForm.errors.photo"
+                  class="text-sm bg-red-600 rounded-md my-1 px-2 py-1"
+                >
+                  {{ photoForm.errors.photo }}
+                </p>
+                <progress
+                  v-if="photoForm.progress"
+                  :value="photoForm.progress.percentage"
+                  max="100"
+                >
+                  {{ photoForm.progress.percentage }}%
+                </progress>
+                <Transition
+                  enter-from-class="opacity-0"
+                  leave-to-class="opacity-0"
+                  class="transition ease-in-out"
+                >
+                  <p v-if="photoForm.recentlySuccessful" class="text-sm">
+                    {{ trans("words.uploaded") }}
+                  </p>
+                </Transition>
+              </form>
+            </template>
           </template>
         </ResuableModal>
       </Teleport>

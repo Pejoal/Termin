@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\QuestionRequest;
 use App\Models\Answer;
 use App\Models\Question;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class QuestionController extends Controller {
@@ -33,7 +34,7 @@ class QuestionController extends Controller {
       ]);
     }
 
-    if ($data['photo'] && $request->hasFile('photo')) {
+    if ($data['type'] === 'photo' && $request->hasFile('photo')) {
       $request->validate([
         'photo' => ['image', 'mimes:jpeg,png,jpg', 'max:30000'],
       ]);
@@ -64,6 +65,17 @@ class QuestionController extends Controller {
       ]);
     }
 
+  }
+
+  public function updatePhoto(Request $request, Question $question) {
+    if ($request->hasFile('photo')) {
+      $request->validate([
+        'photo' => ['required', 'image', 'mimes:jpeg,png,jpg', 'max:30000'],
+      ]);
+      $path = $request->file('photo')->store('public/questions/photos');
+      $question->photo = Storage::url($path);
+      $question->save();
+    }
   }
 
   public function destroy(Question $question) {

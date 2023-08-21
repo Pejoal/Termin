@@ -69,7 +69,7 @@ Route::group([], function () {
     Route::group(['middleware' => 'clients-only'], function () {
       Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-      Route::get('/user/profile', [ProfileController::class, 'myProfile'])->name('user.profile.me');
+      Route::get('user/profile', [ProfileController::class, 'myProfile'])->name('user.profile.me');
 
       Route::get('quiz/client', [QuizController::class, 'client'])->name('quiz.client');
 
@@ -90,11 +90,12 @@ Route::group([], function () {
       Route::get('question/{question}/get', [QuestionController::class, 'get'])->name('question.get');
       Route::put('question/{question}/update', [QuestionController::class, 'update'])->name('question.update');
       Route::delete('question/{question}/delete', [QuestionController::class, 'destroy'])->name('question.destroy');
+      Route::post('question/{question}/photo/update', [QuestionController::class, 'updatePhoto'])->name('question.photo.update');
 
       Route::get('business-hours', [BusinessHourController::class, 'index'])->name('business_hours');
       Route::post('business-hours', [BusinessHourController::class, 'update'])->name('business_hours.update');
 
-      Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+      Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
       
     });
 
