@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import ResuableModal from "@/Components/ResuableModal.vue";
 import AppointmentModal from "@/Pages/Admin/Partials/AppointmentModal.vue";
+import AppointmentStatus from "@/Components/AppointmentStatus.vue";
 
 const props = defineProps({
   date: {
@@ -16,7 +17,7 @@ let showModal = ref(false);
 <template>
   <Teleport to="#modal">
     <ResuableModal
-      :classes="['w-[90%] md:w-[85%] lg:w-[80%] h-[60%]']"
+      :classes="['w-[90%] md:w-[85%] lg:w-[80%] h-[80%]']"
       :header="trans('words.update_appointment')"
       :show="showModal"
       @close="showModal = false"
@@ -31,23 +32,6 @@ let showModal = ref(false);
     @click="showModal = true"
   >
     <p>{{ props.date.date }} {{ trans("words.at") }} {{ props.date.time }}</p>
-    <section v-if="props.date.status == 'pending'" class="btn btn-info">
-      {{ trans("words.pending") }}
-    </section>
-    <section
-      v-else-if="props.date.status == 'approved'"
-      class="btn btn-success"
-    >
-      {{ trans("words.approved") }}
-    </section>
-    <section
-      v-else-if="props.date.status == 'cancelled'"
-      class="btn btn-warning"
-    >
-      {{ trans("words.cancelled") }}
-    </section>
-    <section v-else-if="props.date.status == 'declined'" class="btn btn-danger">
-      {{ trans("words.declined") }}
-    </section>
+    <AppointmentStatus :status="props.date.status" />
   </section>
 </template>

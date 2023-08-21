@@ -1,6 +1,6 @@
 <script setup>
 import { useForm } from "@inertiajs/vue3";
-import { computed, watch, ref } from "vue";
+import AppointmentStatus from "@/Components/AppointmentStatus.vue";
 
 const emits = defineEmits(["save"]);
 
@@ -11,18 +11,6 @@ const props = defineProps({
     required: true,
   },
 });
-
-// let modal = ref(false);
-
-// Stop Scrolling When The Modal is Opened
-// const isModalOpen = computed(() => modal.value);
-// watch(isModalOpen, (isOpen) => {
-//   if (isOpen) {
-//     document.body.classList.toggle("overflow-y-hidden");
-//   } else {
-//     document.body.classList.toggle("overflow-y-hidden");
-//   }
-// });
 
 const form = useForm({
   location: props.date.location,
@@ -79,27 +67,7 @@ const delete_appointment = () => {
   <main class="my-2 bg-zinc-300 mx-2 p-3 rounded-lg">
     <section class="flex items-center justify-between">
       <p>{{ props.date.date }} {{ trans("words.at") }} {{ props.date.time }}</p>
-      <section v-if="props.date.status == 'pending'" class="btn btn-info">
-        {{ trans("words.pending") }}
-      </section>
-      <section
-        v-else-if="props.date.status == 'approved'"
-        class="btn btn-success"
-      >
-        {{ trans("words.approved") }}
-      </section>
-      <section
-        v-else-if="props.date.status == 'cancelled'"
-        class="btn btn-warning"
-      >
-        {{ trans("words.cancelled") }}
-      </section>
-      <section
-        v-else-if="props.date.status == 'declined'"
-        class="btn btn-danger"
-      >
-        {{ trans("words.declined") }}
-      </section>
+      <AppointmentStatus :status="props.date.status" />
     </section>
     <form @submit.prevent="update">
       <section class="flex items-center my-2">
@@ -136,7 +104,7 @@ const delete_appointment = () => {
         <button
           v-if="$page.props.auth.user.type === 'client'"
           type="button"
-          class="btn btn-danger"
+          class="btn btn-warning"
           @click="cancel"
         >
           {{ trans("words.cancel_appointment") }}
