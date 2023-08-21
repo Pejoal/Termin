@@ -113,6 +113,7 @@ const delete_appointment = () => {
           id="location"
           :placeholder="trans('words.address')"
           v-model="form.location"
+          required
         />
       </section>
       <section class="flex items-center my-2">

@@ -1,5 +1,5 @@
 <script setup>
-import Questions from "@/Components/Questions.vue";
+import Questions from "./Partials/Questions.vue";
 import AuthLayout from "@/Layouts/AuthLayout.vue";
 import { Head } from "@inertiajs/vue3";
 

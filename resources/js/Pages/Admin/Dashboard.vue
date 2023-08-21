@@ -1,5 +1,5 @@
 <script setup>
-import AppointmentModal from "@/Components/AppointmentModal.vue";
+import AppointmentModal from "./Partials/AppointmentModal.vue";
 import ResuableModal from "@/Components/ResuableModal.vue";
 import AuthLayout from "@/Layouts/AuthLayout.vue";
 import { Head } from "@inertiajs/vue3";

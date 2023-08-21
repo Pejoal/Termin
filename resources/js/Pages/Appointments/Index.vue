@@ -1,7 +1,7 @@
 <script setup>
 import AuthLayout from "@/Layouts/AuthLayout.vue";
 import { Head } from "@inertiajs/vue3";
-import AvailableAppointment from "@/Components/AvailableAppointment.vue";
+import AvailableAppointment from "./Partials/AvailableAppointment.vue";
 import { ref } from "vue";
 import Toast from "@/Components/Toast.vue";
 

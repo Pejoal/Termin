@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-import ResuableModal from "./ResuableModal.vue";
-import AppointmentModal from "./AppointmentModal.vue";
+import ResuableModal from "@/Components/ResuableModal.vue";
+import AppointmentModal from "@/Pages/Admin/Partials/AppointmentModal.vue";
 
 const props = defineProps({
   date: {

@@ -68,6 +68,7 @@ const submit = (date, time) => {
                 id="location"
                 :placeholder="trans('words.address')"
                 v-model="form.location"
+                required
               />
             </section>
             <p class="error" v-if="form.errors.location">
