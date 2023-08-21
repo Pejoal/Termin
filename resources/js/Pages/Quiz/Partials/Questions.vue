@@ -19,6 +19,7 @@ const form = useForm({
   content: "",
   correctAnswerIndex: null,
   answers: ["", "", "", ""],
+  photo: null,
   type: props.type,
 });
 
@@ -31,7 +32,6 @@ const saveQuestion = () => {
     return;
   }
 
-  // console.log(form.value);
   form.post(route("question.store"), {
     onSuccess: () => {
       showUpdatedToast.value = true;
@@ -79,6 +79,41 @@ const saveQuestion = () => {
             <p v-if="form.errors.content" class="error">
               {{ form.errors.content }}
             </p>
+
+            <template v-if="props.type === 'photo'">
+              <section class="flex justify-between flex-col sm:flex-row">
+                <div class="my-2">
+                  <label class="pr-2" for="photo">
+                    {{ trans("words.photo") }}
+                  </label>
+                  <input
+                    id="photo"
+                    type="file"
+                    @input="form.photo = $event.target.files[0]"
+                  />
+                </div>
+              </section>
+              <p v-if="form.errors.photo" class="error">
+                {{ form.errors.photo }}
+              </p>
+              <progress
+                v-if="form.progress"
+                :value="form.progress.percentage"
+                max="100"
+              >
+                {{ form.progress.percentage }}%
+              </progress>
+              <Transition
+                enter-from-class="opacity-0"
+                leave-to-class="opacity-0"
+                class="transition ease-in-out"
+              >
+                <p v-if="form.recentlySuccessful" class="text-sm">
+                  {{ trans("words.uploaded") }}
+                </p>
+              </Transition>
+            </template>
+
             <section class="p-2">
               <label>{{ trans("words.answers") }}:</label>
               <section

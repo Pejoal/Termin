@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\QuestionRequest;
 use App\Models\Answer;
 use App\Models\Question;
+use Illuminate\Support\Facades\Storage;
 
 class QuestionController extends Controller {
   public function showByType($type) {
@@ -31,6 +32,16 @@ class QuestionController extends Controller {
         'is_correct' => $index === $data['correctAnswerIndex'],
       ]);
     }
+
+    if ($data['photo'] && $request->hasFile('photo')) {
+      $request->validate([
+        'photo' => ['image', 'mimes:jpeg,png,jpg', 'max:30000'],
+      ]);
+      $path = $request->file('photo')->store('public/questions/photos');
+      $question->photo = Storage::url($path);
+      $question->save();
+    }
+
   }
 
   public function get(Question $question) {

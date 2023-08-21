@@ -108,5 +108,6 @@ return [
   'edit' => "Edit",
   'update_question' => "Update Question",
   'question_updated' => "Question Updated",
+  'photo' => "Photo",
 
 ];

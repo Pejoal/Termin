@@ -13,7 +13,7 @@ return new class extends Migration {
       $table->id();
       $table->string('content');
       $table->smallInteger('correct_answer');
-      // $table->enum('correct_answer', [0, 1, 2, 3])->default(0);
+      $table->string('photo')->nullable();
       $table->enum('type', ['text', 'math', 'photo', 'video'])->default('text');
       $table->timestamps();
     });
