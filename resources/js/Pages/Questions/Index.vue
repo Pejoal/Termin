@@ -6,6 +6,7 @@ import Toast from "@/Components/Toast.vue";
 import axios from "axios";
 import { ref } from "vue";
 import swal from "sweetalert";
+import { trans } from "laravel-vue-i18n";
 
 const props = defineProps({
   type: String,
@@ -50,8 +51,10 @@ const update = () => {
 
 const destroy = (id) => {
   new swal({
-    title: "Are you sure?",
-    text: "Once deleted, you will not be able to recover this Question!",
+    title: trans("words.are_you_sure"),
+    text: trans(
+      "words.once_deleted_you_will_not_be_able_to_recover_this_Question"
+    ),
     icon: "warning",
     buttons: true,
     dangerMode: true,
@@ -59,16 +62,16 @@ const destroy = (id) => {
     if (willDelete) {
       form.delete(route("question.destroy", id), {
         onSuccess: () => {
-          new swal("Question has been deleted!", {
+          new swal(trans("words.question_has_been_deleted"), {
             icon: "success",
           });
         },
         onError: (error) => {
-          new swal("Oops! Something went wrong.", error, "error");
+          new swal(trans("oops_Something_went_wrong"), error, "error");
         },
       });
     } else {
-      new swal("Question is safe!");
+      new swal(trans("words.question_is_safe"));
     }
   });
 };

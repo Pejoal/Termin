@@ -109,5 +109,10 @@ return [
   'update_question' => "Update Question",
   'question_updated' => "Question Updated",
   'photo' => "Photo",
+  'are_you_sure' => "Are you sure?",
+  'question_is_safe' => "Question is safe!",
+  'oops_Something_went_wrong' => "Oops! Something went wrong.",
+  'question_has_been_deleted' => "Question has been deleted!",
+  'once_deleted_you_will_not_be_able_to_recover_this_Question' => "Once deleted, you will not be able to recover this Question!",
 
 ];
