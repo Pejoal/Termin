@@ -5,6 +5,7 @@ import ResuableModal from "@/Components/ResuableModal.vue";
 import Toast from "@/Components/Toast.vue";
 import axios from "axios";
 import { ref } from "vue";
+import swal from "sweetalert";
 
 const props = defineProps({
   type: String,
@@ -20,6 +21,7 @@ let showToast = ref(false);
 
 const form = useForm({
   id: 0,
+  photo: "",
   content: "",
   correctAnswerIndex: null,
   answers: ["", "", "", ""],
@@ -30,10 +32,10 @@ const edit = (id) => {
   axios.get(route("question.get", id)).then((response) => {
     showModal.value = true;
     form.id = response.data.id;
+    form.photo = response.data.photo;
     form.content = response.data.content;
     form.correctAnswerIndex = response.data.correct_answer;
     form.answers = response.data.answers;
-
   });
 };
 
@@ -44,10 +46,31 @@ const update = () => {
       showModal.value = false;
     },
   });
-}
+};
 
 const destroy = (id) => {
-  form.delete(route("question.destroy", id));
+  new swal({
+    title: "Are you sure?",
+    text: "Once deleted, you will not be able to recover this Question!",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  }).then((willDelete) => {
+    if (willDelete) {
+      form.delete(route("question.destroy", id), {
+        onSuccess: () => {
+          new swal("Question has been deleted!", {
+            icon: "success",
+          });
+        },
+        onError: (error) => {
+          new swal("Oops! Something went wrong.", error, "error");
+        },
+      });
+    } else {
+      new swal("Question is safe!");
+    }
+  });
 };
 </script>
 
@@ -92,6 +115,47 @@ const destroy = (id) => {
               <p v-if="form.errors.content" class="error">
                 {{ form.errors.content }}
               </p>
+
+              <template v-if="props.type === 'photo'">
+                <img
+                  class="rounded-full w-14 h-14 md:w-16 md:h-16"
+                  v-if="form.photo"
+                  :src="form.photo"
+                  :alt="trans('words.profile_photo')"
+                />
+                <section class="flex justify-between flex-col sm:flex-row">
+                  <div class="my-2">
+                    <label class="pr-2" for="photo">
+                      {{ trans("words.photo") }}
+                    </label>
+                    <input
+                      id="photo"
+                      type="file"
+                      @input="form.photo = $event.target.files[0]"
+                    />
+                  </div>
+                </section>
+                <p v-if="form.errors.photo" class="error">
+                  {{ form.errors.photo }}
+                </p>
+                <progress
+                  v-if="form.progress"
+                  :value="form.progress.percentage"
+                  max="100"
+                >
+                  {{ form.progress.percentage }}%
+                </progress>
+                <Transition
+                  enter-from-class="opacity-0"
+                  leave-to-class="opacity-0"
+                  class="transition ease-in-out"
+                >
+                  <p v-if="form.recentlySuccessful" class="text-sm">
+                    {{ trans("words.uploaded") }}
+                  </p>
+                </Transition>
+              </template>
+
               <section class="p-2">
                 <label>{{ trans("words.answers") }}:</label>
                 <section

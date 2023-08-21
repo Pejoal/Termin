@@ -31,7 +31,7 @@ const toggleNav = () => {
           class="rounded-full w-14 h-14 md:w-16 md:h-16"
           v-if="$page?.props?.auth?.user.profile_photo_url"
           :src="$page?.props?.auth?.user.profile_photo_url"
-          alt="Profile Photo"
+          :alt="trans('words.profile_photo')"
         />
         <Link class="font-bold text-xl" :href="route('home')">
           {{ $page.props.auth.user.firstname }}
