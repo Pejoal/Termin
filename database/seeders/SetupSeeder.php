@@ -3,12 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\Comment;
-use App\Models\Friendship;
-use App\Models\FriendshipStatus;
 use App\Models\Like;
-use App\Models\Post;
 use App\Models\Reply;
-use App\Models\Room;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 

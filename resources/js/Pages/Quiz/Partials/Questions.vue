@@ -3,6 +3,7 @@ import { Link, useForm } from "@inertiajs/vue3";
 import ResuableModal from "@/Components/ResuableModal.vue";
 import Toast from "@/Components/Toast.vue";
 import { ref } from "vue";
+import { trans } from "laravel-vue-i18n";
 
 const props = defineProps({
   type: {
@@ -28,7 +29,7 @@ let showUpdatedToast = ref(false);
 
 const saveQuestion = () => {
   if (form.correctAnswerIndex === null) {
-    alert("Please select the correct answer.");
+    alert(trans("words.please_select_the_correct_answer"));
     return;
   }
 
@@ -36,6 +37,7 @@ const saveQuestion = () => {
     onSuccess: () => {
       showUpdatedToast.value = true;
       showModal.value = false;
+      form.reset("content", "correctAnswerIndex", "answers", "photo", "type");
     },
   });
 };
