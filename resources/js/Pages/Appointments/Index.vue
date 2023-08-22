@@ -31,7 +31,7 @@ const save = () => {
             {{ trans("words.available_appointments") }}
           </h2>
         </header>
-        <main class="flex">
+        <main class="flex gap-4">
           <Teleport to="#toasts">
             <Toast
               :show="showUpdatedToast"

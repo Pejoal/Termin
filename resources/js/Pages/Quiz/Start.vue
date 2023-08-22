@@ -1,4 +1,6 @@
 <script setup>
+import AuthLayout from "@/Layouts/AuthLayout.vue";
+import { Head } from "@inertiajs/vue3";
 import { ref } from "vue";
 
 const props = defineProps({
@@ -12,7 +14,6 @@ const currentIndex = ref(0);
 const userAnswers = ref([]);
 
 const moveToNextQuestion = (selectedAnswerId) => {
-
   userAnswers.value.push({
     question_id: props.questions[currentIndex.value].id,
     answer_id: selectedAnswerId,
@@ -28,26 +29,39 @@ const submitAnswers = (answers) => {
 };
 </script>
 <template>
-  <section class="p-4">
-    <div v-if="currentIndex < questions.length">
-      <h3 class="text-lg font-semibold">Question {{ currentIndex + 1 }}</h3>
-      <p>{{ questions[currentIndex].content }}</p>
-      <ul>
-        <li v-for="answer in questions[currentIndex].answers" :key="answer.id">
-          <label>
-            <input
-              type="radio"
-              :name="'question_' + questions[currentIndex].id"
-              :value="answer.id"
-              @change="moveToNextQuestion(answer.id)"
-            />
-            {{ answer.content }}
-          </label>
-        </li>
-      </ul>
-    </div>
-    <div v-else>
-      <p>Congratulations! You've answered all questions.</p>
-    </div>
-  </section>
+  <Head>
+    <title>{{ trans("words.quiz") }}</title>
+  </Head>
+  <AuthLayout>
+    <template #left-sidebar> </template>
+    <template #content>
+      <section class="p-4">
+        <div v-if="currentIndex < questions.length">
+          <h2 class="text-2xl font-bold">
+            {{ trans("words.question") }} {{ currentIndex + 1 }}
+          </h2>
+          <h3 class="text-xl font-semibold p-2">{{ questions[currentIndex].content }}</h3>
+          <ul class="p-2 space-y-2">
+            <li
+              v-for="answer in questions[currentIndex].answers"
+              :key="answer.id"
+            >
+              <label>
+                <input
+                  type="radio"
+                  :name="'question_' + questions[currentIndex].id"
+                  :value="answer.id"
+                  @change="moveToNextQuestion(answer.id)"
+                />
+                {{ answer.content }}
+              </label>
+            </li>
+          </ul>
+        </div>
+        <div v-else class="">
+          <p class="btn btn-primary">Congratulations! You've answered all questions.</p>
+        </div>
+      </section>
+    </template>
+  </AuthLayout>
 </template>

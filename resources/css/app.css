@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .btn {
-  @apply flex items-center justify-center cursor-pointer px-4 py-2 focus:outline-none border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest transition ease-in-out duration-150;
+  @apply flex items-center justify-center cursor-pointer px-2 py-1 focus:outline-none border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest transition ease-in-out duration-150;
 }
 
 .btn-primary {
