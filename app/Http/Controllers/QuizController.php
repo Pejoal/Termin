@@ -35,10 +35,12 @@ class QuizController extends Controller {
       return [
         'id' => $question->id,
         'content' => $question->content,
+        'photo' => $question->photo,
         'answers' => $answers,
       ];
     });
     return Inertia::render('Quiz/Start', [
+      "type" => $type,
       "questions" => $questions,
     ]);
   }

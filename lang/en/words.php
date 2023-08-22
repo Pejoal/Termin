@@ -117,5 +117,6 @@ return [
   'please_select_the_correct_answer' => "Please select the correct answer",
   'start_quiz' => "Start Quiz",
   'close' => "Close",
+  'congratulations_youve_answered_all_questions' => "Congratulations! You've answered all questions.",
 
 ];
