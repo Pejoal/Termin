@@ -25,7 +25,7 @@ const props = defineProps({
       <section class="flex gap-2">
         <Link
           class="btn btn-primary"
-          :href="route('questions.showByType', type)"
+          :href="route('quiz.quizByType', type)"
         >
           {{ trans("words.start_quiz") }}
         </Link>
