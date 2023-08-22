@@ -38,7 +38,6 @@ class QuizController extends Controller {
         'answers' => $answers,
       ];
     });
-    // dd($questions);
     return Inertia::render('Quiz/Start', [
       "questions" => $questions,
     ]);
