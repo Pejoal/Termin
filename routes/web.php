@@ -42,14 +42,14 @@ Route::group([], function () {
     //   'laravelVersion' => Application::VERSION,
     //   'phpVersion' => PHP_VERSION,
     // ]);
-    if (auth()->check()) {
-      if (in_array(auth()->user()->type, ['super admin', 'admin'])) {
-        return redirect(route('admin.dashboard'));
-      } else if (auth()->user()->type === 'client') {
-        return redirect(route('home'));
-      }
-    }
-    return redirect(route('login'));
+    // if (auth()->check()) {
+    //   if (in_array(auth()->user()->type, ['super admin', 'admin'])) {
+    //     return redirect(route('admin.dashboard'));
+    //   } else if (auth()->user()->type === 'client') {
+    //     return redirect(route('home'));
+    //   }
+    // }
+    // return redirect(route('login'));
 
   });
 
@@ -81,6 +81,8 @@ Route::group([], function () {
 
     // Admin
     Route::group(['middleware' => 'admins-only'], function () {
+      Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+
       Route::put('appointment/{appointment}/approve', [AppointmentController::class, 'approve'])->name('appointment.approve');
       Route::put('appointment/{appointment}/decline', [AppointmentController::class, 'decline'])->name('appointment.decline');
 
@@ -95,14 +97,11 @@ Route::group([], function () {
 
       Route::get('business-hours', [BusinessHourController::class, 'index'])->name('business_hours');
       Route::post('business-hours', [BusinessHourController::class, 'update'])->name('business_hours.update');
-
-      Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-      
     });
 
   });
 
 });
-Route::fallback(function () {
-  return redirect('/');
-});
+// Route::fallback(function () {
+//   return redirect('/');
+// });

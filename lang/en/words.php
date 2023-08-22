@@ -86,7 +86,7 @@ return [
   'approved' => 'Approved',
   'cancelled' => 'Cancelled',
   'declined' => 'Declined',
-  'address' => 'address',
+  'address' => 'Address',
   'notes' => 'Notes',
   'update_appointment' => "Update Appointment",
   'cancel_appointment' => "Cancel Appointment",
@@ -116,5 +116,6 @@ return [
   'once_deleted_you_will_not_be_able_to_recover_this_Question' => "Once deleted, you will not be able to recover this Question!",
   'please_select_the_correct_answer' => "Please select the correct answer",
   'start_quiz' => "Start Quiz",
+  'close' => "Close",
 
 ];

@@ -71,7 +71,7 @@ const delete_appointment = () => {
     </section>
     <form @submit.prevent="update">
       <section class="flex items-center my-2">
-        <label for="location" class="w-36 px-4">
+        <label for="location" class="w-24 px-4">
           {{ trans("words.address") }}
         </label>
         <input
@@ -85,7 +85,7 @@ const delete_appointment = () => {
         />
       </section>
       <section class="flex items-center my-2">
-        <label for="notes" class="w-36 px-4">
+        <label for="notes" class="w-24 px-4">
           {{ trans("words.notes") }}
         </label>
         <textarea
@@ -97,7 +97,7 @@ const delete_appointment = () => {
         >
         </textarea>
       </section>
-      <footer class="flex items-center justify-center gap-3">
+      <footer class="flex items-center justify-center gap-3 flex-wrap">
         <button type="submit" class="btn btn-primary">
           {{ trans("words.update_appointment") }}
         </button>

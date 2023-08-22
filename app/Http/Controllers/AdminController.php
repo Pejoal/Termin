@@ -6,10 +6,6 @@ use App\Models\Appointment;
 use Inertia\Inertia;
 
 class AdminController extends Controller {
-
-  // public function __construct() {
-  //   $this->middleware('admins-only');
-  // }
   public function dashboard() {
 
     $appointments = Appointment::orderBy('date', 'DESC')->orderBy('time', 'DESC')->get()->map(function ($appointment) {

@@ -1,5 +1,4 @@
 <script setup>
-import ResuableModal from "@/Components/ResuableModal.vue";
 import Appointment from "./Appointment.vue";
 import { ref } from "vue";
 

@@ -96,7 +96,7 @@ const enableNotifications = (event) => {
           @submit.prevent="enableNotifications()"
         >
           <section class="flex justify-between">
-            <label for="enable-notifications">{{ trans('activate_notifications') }}</label>
+            <label for="enable-notifications">{{ trans('words.activate_notifications') }}</label>
             <Switcher
               id="enable-notifications"
               @change="(e) => enableNotifications(e)"
