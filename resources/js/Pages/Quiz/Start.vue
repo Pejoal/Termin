@@ -68,7 +68,7 @@ const submitAnswers = (answers) => {
             </li>
           </ul>
           <section
-            v-if="props.type === 'photo'"
+            v-if="(props.type === 'photo' || props.type === 'test') && questions[currentIndex].photo"
             class="border flex justify-center h-[50vh]"
           >
             <img
@@ -79,11 +79,11 @@ const submitAnswers = (answers) => {
             />
           </section>
           <section
-            v-if="props.type === 'video'"
+            v-if="(props.type === 'video' || props.type === 'test') && questions[currentIndex].video"
             class="flex justify-center h-[50vh]"
           >
             <template v-for="(question, key) in questions">
-              <video v-if="key == currentIndex" class="max-h-full" controls>
+              <video v-if="key == currentIndex" class="max-w-full" controls>
                 <source :src="questions[key].video" />
               </video>
             </template>

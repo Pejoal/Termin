@@ -44,9 +44,9 @@ class QuizController extends Controller {
         ];
       });
     } else {
-      $questions = Question::with('answers', function ($query) {
+      $questions = Question::inRandomOrder()->with('answers', function ($query) {
         $query->inRandomOrder();
-      })->inRandomOrder()->take(2)->get()->map(function ($question) {
+      })->take(30)->get()->map(function ($question) {
 
         $answers = $question->answers->map(function ($answer) {
           return [
@@ -64,7 +64,6 @@ class QuizController extends Controller {
         ];
       });
     }
-    dd($questions);
     return Inertia::render('Quiz/Start', [
       "type" => $type,
       "questions" => $questions,
