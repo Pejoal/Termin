@@ -11,7 +11,7 @@ return new class extends Migration {
   public function up(): void {
     Schema::create('answers', function (Blueprint $table) {
       $table->id();
-      $table->string('content');
+      $table->string('content')->nullable();
       $table->boolean('is_correct')->default(false);
       $table->foreignId('question_id')->constrained()->onDelete('cascade');
       $table->timestamps();

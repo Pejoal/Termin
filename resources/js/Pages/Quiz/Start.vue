@@ -44,20 +44,32 @@ const submitAnswers = (answers) => {
           <h2 class="text-2xl font-bold">
             {{ trans("words.question") }} {{ currentIndex + 1 }}
           </h2>
-          <section class="flex items-center justify-between">
-            <h3 class="text-xl font-semibold p-2">
-              {{ questions[currentIndex].content }}
-            </h3>
-            <section
-              v-if="props.type === 'photo'"
-              class="border mx-2 h-[50vh] flex items-center justify-center"
+          <h3 class="text-xl font-semibold p-2">
+            {{ questions[currentIndex].content }}
+          </h3>
+          <section
+            v-if="props.type === 'photo'"
+            class="border mx-2 h-[50vh] float-right"
+          >
+            <img
+              v-if="questions[currentIndex].photo"
+              class="max-h-full"
+              :src="questions[currentIndex].photo"
+              :alt="trans('words.photo')"
+            />
+          </section>
+          <section
+            v-if="props.type === 'video'"
+            class="border mx-2 h-[50vh] float-right"
+          >
+            <video
+              v-if="questions[currentIndex].video"
+              class="max-h-full"
+              controls
+              width="640"
             >
-              <img
-                v-if="questions[currentIndex].photo"
-                :src="questions[currentIndex].photo"
-                :alt="trans('words.photo')"
-              />
-            </section>
+              <source :src="questions[currentIndex].video" type="video/mp4" />
+            </video>
           </section>
           <ul class="p-2 space-y-2">
             <li

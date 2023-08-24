@@ -21,6 +21,7 @@ const form = useForm({
   correctAnswerIndex: null,
   answers: ["", "", "", ""],
   photo: null,
+  video: null,
   type: props.type,
 });
 
@@ -37,7 +38,14 @@ const saveQuestion = () => {
     onSuccess: () => {
       showUpdatedToast.value = true;
       showModal.value = false;
-      form.reset("content", "correctAnswerIndex", "answers", "photo", "type");
+      form.reset(
+        "content",
+        "correctAnswerIndex",
+        "answers",
+        "photo",
+        "video",
+        "type"
+      );
     },
   });
 };
@@ -116,6 +124,40 @@ const saveQuestion = () => {
               </Transition>
             </template>
 
+            <template v-if="props.type === 'video'">
+              <section class="flex justify-between flex-col sm:flex-row">
+                <div class="my-2">
+                  <label class="pr-2" for="video">
+                    {{ trans("words.video") }}
+                  </label>
+                  <input
+                    id="video"
+                    type="file"
+                    @input="form.video = $event.target.files[0]"
+                  />
+                </div>
+              </section>
+              <p v-if="form.errors.video" class="error">
+                {{ form.errors.video }}
+              </p>
+              <progress
+                v-if="form.progress"
+                :value="form.progress.percentage"
+                max="100"
+              >
+                {{ form.progress.percentage }}%
+              </progress>
+              <Transition
+                enter-from-class="opacity-0"
+                leave-to-class="opacity-0"
+                class="transition ease-in-out"
+              >
+                <p v-if="form.recentlySuccessful" class="text-sm">
+                  {{ trans("words.uploaded") }}
+                </p>
+              </Transition>
+            </template>
+
             <section class="p-2">
               <label>{{ trans("words.answers") }}:</label>
               <section
@@ -128,7 +170,6 @@ const saveQuestion = () => {
                     type="text"
                     v-model="form.answers[index]"
                     class="block w-full rounded-md"
-                    required
                   />
                 </label>
                 <input

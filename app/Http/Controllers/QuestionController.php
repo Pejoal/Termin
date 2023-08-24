@@ -43,6 +43,15 @@ class QuestionController extends Controller {
       $question->save();
     }
 
+    if ($data['type'] === 'video' && $request->hasFile('video')) {
+      $request->validate([
+        'video' => ['required', 'mimes:mp4,avi,wmv', 'max:50000'],
+      ]);
+      $path = $request->file('video')->store('public/questions/videos');
+      $question->video = Storage::url($path);
+      $question->save();
+    }
+
   }
 
   public function get(Question $question) {
@@ -51,7 +60,6 @@ class QuestionController extends Controller {
   }
 
   public function update(QuestionRequest $request, Question $question) {
-    // dd($request->input('answers'));
     $question->update([
       'content' => $request->input('content'),
       'correct_answer' => $request->input('correctAnswerIndex'),
@@ -64,7 +72,6 @@ class QuestionController extends Controller {
         'is_correct' => $index === $request->input('correctAnswerIndex'),
       ]);
     }
-
   }
 
   public function updatePhoto(Request $request, Question $question) {

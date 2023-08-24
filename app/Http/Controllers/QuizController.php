@@ -36,6 +36,7 @@ class QuizController extends Controller {
         'id' => $question->id,
         'content' => $question->content,
         'photo' => $question->photo,
+        'video' => $question->video,
         'answers' => $answers,
       ];
     });
