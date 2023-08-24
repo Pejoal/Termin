@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Answer;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -60,4 +61,14 @@ class QuizController extends Controller {
     ]);
   }
 
+  public function submitAnswers(Request $request) {
+    $result = 0;
+    foreach ($request->all() as $answer) {
+      $is_correct = Answer::find($answer['answer_id'])->is_correct;
+      if ($is_correct) {
+        $result++;
+      }
+    }
+    return $result;
+  }
 }

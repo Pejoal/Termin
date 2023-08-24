@@ -73,6 +73,7 @@ Route::group([], function () {
 
       Route::get('quiz/client', [QuizController::class, 'client'])->name('quiz.client');
       Route::get('quiz/type/{type}', [QuizController::class, 'quizByType'])->name('quiz.quizByType');
+      Route::post('quiz/submitAnswers', [QuizController::class, 'submitAnswers'])->name('quiz.submitAnswers');
 
       Route::get('appointments', [AppointmentController::class, 'index'])->name('appointments.index');
       Route::post('appointment/reserve', [AppointmentController::class, 'reserve'])->name('appointment.reserve');

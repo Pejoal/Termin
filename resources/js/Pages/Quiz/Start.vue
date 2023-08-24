@@ -1,6 +1,7 @@
 <script setup>
 import AuthLayout from "@/Layouts/AuthLayout.vue";
 import { Head } from "@inertiajs/vue3";
+import axios from "axios";
 import { ref } from "vue";
 
 const props = defineProps({
@@ -14,12 +15,13 @@ const props = defineProps({
   },
 });
 
+const result = ref(0);
 const currentIndex = ref(0);
 const userAnswers = ref([]);
 
 const moveToNextQuestion = (selectedAnswerId) => {
   userAnswers.value.push({
-    question_id: props.questions[currentIndex.value].id,
+    // question_id: props.questions[currentIndex.value].id,
     answer_id: selectedAnswerId,
   });
   currentIndex.value++;
@@ -29,7 +31,9 @@ const moveToNextQuestion = (selectedAnswerId) => {
 };
 
 const submitAnswers = (answers) => {
-  console.log(answers);
+  axios.post(route("quiz.submitAnswers"), answers).then((response) => {
+    result.value = response.data;
+  });
 };
 </script>
 <template>
@@ -79,17 +83,14 @@ const submitAnswers = (answers) => {
             class="flex justify-center h-[50vh]"
           >
             <template v-for="(question, key) in questions">
-              <video
-                v-if="key == currentIndex"
-                class="max-h-full"
-                controls
-              >
+              <video v-if="key == currentIndex" class="max-h-full" controls>
                 <source :src="questions[key].video" />
               </video>
             </template>
           </section>
         </div>
-        <div v-else class="">
+        <div v-else class="flex items-center justify-center flex-col">
+          <h2 class="text-2xl font-bold">{{ result }} / {{ questions.length }}</h2>
           <p class="btn btn-primary">
             {{ trans("words.congratulations_youve_answered_all_questions") }}
           </p>
