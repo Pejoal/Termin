@@ -14,6 +14,7 @@ class QuizController extends Controller {
     $photo_questions_count = Question::where('type', 'photo')->count();
     $video_questions_count = Question::where('type', 'video')->count();
     return Inertia::render('Quiz/Client', [
+      'test_questions_count' => 30,
       'text_questions_count' => $text_questions_count,
       'math_questions_count' => $math_questions_count,
       'photo_questions_count' => $photo_questions_count,
@@ -22,25 +23,48 @@ class QuizController extends Controller {
   }
 
   public function quizByType($type) {
-    $questions = Question::where('type', $type)->with('answers', function ($query) {
-      $query->inRandomOrder();
-    })->inRandomOrder()->get()->map(function ($question) {
+    if ($type !== 'test') {
+      $questions = Question::where('type', $type)->with('answers', function ($query) {
+        $query->inRandomOrder();
+      })->inRandomOrder()->get()->map(function ($question) {
 
-      $answers = $question->answers->map(function ($answer) {
+        $answers = $question->answers->map(function ($answer) {
+          return [
+            'id' => $answer->id,
+            'content' => $answer->content,
+          ];
+        });
+
         return [
-          'id' => $answer->id,
-          'content' => $answer->content,
+          'id' => $question->id,
+          'content' => $question->content,
+          'photo' => $question->photo,
+          'video' => $question->video,
+          'answers' => $answers,
         ];
       });
+    } else {
+      $questions = Question::with('answers', function ($query) {
+        $query->inRandomOrder();
+      })->inRandomOrder()->take(2)->get()->map(function ($question) {
 
-      return [
-        'id' => $question->id,
-        'content' => $question->content,
-        'photo' => $question->photo,
-        'video' => $question->video,
-        'answers' => $answers,
-      ];
-    });
+        $answers = $question->answers->map(function ($answer) {
+          return [
+            'id' => $answer->id,
+            'content' => $answer->content,
+          ];
+        });
+
+        return [
+          'id' => $question->id,
+          'content' => $question->content,
+          'photo' => $question->photo,
+          'video' => $question->video,
+          'answers' => $answers,
+        ];
+      });
+    }
+    dd($questions);
     return Inertia::render('Quiz/Start', [
       "type" => $type,
       "questions" => $questions,

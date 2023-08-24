@@ -119,5 +119,7 @@ return [
   'close' => "Close",
   'congratulations_youve_answered_all_questions' => "Congratulations! You've answered all questions.",
   'video' => "Video",
+  'test' => "test",
+  'test_questions' => "Test Questions",
 
 ];
