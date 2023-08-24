@@ -47,30 +47,6 @@ const submitAnswers = (answers) => {
           <h3 class="text-xl font-semibold p-2">
             {{ questions[currentIndex].content }}
           </h3>
-          <section
-            v-if="props.type === 'photo'"
-            class="border mx-2 h-[50vh] float-right"
-          >
-            <img
-              v-if="questions[currentIndex].photo"
-              class="max-h-full"
-              :src="questions[currentIndex].photo"
-              :alt="trans('words.photo')"
-            />
-          </section>
-          <section
-            v-if="props.type === 'video'"
-            class="border mx-2 h-[50vh] float-right"
-          >
-            <video
-              v-if="questions[currentIndex].video"
-              class="max-h-full"
-              controls
-              width="640"
-            >
-              <source :src="questions[currentIndex].video" type="video/mp4" />
-            </video>
-          </section>
           <ul class="p-2 space-y-2">
             <li
               v-for="answer in questions[currentIndex].answers"
@@ -87,6 +63,31 @@ const submitAnswers = (answers) => {
               </label>
             </li>
           </ul>
+          <section
+            v-if="props.type === 'photo'"
+            class="border flex justify-center h-[50vh]"
+          >
+            <img
+              v-if="questions[currentIndex].photo"
+              class="max-h-full"
+              :src="questions[currentIndex].photo"
+              :alt="trans('words.photo')"
+            />
+          </section>
+          <section
+            v-if="props.type === 'video'"
+            class="flex justify-center h-[50vh]"
+          >
+            <template v-for="(question, key) in questions">
+              <video
+                v-if="key == currentIndex"
+                class="max-h-full"
+                controls
+              >
+                <source :src="questions[key].video" />
+              </video>
+            </template>
+          </section>
         </div>
         <div v-else class="">
           <p class="btn btn-primary">
