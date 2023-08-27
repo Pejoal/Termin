@@ -13,7 +13,8 @@ class AdminController extends Controller {
       $dateTimeString = $appointment->date . ' ' . $appointment->time->format('H:i:s');
       $targetDateTime = new \DateTime($dateTimeString);
       $timeDifference = $currentDateTime->diff($targetDateTime);
-      if ($timeDifference->s < 86400) {
+      $timeDifferenceInSeconds = $timeDifference->s + ($timeDifference->i * 60) + ($timeDifference->h * 3600) + ($timeDifference->d * 86400); 
+      if ($timeDifferenceInSeconds < 86400) {
         $more_than_24_hours = false;
       } else {
         $more_than_24_hours = true;

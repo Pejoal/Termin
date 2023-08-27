@@ -113,9 +113,9 @@ const delete_appointment = () => {
           {{ trans("words.cancel_appointment") }}
         </button>
         <template
-          v-else-if="
+          v-if="
             ['super admin', 'admin'].includes($page.props.auth.user.type) &&
-            (props.date.status === 'pending' || props.date.more_than_24_hours)
+            (props.date.more_than_24_hours || $props.date.status === 'pending')
           "
         >
           <button type="button" class="btn btn-success" @click="approve">
