@@ -111,7 +111,9 @@ const delete_appointment = () => {
         </button>
         <template
           v-else-if="
-            ['super admin', 'admin'].includes($page.props.auth.user.type)
+            ['super admin', 'admin'].includes($page.props.auth.user.type) &&
+            props.date.status === 'pending' &&
+            !props.date.more_than_24_hours
           "
         >
           <button type="button" class="btn btn-success" @click="approve">
