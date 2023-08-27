@@ -10,6 +10,10 @@ class Answer extends Model {
 
   protected $fillable = ['content', 'question_id', 'is_correct'];
 
+  protected $casts = [
+    'is_correct' => 'boolean',
+  ];
+
   public function question() {
     return $this->belongsTo(Question::class);
   }

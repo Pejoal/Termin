@@ -31,7 +31,7 @@ const form = useForm({
 });
 
 const showModal = ref(false);
-let showUpdatedToast = ref(false);
+let showToast = ref(false);
 
 const saveQuestion = () => {
   // if (form.correctAnswerIndex === null) {
@@ -41,11 +41,11 @@ const saveQuestion = () => {
 
   form.post(route("question.store"), {
     onSuccess: () => {
-      showUpdatedToast.value = true;
+      showToast.value = true;
       showModal.value = false;
       form.reset(
         "content",
-        "correctAnswerIndex",
+        // "correctAnswerIndex",
         "answers",
         "photo",
         "video",
@@ -62,9 +62,9 @@ const saveQuestion = () => {
     </h3>
     <Teleport to="#toasts">
       <Toast
-        :show="showUpdatedToast"
+        :show="showToast"
         :type="'success'"
-        @close="showUpdatedToast = false"
+        @close="showToast = false"
         :message="trans('words.question_added')"
       />
     </Teleport>

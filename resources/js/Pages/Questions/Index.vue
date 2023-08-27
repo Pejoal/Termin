@@ -28,8 +28,13 @@ const form = useForm({
   id: 0,
   photo: "",
   content: "",
-  correctAnswerIndex: null,
-  answers: ["", "", "", ""],
+  // correctAnswerIndex: null,
+  answers: [
+    { content: '', is_correct: false },
+    { content: '', is_correct: false },
+    { content: '', is_correct: false },
+    { content: '', is_correct: false },
+  ],
   type: props.type,
 });
 
@@ -158,10 +163,10 @@ const destroy = (id) => {
                     />
                   </label>
                   <input
-                    type="radio"
+                    type="checkbox"
                     :id="'answer' + index"
                     :value="index"
-                    v-model="form.correctAnswerIndex"
+                    v-model="form.answers[index].is_correct"
                   />
                 </section>
               </section>

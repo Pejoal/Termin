@@ -63,14 +63,15 @@ class QuestionController extends Controller {
   public function update(QuestionRequest $request, Question $question) {
     $question->update([
       'content' => $request->input('content'),
-      'correct_answer' => $request->input('correctAnswerIndex'),
+      // 'correct_answer' => $request->input('correctAnswerIndex'),
     ]);
 
     foreach ($request->input('answers') as $index => $answer) {
       $answerModel = Answer::find($answer['id']);
       $answerModel->update([
         'content' => $answer['content'],
-        'is_correct' => $index === $request->input('correctAnswerIndex'),
+        // 'is_correct' => $index === $request->input('correctAnswerIndex'),
+        'is_correct' => $answer['is_correct'],
       ]);
     }
   }
