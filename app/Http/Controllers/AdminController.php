@@ -8,26 +8,38 @@ use Inertia\Inertia;
 class AdminController extends Controller {
   public function dashboard() {
 
-    $appointments = Appointment::orderBy('date', 'DESC')->orderBy('time', 'DESC')->get()->map(function ($appointment) {
+    $currentDateTime = new \DateTime();
+    $appointments = Appointment::orderBy('date', 'DESC')->orderBy('time', 'DESC')->get()->map(function ($appointment) use ($currentDateTime){
+      $dateTimeString = $appointment->date . ' ' . $appointment->time->format('H:i:s');
+      $targetDateTime = new \DateTime($dateTimeString);
+      $timeDifference = $currentDateTime->diff($targetDateTime);
+      if ($timeDifference->s < 86400) {
+        $more_than_24_hours = false;
+      } else {
+        $more_than_24_hours = true;
+      }
       return [
-        'id' => $appointment->id,
-        'requester' => $appointment->user->full_name,
-        'date' => $appointment->date,
-        'time' => date_format($appointment->time, 'g:i A'),
-        'status' => $appointment->status,
-        'location' => $appointment->location,
-        'notes' => $appointment->notes,
+        "id" => $appointment->id,
+        "date" => $appointment->date,
+        "requester" => $appointment->user->full_name,
+        "time" => $appointment->time->format('H:i'),
+        "status" => $appointment->status,
+        "location" => $appointment->location,
+        "notes" => $appointment->notes,
+        "more_than_24_hours" => $more_than_24_hours,
       ];
     });
 
-    $currentDate = now()->format('Y-m-d');
-
-    $upcomingAppointments = $appointments->filter(function ($item) use ($currentDate) {
-      return $item['date'] > $currentDate;
+    $upcomingAppointments = $appointments->filter(function ($appointment) use ($currentDateTime) {
+      $dateTimeString = $appointment['date'] . ' ' . $appointment['time'];
+      $targetDateTime = new \DateTime($dateTimeString);
+      return $targetDateTime > $currentDateTime;
     });
-
-    $previousAppointments = $appointments->filter(function ($item) use ($currentDate) {
-      return $item['date'] < $currentDate;
+    
+    $previousAppointments = $appointments->filter(function ($appointment) use ($currentDateTime) {
+      $dateTimeString = $appointment['date'] . ' ' . $appointment['time'];
+      $targetDateTime = new \DateTime($dateTimeString);
+      return $targetDateTime <= $currentDateTime;
     });
 
     return Inertia::render('Admin/Dashboard', [

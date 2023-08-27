@@ -4,8 +4,8 @@ import { ref } from "vue";
 
 const props = defineProps({
   appointments: {
-    type: Array,
-    default: [],
+    type: Object,
+    default: {},
   },
   header: {
     type: String,
@@ -13,7 +13,6 @@ const props = defineProps({
   },
 });
 
-let showModal = ref(false);
 </script>
 
 <template>

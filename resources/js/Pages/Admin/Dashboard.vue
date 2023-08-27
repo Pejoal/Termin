@@ -5,12 +5,12 @@ import { Head } from "@inertiajs/vue3";
 
 const props = defineProps({
   previousAppointments: {
-    type: Array,
-    default: [],
+    type: Object,
+    default: {},
   },
   upcomingAppointments: {
-    type: Array,
-    default: [],
+    type: Object,
+    default: {},
   },
 });
 </script>

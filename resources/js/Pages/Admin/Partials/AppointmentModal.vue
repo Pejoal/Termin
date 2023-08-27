@@ -102,7 +102,10 @@ const delete_appointment = () => {
           {{ trans("words.update_appointment") }}
         </button>
         <button
-          v-if="$page.props.auth.user.type === 'client'"
+          v-if="
+            $page.props.auth.user.type === 'client' &&
+            props.date.more_than_24_hours
+          "
           type="button"
           class="btn btn-warning"
           @click="cancel"
@@ -112,8 +115,7 @@ const delete_appointment = () => {
         <template
           v-else-if="
             ['super admin', 'admin'].includes($page.props.auth.user.type) &&
-            props.date.status === 'pending' &&
-            !props.date.more_than_24_hours
+            (props.date.status === 'pending' || props.date.more_than_24_hours)
           "
         >
           <button type="button" class="btn btn-success" @click="approve">
@@ -124,6 +126,10 @@ const delete_appointment = () => {
           </button>
         </template>
         <button
+          v-if="
+            ['super admin', 'admin'].includes($page.props.auth.user.type) ||
+            props.date.more_than_24_hours
+          "
           type="button"
           class="btn btn-danger"
           @click="delete_appointment"
