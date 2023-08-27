@@ -24,16 +24,21 @@ const photoForm = useForm({
   photo: null,
 });
 
+const videoForm = useForm({
+  photo: null,
+});
+
 const form = useForm({
   id: 0,
   photo: "",
+  video: "",
   content: "",
   // correctAnswerIndex: null,
   answers: [
-    { content: '', is_correct: false },
-    { content: '', is_correct: false },
-    { content: '', is_correct: false },
-    { content: '', is_correct: false },
+    { content: "", is_correct: false },
+    { content: "", is_correct: false },
+    { content: "", is_correct: false },
+    { content: "", is_correct: false },
   ],
   type: props.type,
 });
@@ -43,6 +48,7 @@ const edit = (id) => {
     showModal.value = true;
     form.id = response.data.id;
     form.photo = response.data.photo;
+    form.video = response.data.video;
     form.content = response.data.content;
     form.correctAnswerIndex = response.data.correct_answer;
     form.answers = response.data.answers;
@@ -60,6 +66,15 @@ const update = () => {
 
 function uploadPhoto() {
   photoForm.post(route("question.photo.update", [form.id]), {
+    preserveScroll: true,
+    onSuccess: () => {
+      edit(form.id);
+    },
+  });
+}
+
+function uploadVideo() {
+  videoForm.post(route("question.video.update", [form.id]), {
     preserveScroll: true,
     onSuccess: () => {
       edit(form.id);
@@ -223,6 +238,56 @@ const destroy = (id) => {
                 </Transition>
               </form>
             </template>
+            <template v-if="props.type === 'video'">
+              <form @submit.prevent="uploadVideo" class="p-2">
+                <section class="flex justify-between flex-col sm:flex-row">
+                  <div class="my-2">
+                    <label class="pr-2" for="video">
+                      {{ trans("words.video") }}
+                    </label>
+                    <input
+                      id="video"
+                      type="file"
+                      @input="videoForm.video = $event.target.files[0]"
+                    />
+                  </div>
+                  <button
+                    class="btn btn-success"
+                    type="submit"
+                    :disabled="videoForm.processing"
+                  >
+                    {{ trans("words.upload") }}
+                  </button>
+                </section>
+                <p
+                  v-if="videoForm.errors.video"
+                  class="text-sm bg-red-600 rounded-md my-1 px-2 py-1"
+                >
+                  {{ videoForm.errors.video }}
+                </p>
+                <progress
+                  v-if="videoForm.progress"
+                  :value="videoForm.progress.percentage"
+                  max="100"
+                >
+                  {{ videoForm.progress.percentage }}%
+                </progress>
+                <Transition
+                  enter-from-class="opacity-0"
+                  leave-to-class="opacity-0"
+                  class="transition ease-in-out"
+                >
+                  <p v-if="videoForm.recentlySuccessful" class="text-sm">
+                    {{ trans("words.uploaded") }}
+                  </p>
+                </Transition>
+              </form>
+            </template>
+            <section v-if="form.video" class="flex justify-center h-[40vh]">
+              <video class="max-w-full" controls>
+                <source :src="form.video" />
+              </video>
+            </section>
           </template>
         </ResuableModal>
       </Teleport>

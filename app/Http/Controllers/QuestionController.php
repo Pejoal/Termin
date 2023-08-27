@@ -87,6 +87,17 @@ class QuestionController extends Controller {
     }
   }
 
+  public function updateVideo(Request $request, Question $question) {
+    if ($request->hasFile('video')) {
+      $request->validate([
+        'video' => ['required', 'mimes:mp4,avi,wmv', 'max:50000'],
+      ]);
+      $path = $request->file('video')->store('public/questions/videos');
+      $question->video = Storage::url($path);
+      $question->save();
+    }
+  }
+
   public function destroy(Question $question) {
     $question->delete();
   }

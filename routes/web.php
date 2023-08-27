@@ -95,6 +95,7 @@ Route::group([], function () {
       Route::put('question/{question}/update', [QuestionController::class, 'update'])->name('question.update');
       Route::delete('question/{question}/delete', [QuestionController::class, 'destroy'])->name('question.destroy');
       Route::post('question/{question}/photo/update', [QuestionController::class, 'updatePhoto'])->name('question.photo.update');
+      Route::post('question/{question}/video/update', [QuestionController::class, 'updateVideo'])->name('question.video.update');
 
       Route::get('business-hours', [BusinessHourController::class, 'index'])->name('business_hours');
       Route::post('business-hours', [BusinessHourController::class, 'update'])->name('business_hours.update');
