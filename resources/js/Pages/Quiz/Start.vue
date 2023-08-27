@@ -18,14 +18,14 @@ const props = defineProps({
 const result = ref(0);
 const currentIndex = ref(0);
 const userAnswers = ref([]);
-const selectedAnswerIds = ref([]);
+const selectedAnswerIds = ref({ answer_ids: [], content: "" });
 
 const setSelectedAnswerIds = (selectedAnswerId) => {
-  const index = selectedAnswerIds.value.indexOf(selectedAnswerId);
+  const index = selectedAnswerIds.value.answer_ids.indexOf(selectedAnswerId);
   if (index === -1) {
-    selectedAnswerIds.value.push(selectedAnswerId);
+    selectedAnswerIds.value.answer_ids.push(selectedAnswerId);
   } else {
-    selectedAnswerIds.value.splice(index, 1);
+    selectedAnswerIds.value.answer_ids.splice(index, 1);
   }
 };
 const moveToNextQuestion = () => {
@@ -35,7 +35,7 @@ const moveToNextQuestion = () => {
   // });
 
   userAnswers.value.push(selectedAnswerIds.value);
-  selectedAnswerIds.value = [];
+  selectedAnswerIds.value = { answer_ids: [], content: "" };
   // console.log(userAnswers.value);
   currentIndex.value++;
   if (currentIndex.value > props.questions.length - 1) {
@@ -64,7 +64,10 @@ const submitAnswers = (answers) => {
           <h3 class="text-xl font-semibold p-2">
             {{ questions[currentIndex].content }}
           </h3>
-          <ul class="p-2 space-y-2">
+          <ul
+            class="p-2 space-y-2"
+            v-if="questions[currentIndex].type !== 'math'"
+          >
             <li
               v-for="answer in questions[currentIndex].answers"
               :key="answer.id"
@@ -80,6 +83,11 @@ const submitAnswers = (answers) => {
               </label>
             </li>
           </ul>
+          <section v-else class="p-2">
+            <!-- <label>{{ trans('words.answer') }}</label> -->
+            <!-- <input type="number"  @change="setSelectedAnswerIds(answer.id, questions[currentIndex].type)"  /> -->
+            <input type="number" v-model="selectedAnswerIds.content" />
+          </section>
           <button @click="moveToNextQuestion" class="btn btn-primary">
             {{ trans("words.confirm") }}
           </button>

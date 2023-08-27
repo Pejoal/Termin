@@ -40,6 +40,7 @@ class QuizController extends Controller {
           'content' => $question->content,
           'photo' => $question->photo,
           'video' => $question->video,
+          'type' => $question->type,
           'answers' => $answers,
         ];
       });
@@ -86,16 +87,20 @@ class QuizController extends Controller {
 
   public function submitAnswers(Request $request) {
     $result = 0;
-    foreach ($request->all() as $answer_ids) {
-      $number_of_correct_answers = 0;
-      foreach ($answer_ids as $answer_id) {
-        $is_correct = Answer::find($answer_id)->is_correct;
-        if ($is_correct) {
-          $number_of_correct_answers++;
+    foreach ($request->all() as $answer_group) {
+      if (count($answer_group['answer_ids'])) {
+        $number_of_correct_answers = 0;
+        foreach ($answer_group['answer_ids'] as $answer_id) {
+          $is_correct = Answer::find($answer_id)->is_correct;
+          if ($is_correct) {
+            $number_of_correct_answers++;
+          }
         }
-      }
-      if ($number_of_correct_answers === count($answer_ids)) {
-        $result++;
+        if ($number_of_correct_answers === count($answer_group['answer_ids'])) {
+          $result++;
+        }
+      } else {
+        dd($answer_group['content']);
       }
     }
     return $result;
