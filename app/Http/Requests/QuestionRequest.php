@@ -22,7 +22,15 @@ class QuestionRequest extends FormRequest {
   {
     return [
       'content' => 'required|string',
-      'answers' => 'required|array|size:4',
+      'answers' => [
+        'required',
+        'array',
+        function ($attribute, $value, $fail) {
+          if (count($value) !== 1 && count($value) !== 4) {
+            $fail("The $attribute must have a size of either 1 or 4.");
+          }
+        },
+      ],
       // 'correctAnswerIndex' => 'required|integer|between:0,3',
       'type' => ['required', 'string', Rule::in(['text', 'math', 'photo', 'video'])],
     ];
