@@ -88,7 +88,7 @@ class QuizController extends Controller {
   public function submitAnswers(Request $request) {
     $result = 0;
     foreach ($request->all() as $answer_group) {
-      if (count($answer_group['answer_ids'])) {
+      if (!$answer_group['math']['content']) {
         $number_of_correct_answers = 0;
         foreach ($answer_group['answer_ids'] as $answer_id) {
           $is_correct = Answer::find($answer_id)->is_correct;
@@ -99,8 +99,13 @@ class QuizController extends Controller {
         if ($number_of_correct_answers === count($answer_group['answer_ids'])) {
           $result++;
         }
+        // dd(count($answer_group['answer_ids']) . ' - ' . $number_of_correct_answers . ' - ' . $result);
       } else {
-        dd($answer_group['content']);
+        $value = Answer::find($answer_group['math']['answer_id'])->value;
+        if ($value == $answer_group['math']['content']) {
+          $result++;
+        }
+
       }
     }
     return $result;

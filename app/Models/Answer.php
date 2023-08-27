@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Answer extends Model {
   use HasFactory;
 
-  protected $fillable = ['content', 'question_id', 'is_correct'];
+  protected $fillable = ['content', 'value', 'question_id', 'is_correct'];
 
   protected $casts = [
     'is_correct' => 'boolean',

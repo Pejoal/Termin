@@ -23,16 +23,22 @@ class QuestionController extends Controller {
     $question = Question::create([
       'content' => $data['content'],
       'type' => $data['type'],
-      // 'correct_answer' => $data['correctAnswerIndex'],
     ]);
 
     foreach ($data['answers'] as $answer) {
-      Answer::create([
-        'question_id' => $question->id,
-        'content' => $answer['content'],
-        // 'is_correct' => $index === $data['correctAnswerIndex'],
-        'is_correct' => $answer['is_correct'],
-      ]);
+      if ($data['type'] === 'math') {
+        Answer::create([
+          'question_id' => $question->id,
+          'value' => $answer['content'],
+          'is_correct' => true,
+        ]);
+      } else {
+        Answer::create([
+          'question_id' => $question->id,
+          'content' => $answer['content'],
+          'is_correct' => $answer['is_correct'],
+        ]);
+      }
     }
 
     if ($data['type'] === 'photo' && $request->hasFile('photo')) {
@@ -68,11 +74,17 @@ class QuestionController extends Controller {
 
     foreach ($request->input('answers') as $index => $answer) {
       $answerModel = Answer::find($answer['id']);
-      $answerModel->update([
-        'content' => $answer['content'],
-        // 'is_correct' => $index === $request->input('correctAnswerIndex'),
-        'is_correct' => $answer['is_correct'],
-      ]);
+      if ($question->type === 'math') {
+        $answerModel->update([
+          'value' => $answer['value'],
+          'is_correct' => true,
+        ]);
+      } else {
+        $answerModel->update([
+          'content' => $answer['content'],
+          'is_correct' => $answer['is_correct'],
+        ]);
+      }
     }
   }
 

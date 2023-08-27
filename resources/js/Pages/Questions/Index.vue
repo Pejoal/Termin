@@ -171,8 +171,16 @@ const destroy = (id) => {
                 >
                   <label :for="'answer' + index" class="w-3/4">
                     <input
+                      v-if="props.type !== 'math'"
                       type="text"
                       v-model="form.answers[index].content"
+                      class="block w-full rounded-md"
+                      required
+                    />
+                    <input
+                      v-else-if="props.type === 'math'"
+                      type="number"
+                      v-model="form.answers[index].value"
                       class="block w-full rounded-md"
                       required
                     />

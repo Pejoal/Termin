@@ -15,10 +15,21 @@ const props = defineProps({
   },
 });
 
+const mathAnswer = ref("");
 const result = ref(0);
 const currentIndex = ref(0);
 const userAnswers = ref([]);
-const selectedAnswerIds = ref({ answer_ids: [], content: "" });
+const selectedAnswerIds = ref({
+  answer_ids: [],
+  math: { content: "", answer_id: 0 },
+});
+
+const setMathAnswer = (answer_id) => {
+  selectedAnswerIds.value.math = {
+    content: mathAnswer.value,
+    answer_id: answer_id,
+  };
+};
 
 const setSelectedAnswerIds = (selectedAnswerId) => {
   const index = selectedAnswerIds.value.answer_ids.indexOf(selectedAnswerId);
@@ -33,9 +44,12 @@ const moveToNextQuestion = () => {
   // question_id: props.questions[currentIndex.value].id,
   //   answer_id: selectedAnswerId,
   // });
-
+  mathAnswer.value = "";
   userAnswers.value.push(selectedAnswerIds.value);
-  selectedAnswerIds.value = { answer_ids: [], content: "" };
+  selectedAnswerIds.value = {
+    answer_ids: [],
+    math: { content: "", answer_id: 0 },
+  };
   // console.log(userAnswers.value);
   currentIndex.value++;
   if (currentIndex.value > props.questions.length - 1) {
@@ -84,9 +98,14 @@ const submitAnswers = (answers) => {
             </li>
           </ul>
           <section v-else class="p-2">
-            <!-- <label>{{ trans('words.answer') }}</label> -->
-            <!-- <input type="number"  @change="setSelectedAnswerIds(answer.id, questions[currentIndex].type)"  /> -->
-            <input type="number" v-model="selectedAnswerIds.content" />
+            <input
+              type="number"
+              v-model="mathAnswer"
+              @change="
+                (event) => setMathAnswer(questions[currentIndex].answers[0].id)
+              "
+            />
+            <!-- <input type="number" v-model="selectedAnswerIds.math.content" /> -->
           </section>
           <button @click="moveToNextQuestion" class="btn btn-primary">
             {{ trans("words.confirm") }}
