@@ -19,12 +19,7 @@ const props = defineProps({
 const form = useForm({
   content: "",
   // correctAnswerIndex: null,
-  answers: [
-    { content: '', is_correct: false },
-    { content: '', is_correct: false },
-    { content: '', is_correct: false },
-    { content: '', is_correct: false },
-  ],
+  answers: [],
   photo: null,
   video: null,
   type: props.type,
@@ -32,6 +27,22 @@ const form = useForm({
 
 const showModal = ref(false);
 let showToast = ref(false);
+
+const open_question_modal = (type) => {
+  showModal.value = true;
+  if (type === "math") {
+    form.answers = [
+      { content: "", is_correct: true },
+    ];
+  } else {
+    form.answers = [
+      { content: "", is_correct: false },
+      { content: "", is_correct: false },
+      { content: "", is_correct: false },
+      { content: "", is_correct: false },
+    ];
+  }
+};
 
 const saveQuestion = () => {
   // if (form.correctAnswerIndex === null) {
@@ -98,7 +109,7 @@ const saveQuestion = () => {
             <template v-if="props.type === 'photo'">
               <section class="flex justify-between flex-col sm:flex-row">
                 <div class="my-2">
-                  <label class="pr-2" for="photo">
+                  <label class="p-2" for="photo">
                     {{ trans("words.photo") }}
                   </label>
                   <input
@@ -132,7 +143,7 @@ const saveQuestion = () => {
             <template v-if="props.type === 'video'">
               <section class="flex justify-between flex-col sm:flex-row">
                 <div class="my-2">
-                  <label class="pr-2" for="video">
+                  <label class="p-2" for="video">
                     {{ trans("words.video") }}
                   </label>
                   <input
@@ -204,7 +215,7 @@ const saveQuestion = () => {
         >
           {{ trans("words.show_questions") }}
         </Link>
-        <button class="btn btn-primary" @click="showModal = true">
+        <button class="btn btn-primary" @click="open_question_modal(type)">
           {{ trans("words.add_question") }}
         </button>
       </section>
