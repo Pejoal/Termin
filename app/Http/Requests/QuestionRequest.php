@@ -23,7 +23,7 @@ class QuestionRequest extends FormRequest {
     return [
       'content' => 'required|string',
       'answers' => 'required|array|size:4',
-      'correctAnswerIndex' => 'required|integer|between:0,3',
+      // 'correctAnswerIndex' => 'required|integer|between:0,3',
       'type' => ['required', 'string', Rule::in(['text', 'math', 'photo', 'video'])],
     ];
   }

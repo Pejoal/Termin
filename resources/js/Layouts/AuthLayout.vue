@@ -5,17 +5,6 @@ import Navigations from "@/Components/Navigations.vue";
 import Hamburger from "@/Components/Hamburger.vue";
 import Locales from "@/Components/Locales.vue";
 
-const props = defineProps({
-  joined_chat_groups: {
-    type: Array,
-    default: [],
-  },
-  projects: {
-    type: Array,
-    default: [],
-  },
-});
-
 const showNav = ref(false);
 const toggleNav = () => {
   showNav.value = !showNav.value;

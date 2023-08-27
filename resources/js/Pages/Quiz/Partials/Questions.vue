@@ -18,8 +18,13 @@ const props = defineProps({
 
 const form = useForm({
   content: "",
-  correctAnswerIndex: null,
-  answers: ["", "", "", ""],
+  // correctAnswerIndex: null,
+  answers: [
+    { content: '', is_correct: false },
+    { content: '', is_correct: false },
+    { content: '', is_correct: false },
+    { content: '', is_correct: false },
+  ],
   photo: null,
   video: null,
   type: props.type,
@@ -29,10 +34,10 @@ const showModal = ref(false);
 let showUpdatedToast = ref(false);
 
 const saveQuestion = () => {
-  if (form.correctAnswerIndex === null) {
-    alert(trans("words.please_select_the_correct_answer"));
-    return;
-  }
+  // if (form.correctAnswerIndex === null) {
+  //   alert(trans("words.please_select_the_correct_answer"));
+  //   return;
+  // }
 
   form.post(route("question.store"), {
     onSuccess: () => {
@@ -168,15 +173,15 @@ const saveQuestion = () => {
                 <label :for="'answer' + index" class="w-3/4">
                   <input
                     type="text"
-                    v-model="form.answers[index]"
+                    v-model="form.answers[index].content"
                     class="block w-full rounded-md"
                   />
                 </label>
                 <input
-                  type="radio"
+                  type="checkbox"
                   :id="'answer' + index"
                   :value="index"
-                  v-model="form.correctAnswerIndex"
+                  v-model="form.answers[index].is_correct"
                 />
               </section>
             </section>

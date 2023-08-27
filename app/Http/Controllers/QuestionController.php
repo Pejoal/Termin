@@ -23,14 +23,15 @@ class QuestionController extends Controller {
     $question = Question::create([
       'content' => $data['content'],
       'type' => $data['type'],
-      'correct_answer' => $data['correctAnswerIndex'],
+      // 'correct_answer' => $data['correctAnswerIndex'],
     ]);
 
-    foreach ($data['answers'] as $index => $answer) {
+    foreach ($data['answers'] as $answer) {
       Answer::create([
         'question_id' => $question->id,
-        'content' => $answer,
-        'is_correct' => $index === $data['correctAnswerIndex'],
+        'content' => $answer['content'],
+        // 'is_correct' => $index === $data['correctAnswerIndex'],
+        'is_correct' => $answer['is_correct'],
       ]);
     }
 

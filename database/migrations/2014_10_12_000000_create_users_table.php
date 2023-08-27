@@ -21,7 +21,6 @@ return new class extends Migration {
       $table->string('email')->usnique();
       $table->timestamp('email_verified_at')->nullable();
       $table->string('password')->nullable();
-      $table->foreignId('deleted_by')->nullable()->constrained('users');
       $table->string('profile_photo_url')->nullable();
       $table->rememberToken()->nullable();
       $table->softDeletes();

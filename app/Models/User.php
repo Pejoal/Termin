@@ -52,21 +52,6 @@ class User extends Authenticatable implements MustVerifyEmail {
     'email_verified_at' => 'datetime',
   ];
 
-  public static function boot() {
-    parent::boot();
-
-    static::deleting(function ($user) {
-      $user->deleted_by = auth()->id();
-      $user->save();
-      $user->comments()->update(['deleted_by' => auth()->id()]);
-      $user->comments()->delete();
-      $user->replies()->update(['deleted_by' => auth()->id()]);
-      $user->replies()->delete();
-      $user->likes()->update(['deleted_by' => auth()->id()]);
-      $user->likes()->delete();
-    });
-  }
-
   public function comments() {
     return $this->hasMany(Comment::class);
   }

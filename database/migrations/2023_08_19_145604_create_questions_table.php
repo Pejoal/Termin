@@ -12,7 +12,7 @@ return new class extends Migration {
     Schema::create('questions', function (Blueprint $table) {
       $table->id();
       $table->string('content');
-      $table->smallInteger('correct_answer');
+      // $table->smallInteger('correct_answer');
       $table->string('photo')->nullable();
       $table->string('video')->nullable();
       $table->enum('type', ['text', 'math', 'photo', 'video'])->default('text');
