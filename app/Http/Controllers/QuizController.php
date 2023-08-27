@@ -86,9 +86,15 @@ class QuizController extends Controller {
 
   public function submitAnswers(Request $request) {
     $result = 0;
-    foreach ($request->all() as $answer) {
-      $is_correct = Answer::find($answer['answer_id'])->is_correct;
-      if ($is_correct) {
+    foreach ($request->all() as $answer_ids) {
+      $number_of_correct_answers = 0;
+      foreach ($answer_ids as $answer_id) {
+        $is_correct = Answer::find($answer_id)->is_correct;
+        if ($is_correct) {
+          $number_of_correct_answers++;
+        }
+      }
+      if ($number_of_correct_answers === count($answer_ids)) {
         $result++;
       }
     }

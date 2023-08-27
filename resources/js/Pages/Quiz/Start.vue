@@ -18,12 +18,25 @@ const props = defineProps({
 const result = ref(0);
 const currentIndex = ref(0);
 const userAnswers = ref([]);
+const selectedAnswerIds = ref([]);
 
-const moveToNextQuestion = (selectedAnswerId) => {
-  userAnswers.value.push({
-    // question_id: props.questions[currentIndex.value].id,
-    answer_id: selectedAnswerId,
-  });
+const setSelectedAnswerIds = (selectedAnswerId) => {
+  const index = selectedAnswerIds.value.indexOf(selectedAnswerId);
+  if (index === -1) {
+    selectedAnswerIds.value.push(selectedAnswerId);
+  } else {
+    selectedAnswerIds.value.splice(index, 1);
+  }
+};
+const moveToNextQuestion = () => {
+  // userAnswers.value.push({
+  // question_id: props.questions[currentIndex.value].id,
+  //   answer_id: selectedAnswerId,
+  // });
+
+  userAnswers.value.push(selectedAnswerIds.value);
+  selectedAnswerIds.value = [];
+  // console.log(userAnswers.value);
   currentIndex.value++;
   if (currentIndex.value > props.questions.length - 1) {
     submitAnswers(userAnswers.value);
@@ -58,17 +71,23 @@ const submitAnswers = (answers) => {
             >
               <label>
                 <input
-                  type="radio"
+                  type="checkbox"
                   :name="'question_' + questions[currentIndex].id"
                   :value="answer.id"
-                  @change="moveToNextQuestion(answer.id)"
+                  @change="setSelectedAnswerIds(answer.id)"
                 />
                 {{ answer.content }}
               </label>
             </li>
           </ul>
+          <button @click="moveToNextQuestion" class="btn btn-primary">
+            {{ trans("words.confirm") }}
+          </button>
           <section
-            v-if="(props.type === 'photo' || props.type === 'test') && questions[currentIndex].photo"
+            v-if="
+              (props.type === 'photo' || props.type === 'test') &&
+              questions[currentIndex].photo
+            "
             class="border flex justify-center h-[50vh]"
           >
             <img
@@ -79,7 +98,10 @@ const submitAnswers = (answers) => {
             />
           </section>
           <section
-            v-if="(props.type === 'video' || props.type === 'test') && questions[currentIndex].video"
+            v-if="
+              (props.type === 'video' || props.type === 'test') &&
+              questions[currentIndex].video
+            "
             class="flex justify-center h-[50vh]"
           >
             <template v-for="(question, key) in questions">
@@ -90,7 +112,9 @@ const submitAnswers = (answers) => {
           </section>
         </div>
         <div v-else class="flex items-center justify-center flex-col">
-          <h2 class="text-2xl font-bold">{{ result }} / {{ questions.length }}</h2>
+          <h2 class="text-2xl font-bold">
+            {{ result }} / {{ questions.length }}
+          </h2>
           <p class="btn btn-primary">
             {{ trans("words.congratulations_youve_answered_all_questions") }}
           </p>
