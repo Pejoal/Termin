@@ -16,15 +16,38 @@ class ProfileController extends Controller {
 
   public function myProfile() {
 
-    $appointments = auth()->user()->appointments()->orderBy('date', 'DESC')->orderBy('time', 'DESC')->get();
-    $currentDate = now()->format('Y-m-d');
-
-    $upcomingDates = $appointments->filter(function ($item) use ($currentDate) {
-      return $item['date'] >= $currentDate;
+    $currentDateTime = new \DateTime();
+    $appointments = auth()->user()->appointments()->orderBy('date', 'DESC')->orderBy('time', 'DESC')->get()->map(function ($appointment) use ($currentDateTime) {
+      $dateTimeString = $appointment->date . ' ' . $appointment->time->format('H:i:s');
+      $targetDateTime = new \DateTime($dateTimeString);
+      $timeDifference = $currentDateTime->diff($targetDateTime);
+      if ($timeDifference->s < 86400) {
+        $more_than_24_hours = false;
+      } else {
+        $more_than_24_hours = true;
+      }
+      return [
+        "id" => $appointment->id,
+        "date" => $appointment->date,
+        "time" => $appointment->time->format('H:i'),
+        "status" => $appointment->status,
+        "location" => $appointment->location,
+        "notes" => $appointment->notes,
+        "more_than_24_hours" => $more_than_24_hours,
+      ];
     });
+    // $currentDate = now()->format('Y-m-d');
 
-    $previousDates = $appointments->filter(function ($item) use ($currentDate) {
-      return $item['date'] < $currentDate;
+    $upcomingDates = $appointments->filter(function ($appointment) use ($currentDateTime) {
+      $dateTimeString = $appointment['date'] . ' ' . $appointment['time'];
+      $targetDateTime = new \DateTime($dateTimeString);
+      return $targetDateTime > $currentDateTime;
+    });
+    
+    $previousDates = $appointments->filter(function ($appointment) use ($currentDateTime) {
+      $dateTimeString = $appointment['date'] . ' ' . $appointment['time'];
+      $targetDateTime = new \DateTime($dateTimeString);
+      return $targetDateTime <= $currentDateTime;
     });
 
     // Convert the collections back to arrays
