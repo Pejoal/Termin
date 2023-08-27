@@ -94,6 +94,7 @@ return [
   'decline_appointment' => "Decline Appointment",
   'delete_appointment' => "Delete Appointment",
   'appointment_confirmed' => "Appointment Confirmed",
+  'loading' => "Loading",
   'text_questions' => "Text Questions",
   'math_questions' => "Math Questions",
   'photo_questions' => "Photo Questions",
