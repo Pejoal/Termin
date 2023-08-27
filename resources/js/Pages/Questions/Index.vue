@@ -25,7 +25,7 @@ const photoForm = useForm({
 });
 
 const videoForm = useForm({
-  photo: null,
+  video: null,
 });
 
 const form = useForm({
