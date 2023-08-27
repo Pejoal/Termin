@@ -51,14 +51,14 @@ const submit = (date, time) => {
           <form @submit.prevent="submit(appointment['full_date'], time)">
             <header class="flex items-center justify-center">
               <h2
-                class="text-lg font-bold w-1/3 py-3 rounded-lg flex justify-center items-center bg-blue-500"
+                class="w-[80vw] text-lg font-bold py-3 rounded-lg flex justify-center items-center bg-blue-500"
               >
                 {{ appointment["full_date"] }} {{ trans("words.at") }}
                 {{ time }}
               </h2>
             </header>
             <section class="flex items-center justify-start my-2">
-              <label for="location" class="w-36 px-4">{{
+              <label for="location" class="w-24 px-4">{{
                 trans("words.address")
               }}</label>
               <input
@@ -75,7 +75,7 @@ const submit = (date, time) => {
               {{ form.errors.location }}
             </p>
             <section class="flex items-center justify-start my-2">
-              <label for="notes" class="w-36 px-4">
+              <label for="notes" class="w-24 px-4">
                 {{ trans("words.notes") }}
               </label>
               <textarea
