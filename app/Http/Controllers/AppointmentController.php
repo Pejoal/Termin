@@ -66,6 +66,19 @@ class AppointmentController extends Controller {
     if (auth()->user()->cannot('update', $appointment)) {
       abort(403);
     }
+    $currentDateTime = new \DateTime();
+    $dateTimeString = $appointment->date . ' ' . $appointment->time->format('H:i:s');
+    $targetDateTime = new \DateTime($dateTimeString);
+    $timeDifference = $currentDateTime->diff($targetDateTime);
+    $timeDifferenceInSeconds = $timeDifference->s + ($timeDifference->i * 60) + ($timeDifference->h * 3600) + ($timeDifference->d * 86400);
+    if ($timeDifferenceInSeconds < 86400) {
+      $more_than_24_hours = false;
+    } else {
+      $more_than_24_hours = true;
+    }
+    if (auth()->user()->type === 'client' && !$more_than_24_hours) {
+      abort(403);
+    }
     $appointment->delete();
   }
 

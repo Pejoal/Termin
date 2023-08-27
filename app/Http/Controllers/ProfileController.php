@@ -22,7 +22,6 @@ class ProfileController extends Controller {
       $targetDateTime = new \DateTime($dateTimeString);
       $timeDifference = $currentDateTime->diff($targetDateTime);
       $timeDifferenceInSeconds = $timeDifference->s + ($timeDifference->i * 60) + ($timeDifference->h * 3600) + ($timeDifference->d * 86400); 
-      // dd($timeDifferenceInSeconds);
       if ($timeDifferenceInSeconds < 86400) {
         $more_than_24_hours = false;
       } else {
