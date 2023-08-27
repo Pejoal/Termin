@@ -20,7 +20,7 @@ class ProfileController extends Controller {
     $currentDate = now()->format('Y-m-d');
 
     $upcomingDates = $appointments->filter(function ($item) use ($currentDate) {
-      return $item['date'] > $currentDate;
+      return $item['date'] >= $currentDate;
     });
 
     $previousDates = $appointments->filter(function ($item) use ($currentDate) {
