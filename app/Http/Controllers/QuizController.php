@@ -38,9 +38,9 @@ class QuizController extends Controller {
         return [
           'id' => $question->id,
           'content' => $question->content,
+          'type' => $question->type,
           'photo' => $question->photo,
           'video' => $question->video,
-          'type' => $question->type,
           'answers' => $answers,
         ];
       });
@@ -59,6 +59,7 @@ class QuizController extends Controller {
         return [
           'id' => $question->id,
           'content' => $question->content,
+          'type' => $question->type,
           'photo' => $question->photo,
           'video' => $question->video,
           'answers' => $answers,
