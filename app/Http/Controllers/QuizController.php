@@ -93,16 +93,23 @@ class QuizController extends Controller {
           continue;
         }
         $number_of_correct_answers = 0;
+        $question = Answer::find($answer_group['answer_ids'][0])->question;
+        $answers = Question::find($question->id)->answers->pluck('is_correct');
+        $question_correct_answers_count = 0;
+        foreach ($answers as $answer) {
+          if ($answer === true) {
+            $question_correct_answers_count++;
+          }
+        }
         foreach ($answer_group['answer_ids'] as $answer_id) {
           $is_correct = Answer::find($answer_id)->is_correct;
           if ($is_correct) {
             $number_of_correct_answers++;
           }
         }
-        if ($number_of_correct_answers === count($answer_group['answer_ids'])) {
+        if ($number_of_correct_answers === $question_correct_answers_count) {
           $result++;
         }
-        // dd(count($answer_group['answer_ids']) . ' - ' . $number_of_correct_answers . ' - ' . $result);
       } else {
         $value = Answer::find($answer_group['math']['answer_id'])->value;
         if ($value == $answer_group['math']['content']) {
