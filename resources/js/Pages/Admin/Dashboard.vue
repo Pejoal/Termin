@@ -26,8 +26,8 @@ const props = defineProps({
   // },
 });
 
-let previousAppointments = ref([]);
-let upcomingAppointments = ref([]);
+let previousAppointments = ref(props.previousAppointments);
+let upcomingAppointments = ref(props.upcomingAppointments);
 
 $(document).ready(() => {
   $(".chosen-select").chosen({
@@ -49,21 +49,6 @@ $(document).ready(() => {
       }
     })();
   });
-
-  (async () => {
-    try {
-      const ids = props.users.map((user) => user.id);
-      const response = await axios.get(route("admin.dashboard"), {
-        params: {
-          search: ids,
-        },
-      });
-      previousAppointments.value = response.data.previousAppointments;
-      upcomingAppointments.value = response.data.upcomingAppointments;
-    } catch (error) {
-      console.error(error);
-    }
-  })();
 
   // $(".chosen-select").val(ids);
   // $(".chosen-select").trigger("chosen:updated");
