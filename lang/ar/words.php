@@ -120,5 +120,8 @@ return [
   'video' => "فيديو",
   'test' => "اختبار",
   'test_questions' => "أسئلة الاختبار",
-
+  'already_registered' => "مُسجّل بالفعل",
+  'choose_a_user' => "اختر مستخدمًا",
+  'filter_by_user' => "تصفية حسب المستخدم",
+  
 ];

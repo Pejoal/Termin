@@ -121,5 +121,8 @@ return [
   'video' => "Видео",
   'test' => "Тест",
   'test_questions' => "Вопросы теста",
+  'already_registered' => "Уже зарегистрирован",
+  'choose_a_user' => "Выберите пользователя",
+  'filter_by_user' => "Фильтр по пользователю",
 
 ];

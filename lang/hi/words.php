@@ -121,5 +121,8 @@ return [
   'video' => "वीडियो",
   'test' => "टेस्ट",
   'test_questions' => "टेस्ट प्रश्न",
+  'already_registered' => "पहले से पंजीकृत",
+  'choose_a_user' => "एक उपयोगकर्ता चुनें",
+  'filter_by_user' => "उपयोगकर्ता द्वारा फ़िल्टर करें",
 
 ];

@@ -121,5 +121,8 @@ return [
   'video' => "视频",
   'test' => "测试",
   'test_questions' => "测试问题",
+  'already_registered' => "已注册",
+  'choose_a_user' => "选择用户",
+  'filter_by_user' => "按用户筛选",
 
 ];

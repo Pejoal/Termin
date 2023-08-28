@@ -121,5 +121,8 @@ return [
   'video' => "ビデオ",
   'test' => "テスト",
   'test_questions' => "テストの質問",
+  'already_registered' => "既に登録済み",
+  'choose_a_user' => "ユーザーを選択",
+  'filter_by_user' => "ユーザーでフィルタリング",
 
 ];
