@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Appointment;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Inertia\Inertia;
 
 class AdminController extends Controller {
-  public function dashboard() {
+  public function dashboard(Request $request) {
 
     $currentDateTime = new \DateTime();
-    $appointments = Appointment::orderBy('date', 'DESC')->orderBy('time', 'DESC')->get()->map(function ($appointment) use ($currentDateTime) {
+    $appointments = Appointment::query()
+      ->when($request->search, function ($query, $search) {
+        $query->whereIn('user_id', $search);
+      })->orderBy('date', 'DESC')->orderBy('time', 'DESC')->get()->map(function ($appointment) use ($currentDateTime) {
       $dateTimeString = $appointment->date . ' ' . $appointment->time->format('H:i:s');
       $targetDateTime = new \DateTime($dateTimeString);
       $timeDifference = $currentDateTime->diff($targetDateTime);
@@ -44,17 +48,27 @@ class AdminController extends Controller {
       return $targetDateTime <= $currentDateTime;
     });
 
-    $users = User::select('id', 'firstname', 'lastname')->get()->map(function ($user) {
+    $users = User::where('type', 'client')->select('id', 'firstname', 'lastname')->get()->map(function ($user) {
       return [
         'id' => $user->id,
         'full_name' => $user->firstname . ' ' . $user->lastname,
       ];
     });
 
+    if ($request->wantsJson()) {
+      return response()->json([
+        'previousAppointments' => $previousAppointments,
+        'upcomingAppointments' => $upcomingAppointments,
+        // 'filters' => $request->only(['search']),
+      ]);
+    }
+
     return Inertia::render('Admin/Dashboard', [
+      // 'filters' => $request->only(['search']),
       'users' => $users,
       'previousAppointments' => $previousAppointments,
       'upcomingAppointments' => $upcomingAppointments,
     ]);
   }
+
 }

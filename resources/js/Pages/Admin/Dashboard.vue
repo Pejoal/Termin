@@ -2,6 +2,8 @@
 import AuthLayout from "@/Layouts/AuthLayout.vue";
 import AppointmentsGroup from "./Partials/AppointmentsGroup.vue";
 import { Head } from "@inertiajs/vue3";
+import axios from "axios";
+import { ref } from "vue";
 
 const props = defineProps({
   previousAppointments: {
@@ -16,13 +18,55 @@ const props = defineProps({
     type: Array,
     default: [],
   },
+  // filters: {
+  //   type: Object,
+  //   default: {
+  //     search: [],
+  //   },
+  // },
 });
+
+let previousAppointments = ref([]);
+let upcomingAppointments = ref([]);
+
 $(document).ready(() => {
   $(".chosen-select").chosen({
     no_results_text: "Oops, nothing found!",
-    // disable_search_threshold: 10,
-    // max_selected_options: 2,
   });
+
+  $(".chosen-select").change(function () {
+    (async () => {
+      try {
+        const response = await axios.get(route("admin.dashboard"), {
+          params: {
+            search: $(".chosen-select").val(),
+          },
+        });
+        previousAppointments.value = response.data.previousAppointments;
+        upcomingAppointments.value = response.data.upcomingAppointments;
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+  });
+
+  (async () => {
+    try {
+      const ids = props.users.map((user) => user.id);
+      const response = await axios.get(route("admin.dashboard"), {
+        params: {
+          search: ids,
+        },
+      });
+      previousAppointments.value = response.data.previousAppointments;
+      upcomingAppointments.value = response.data.upcomingAppointments;
+    } catch (error) {
+      console.error(error);
+    }
+  })();
+
+  // $(".chosen-select").val(ids);
+  // $(".chosen-select").trigger("chosen:updated");
 });
 </script>
 
