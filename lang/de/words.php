@@ -119,7 +119,7 @@ return [
   'close' => "Schließen",
   'congratulations_youve_answered_all_questions' => "Herzlichen Glückwunsch! Sie haben alle Fragen beantwortet.",
   'video' => "Video",
-  'test' => "Test",
+  'test' => "Prüfung",
   'test_questions' => "Testfragen",
 
 ];

@@ -27,6 +27,9 @@
   </section>
   <section id="modal"></section>
   <script src="{{ asset('plugins/fontawesome/js/all.min.js') }}"></script>
+  <link rel="stylesheet" href="{{ asset('plugins/chosen/chosen.min.css') }}">
+  <script src="{{ asset('plugins/jquery.min.js') }}"></script>
+  <script src="{{ asset('plugins/chosen/chosen.jquery.min.js') }}"></script>
 </body>
 
 </html>

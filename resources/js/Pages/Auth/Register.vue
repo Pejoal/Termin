@@ -126,14 +126,14 @@ const submit = () => {
       </div>
 
       <div class="mt-4">
-        <InputLabel for="password" :value="trans('words.passwort')" />
+        <InputLabel for="password" :value="trans('words.password')" />
 
         <TextInput
           id="password"
           type="password"
           class="mt-1 block w-full"
           v-model="form.password"
-          :placeholder="trans('words.passwort')"
+          :placeholder="trans('words.password')"
           required
           autocomplete="new-password"
         />

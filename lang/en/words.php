@@ -120,7 +120,10 @@ return [
   'close' => "Close",
   'congratulations_youve_answered_all_questions' => "Congratulations! You've answered all questions.",
   'video' => "Video",
-  'test' => "test",
+  'test' => "Test",
   'test_questions' => "Test Questions",
+  'already_registered' => "Already Registered",
+  'choose_a_user' => "Choose a user",
+  'filter_by_user' => "Filter By User",
 
 ];

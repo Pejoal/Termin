@@ -52,32 +52,10 @@ class User extends Authenticatable implements MustVerifyEmail {
     'email_verified_at' => 'datetime',
   ];
 
-  public function comments() {
-    return $this->hasMany(Comment::class);
-  }
-
   public function appointments() {
     return $this->hasMany(Appointment::class);
   }
 
-  public function replies() {
-    return $this->hasMany(Reply::class);
-  }
-
-  // Likes I Did
-  public function likes() {
-    return $this->hasMany(Like::class);
-  }
-
-  // Likes I Got To My Comments   [likeable_id => comments.id]
-  public function commentLikesGot() {
-    return $this->hasManyThrough(Like::class, Post::class, 'user_id', 'likeable_id', 'id', 'id')->where('likes.likeable_type', '=', "App\Models\Comment");
-  }
-
-  // All Likes Got (Reoplies & Comments' Likes)
-  public function likesGot() {
-    return $this->hasManyThrough(Like::class, Post::class, 'user_id', 'likeable_id', 'id', 'id');
-  }
 
   /**
    * Get the user's full name.

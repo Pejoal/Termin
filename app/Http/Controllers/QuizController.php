@@ -89,6 +89,9 @@ class QuizController extends Controller {
     $result = 0;
     foreach ($request->all() as $answer_group) {
       if (!$answer_group['math']['content']) {
+        if (!$answer_group['answer_ids']) {
+          continue;
+        }
         $number_of_correct_answers = 0;
         foreach ($answer_group['answer_ids'] as $answer_id) {
           $is_correct = Answer::find($answer_id)->is_correct;
