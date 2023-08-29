@@ -16,22 +16,22 @@ class SetupSeeder extends Seeder {
   public function run(): void {
 
     User::create([
-      'firstname' => 'Pejoal',
-      'lastname' => 'Nagy',
-      'username' => 'pejoal',
+      'firstname' => 'Admin',
+      'lastname' => '1',
+      'username' => 'admin',
       'gender' => 'male',
-      'email' => 'pejoal.official@gmail.com',
+      'email' => 'admin@mail.com',
       'email_verified_at' => now(),
       'password' => bcrypt('88888888'),
       'type' => 'super admin',
     ]);
 
     User::create([
-      'firstname' => 'Jane',
-      'lastname' => 'Doe',
-      'username' => 'jane',
+      'firstname' => 'client',
+      'lastname' => '1',
+      'username' => 'client1',
       'gender' => 'female',
-      'email' => 'jane.doe@example.com',
+      'email' => 'client1@example.com',
       'email_verified_at' => now(),
       'password' => bcrypt('11111111'),
       'type' => 'client',
