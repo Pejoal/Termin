@@ -11,7 +11,7 @@ return new class extends Migration {
   public function up(): void {
     Schema::create('questions', function (Blueprint $table) {
       $table->id();
-      $table->string('content');
+      $table->text('content');
       // $table->smallInteger('correct_answer');
       $table->string('photo')->nullable();
       $table->string('video')->nullable();
