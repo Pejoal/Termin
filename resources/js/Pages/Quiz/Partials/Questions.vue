@@ -29,9 +29,9 @@ const form = useForm({
   type: props.type,
 });
 
-locales.forEach((locale) => {
-  form[locale] = {
-    content: '',
+locales.forEach((lang) => {
+  form[lang] = {
+    content: "",
   };
 });
 
@@ -41,16 +41,29 @@ let showToast = ref(false);
 const open_question_modal = (type) => {
   showModal.value = true;
   if (type === "math") {
-    form.answers = [
-      { content: "", is_correct: true },
-    ];
+    form.answers = [{ is_correct: true }];
+    locales.forEach((lang) => {
+      form.answers[0][lang] = {
+        content: "",
+      };
+    });
   } else {
     form.answers = [
-      { content: "", is_correct: false },
-      { content: "", is_correct: false },
-      { content: "", is_correct: false },
-      { content: "", is_correct: false },
+      { is_correct: false },
+      { is_correct: false },
+      { is_correct: false },
+      { is_correct: false },
     ];
+
+    form.answers.forEach((answer, index) => {
+      locales.forEach((lang) => {
+        form.answers[index][lang] = [
+          {
+            content: "",
+          },
+        ];
+      });
+    });
   }
 };
 
@@ -59,21 +72,14 @@ const saveQuestion = () => {
     onSuccess: () => {
       showToast.value = true;
       showModal.value = false;
-      form.reset(
-        "content",
-        "answers",
-        "photo",
-        "video",
-        "type"
-      );
+      form.reset("content", "answers", "photo", "video", "type");
     },
   });
 };
 
 const active_locale = (newLocale) => {
-  locale.value = newLocale
+  locale.value = newLocale;
 };
-
 </script>
 <template>
   <section class="bg-slate-300 rounded-lg p-2">
@@ -110,8 +116,11 @@ const active_locale = (newLocale) => {
                 class="flex-1 rounded-md h-24"
                 required
               ></textarea>
-              <QuestionLocales v-on:active_locale="active_locale" class="mx-2" :horizontal="true" />
-
+              <QuestionLocales
+                v-on:active_locale="active_locale"
+                class="mx-2"
+                :horizontal="true"
+              />
             </section>
             <p v-if="form.errors.content" class="error">
               {{ form.errors.content }}
@@ -195,7 +204,7 @@ const active_locale = (newLocale) => {
                 <label :for="'answer' + index" class="w-3/4">
                   <input
                     type="text"
-                    v-model="form.answers[index].content"
+                    v-model="form.answers[index][locale].content"
                     class="block w-full rounded-md"
                   />
                 </label>
