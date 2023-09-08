@@ -22,17 +22,21 @@ const page = usePage().props;
 const locale = ref(page.active_locale_code);
 const locales = Object.keys(page.locales);
 
+let formData = {};
+
+
+locales.forEach((lang) => {
+  formData[lang] = {
+    content: "",
+  };
+});
+
 const form = useForm({
+  ...formData,
   answers: [],
   photo: null,
   video: null,
   type: props.type,
-});
-
-locales.forEach((lang) => {
-  form[lang] = {
-    content: "",
-  };
 });
 
 const showModal = ref(false);

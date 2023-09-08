@@ -21,10 +21,13 @@ class QuestionController extends Controller {
   public function store(Request $request) {
     $data = $request->all();
     dd($data);
+
     $question = Question::create([
       'content' => $data['content'],
       'type' => $data['type'],
     ]);
+
+    dd($question);
 
     foreach ($data['answers'] as $answer) {
       if ($data['type'] === 'math') {
