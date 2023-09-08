@@ -9,7 +9,8 @@ use Astrotomic\Translatable\Translatable;
 
 class Answer extends Model implements TranslatableContract {
   use HasFactory, Translatable;
-
+  
+  public $translatedAttributes = ['content'];
   protected $fillable = ['content', 'value', 'question_id', 'is_correct'];
 
   protected $casts = [

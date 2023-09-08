@@ -13,13 +13,11 @@ return new class extends Migration
     {
         Schema::create('answer_translations', function (Blueprint $table) {
             $table->id();
-            $table->integer('answer_id')->unsigned();
+            $table->foreignId('answer_id')->constrained()->onDelete('cascade');
             $table->text('content')->nullable();
             $table->text('value')->nullable();
             $table->string('locale')->index();
             $table->unique(['answer_id', 'locale']);
-            $table->foreign('answer_id')->references('id')->on('answers')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

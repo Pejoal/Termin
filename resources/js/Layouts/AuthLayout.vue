@@ -26,14 +26,12 @@ const toggleNav = () => {
           {{ $page.props.auth.user.firstname }}
         </Link>
       </section>
-      <!-- Translations -->
       <Locales :horizontal="true" />
 
-      <!-- Navigation Links -->
       <Navigations :horizontal="true" />
 
-      <!-- Hamburger -->
       <Hamburger class="md:hidden" @close="toggleNav" :show="showNav" />
+      
       <!-- Side Menu  -->
       <transition name="slide">
         <div

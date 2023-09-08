@@ -3,7 +3,7 @@ import AuthLayout from "@/Layouts/AuthLayout.vue";
 import AppointmentsGroup from "./Partials/AppointmentsGroup.vue";
 import { Head } from "@inertiajs/vue3";
 import axios from "axios";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 const props = defineProps({
   previousAppointments: {
@@ -18,16 +18,25 @@ const props = defineProps({
     type: Array,
     default: [],
   },
-  // filters: {
-  //   type: Object,
-  //   default: {
-  //     search: [],
-  //   },
-  // },
 });
+
 
 let previousAppointments = ref(props.previousAppointments);
 let upcomingAppointments = ref(props.upcomingAppointments);
+
+// Create a watcher to watch for changes in props
+watch(
+  () => [props.previousAppointments, props.upcomingAppointments],
+  ([newPreviousAppointments, newUpcomingAppointments]) => {
+    // Check if the props have changed and update the refs accordingly
+    if (newPreviousAppointments !== previousAppointments.value) {
+      previousAppointments.value = newPreviousAppointments;
+    }
+    if (newUpcomingAppointments !== upcomingAppointments.value) {
+      upcomingAppointments.value = newUpcomingAppointments;
+    }
+  }
+);
 
 $(document).ready(() => {
   $(".chosen-select").chosen({

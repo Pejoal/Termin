@@ -23,8 +23,18 @@ const props = defineProps({
       'flex flex-col space-y-2 px-4': props.vertical,
     }"
   >
+    <Link
+      :href="route('home')"
+      class="hover:font-bold"
+      :class="{
+        'text-zinc-700 hover:text-zinc-800': props.dark,
+        'underline  font-bold': route().current('home'),
+      }"
+    >
+      {{ trans("words.home") }}
+    </Link>
     <template
-      v-if="['admin', 'super admin'].includes($page.props.auth.user.type)"
+      v-if="['admin', 'super admin'].includes($page.props.auth?.user?.type)"
     >
       <Link
         :href="route('admin.dashboard')"
@@ -47,17 +57,7 @@ const props = defineProps({
         {{ trans("words.quiz") }}
       </Link>
     </template>
-    <template v-if="$page.props.auth.user.type === 'client'">
-      <Link
-        :href="route('home')"
-        class="hover:font-bold"
-        :class="{
-          'text-zinc-700 hover:text-zinc-800': props.dark,
-          'underline  font-bold': route().current('home'),
-        }"
-      >
-        {{ trans("words.home") }}
-      </Link>
+    <template v-if="$page.props.auth?.user?.type === 'client'">
       <Link
         :href="route('appointments.index')"
         class="hover:font-bold"
@@ -78,7 +78,6 @@ const props = defineProps({
       >
         {{ trans("words.quiz") }}
       </Link>
-
       <Link
         :href="route('user.profile.me')"
         class="hover:font-bold"
@@ -91,6 +90,7 @@ const props = defineProps({
       </Link>
     </template>
     <Link
+      v-if="$page.props.auth.user"
       :href="route('profile.edit')"
       class="hover:font-bold"
       :class="{
@@ -99,6 +99,17 @@ const props = defineProps({
       }"
     >
       {{ trans("words.settings") }}
+    </Link>
+    <Link
+      v-else
+      :href="route('login')"
+      class="hover:font-bold"
+      :class="{
+        'text-zinc-700 hover:text-zinc-800': props.dark,
+        'underline  font-bold': route().current('login'),
+      }"
+    >
+      {{ trans("login") }}
     </Link>
   </nav>
 </template>

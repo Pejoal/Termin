@@ -13,14 +13,12 @@ return new class extends Migration
     {
         Schema::create('question_translations', function (Blueprint $table) {
             $table->id();
-            $table->integer('question_id')->unsigned();
+            $table->foreignId('question_id')->constrained()->onDelete('cascade');
             $table->string('locale')->index();
             $table->text('content');
             $table->string('photo')->nullable();
             $table->string('video')->nullable();
             $table->unique(['question_id', 'locale']);
-            $table->foreign('question_id')->references('id')->on('questions')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

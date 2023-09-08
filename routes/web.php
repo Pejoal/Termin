@@ -54,6 +54,8 @@ Route::group([], function () {
   });
 
   require __DIR__ . '/auth.php';
+  
+  Route::get('/home', [HomeController::class, 'index'])->name('home');
 
   Route::middleware(['auth', 'verified'])->group(function () {
 
@@ -67,8 +69,6 @@ Route::group([], function () {
 
     // User
     Route::group(['middleware' => 'clients-only'], function () {
-      Route::get('/home', [HomeController::class, 'index'])->name('home');
-
       Route::get('user/profile', [ProfileController::class, 'myProfile'])->name('user.profile.me');
 
       Route::get('quiz/client', [QuizController::class, 'client'])->name('quiz.client');

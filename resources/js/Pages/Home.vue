@@ -1,5 +1,5 @@
 <script setup>
-import AuthLayout from "@/Layouts/AuthLayout.vue";
+import GuestLayout from "@/Layouts/GuestLayout.vue";
 import { Head } from "@inertiajs/vue3";
 </script>
 
@@ -7,12 +7,12 @@ import { Head } from "@inertiajs/vue3";
   <Head>
     <title>{{ trans("words.home") }}</title>
   </Head>
-  <AuthLayout>
+  <GuestLayout>
     <template #left-sidebar> </template>
     <template #content>
       <section class="p-4">
         {{ trans("words.welcome") }}
       </section>
     </template>
-  </AuthLayout>
+  </GuestLayout>
 </template>
