@@ -15,9 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('question_id')->constrained()->onDelete('cascade');
             $table->string('locale')->index();
-            $table->text('content');
-            $table->string('photo')->nullable();
-            $table->string('video')->nullable();
+            $table->text('content')->nullable();
             $table->unique(['question_id', 'locale']);
         });
     }

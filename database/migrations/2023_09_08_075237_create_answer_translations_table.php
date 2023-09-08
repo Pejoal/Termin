@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('answer_id')->constrained()->onDelete('cascade');
             $table->text('content')->nullable();
-            $table->text('value')->nullable();
             $table->string('locale')->index();
             $table->unique(['answer_id', 'locale']);
         });

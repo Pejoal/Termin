@@ -7,6 +7,7 @@ use App\Models\Answer;
 use App\Models\Question;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 class QuestionController extends Controller {
   public function showByType($type) {
@@ -20,10 +21,18 @@ class QuestionController extends Controller {
 
   public function store(Request $request) {
     $data = $request->all();
-    dd($data);
-
+    // dd($data);
+    $langs = array_keys(LaravelLocalization::getSupportedLocales());
+    $contents = [];
+    foreach ($langs as $lang) {
+      if (isset($data[$lang]) && isset($data[$lang]['content'])) {
+        $contents[$lang] = [
+          "content" => $data[$lang]['content'],
+        ];
+      }
+    }
     $question = Question::create([
-      'content' => $data['content'],
+      ...$contents,
       'type' => $data['type'],
     ]);
 
