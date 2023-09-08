@@ -57,11 +57,9 @@ const open_question_modal = (type) => {
 
     form.answers.forEach((answer, index) => {
       locales.forEach((lang) => {
-        form.answers[index][lang] = [
-          {
-            content: "",
-          },
-        ];
+        form.answers[index][lang] = {
+          content: "",
+        };
       });
     });
   }

@@ -18,8 +18,9 @@ class QuestionController extends Controller {
     ]);
   }
 
-  public function store(QuestionRequest $request) {
+  public function store(Request $request) {
     $data = $request->all();
+    dd($data);
     $question = Question::create([
       'content' => $data['content'],
       'type' => $data['type'],
