@@ -1,9 +1,10 @@
 <script setup>
-import { Link, useForm } from "@inertiajs/vue3";
+import { Link, useForm, usePage } from "@inertiajs/vue3";
 import ResuableModal from "@/Components/ResuableModal.vue";
 import Toast from "@/Components/Toast.vue";
 import { ref } from "vue";
 import { trans } from "laravel-vue-i18n";
+import QuestionLocales from "./QuestionLocales.vue";
 
 const props = defineProps({
   type: {
@@ -16,13 +17,22 @@ const props = defineProps({
   },
 });
 
+const page = usePage().props;
+
+const locale = ref(page.active_locale_code);
+const locales = Object.keys(page.locales);
+
 const form = useForm({
-  content: "",
-  // correctAnswerIndex: null,
   answers: [],
   photo: null,
   video: null,
   type: props.type,
+});
+
+locales.forEach((locale) => {
+  form[locale] = {
+    content: '',
+  };
 });
 
 const showModal = ref(false);
@@ -45,18 +55,12 @@ const open_question_modal = (type) => {
 };
 
 const saveQuestion = () => {
-  // if (form.correctAnswerIndex === null) {
-  //   alert(trans("words.please_select_the_correct_answer"));
-  //   return;
-  // }
-
   form.post(route("question.store"), {
     onSuccess: () => {
       showToast.value = true;
       showModal.value = false;
       form.reset(
         "content",
-        // "correctAnswerIndex",
         "answers",
         "photo",
         "video",
@@ -65,6 +69,11 @@ const saveQuestion = () => {
     },
   });
 };
+
+const active_locale = (newLocale) => {
+  locale.value = newLocale
+};
+
 </script>
 <template>
   <section class="bg-slate-300 rounded-lg p-2">
@@ -97,10 +106,12 @@ const saveQuestion = () => {
               >
               <textarea
                 id="question"
-                v-model="form.content"
+                v-model="form[locale].content"
                 class="flex-1 rounded-md h-24"
                 required
               ></textarea>
+              <QuestionLocales v-on:active_locale="active_locale" class="mx-2" :horizontal="true" />
+
             </section>
             <p v-if="form.errors.content" class="error">
               {{ form.errors.content }}

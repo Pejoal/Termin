@@ -1,7 +1,5 @@
 <script setup>
 import Dropdown from "@/Components/Dropdown.vue";
-import { usePage } from "@inertiajs/vue3";
-import { loadLanguageAsync } from "laravel-vue-i18n";
 
 const props = defineProps({
   horizontal: {
@@ -14,15 +12,11 @@ const props = defineProps({
   },
 });
 
-const page = usePage().props;
-if (page.active_locale_code) {
-  loadLanguageAsync(page.active_locale_code);
-}
+const emits = defineEmits(["active_locale"]);
 
-const active_locale = (locale, url) => {
-  location.href = url;
+const active_locale = (locale) => {
+  emits("active_locale", locale);
 };
-
 </script>
 <template>
   <div
@@ -57,9 +51,10 @@ const active_locale = (locale, url) => {
 
       <template #content>
         <button
+          type="button"
           v-for="(locale, code) in $page.props.locales"
           class="flex justify-between items-center w-full p-2 text-gray-900 hover:text-white bg-white hover:bg-zinc-900"
-          @click="active_locale(code, locale.url)"
+          @click="active_locale(code)"
           :key="code"
         >
           <span>{{ locale.native }}</span>
