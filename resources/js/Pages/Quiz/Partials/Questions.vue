@@ -24,7 +24,6 @@ const locales = Object.keys(page.locales);
 
 let formData = {};
 
-
 locales.forEach((lang) => {
   formData[lang] = {
     content: "",

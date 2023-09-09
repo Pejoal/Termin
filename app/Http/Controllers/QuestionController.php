@@ -119,8 +119,7 @@ class QuestionController extends Controller {
       $formattedQuestion["answers"][] = $answerData;
     }
 
-    dd($formattedQuestion);
-    return $question;
+    return $formattedQuestion;
   }
 
   public function update(QuestionRequest $request, Question $question) {

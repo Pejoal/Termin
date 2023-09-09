@@ -1,6 +1,6 @@
 <script setup>
 import AuthLayout from "@/Layouts/AuthLayout.vue";
-import { Head, useForm } from "@inertiajs/vue3";
+import { Head, useForm, usePage } from "@inertiajs/vue3";
 import ResuableModal from "@/Components/ResuableModal.vue";
 import Toast from "@/Components/Toast.vue";
 import axios from "axios";
@@ -28,18 +28,25 @@ const videoForm = useForm({
   video: null,
 });
 
+const page = usePage().props;
+
+const locale = ref(page.active_locale_code);
+const locales = Object.keys(page.locales);
+
+let formData = {};
+
+locales.forEach((lang) => {
+  formData[lang] = {
+    content: "",
+  };
+});
+
 const form = useForm({
   id: 0,
+  ...formData,
   photo: "",
   video: "",
-  content: "",
-  // correctAnswerIndex: null,
-  answers: [
-    { content: "", is_correct: false },
-    { content: "", is_correct: false },
-    { content: "", is_correct: false },
-    { content: "", is_correct: false },
-  ],
+  answers: [],
   type: props.type,
 });
 
@@ -50,8 +57,10 @@ const edit = (id) => {
     form.photo = response.data.photo;
     form.video = response.data.video;
     form.content = response.data.content;
-    // form.correctAnswerIndex = response.data.correct_answer;
     form.answers = response.data.answers;
+    locales.forEach(lang => {
+      form[lang].content = response.data[lang].content;
+    });
   });
 };
 
