@@ -21,37 +21,48 @@ class QuestionController extends Controller {
 
   public function store(Request $request) {
     $data = $request->all();
-    // dd($data);
+    // dd($data['answers']);
+
     $langs = array_keys(LaravelLocalization::getSupportedLocales());
     $contents = [];
+    $answers = [];
+
     foreach ($langs as $lang) {
       if (isset($data[$lang]) && isset($data[$lang]['content'])) {
         $contents[$lang] = [
           "content" => $data[$lang]['content'],
         ];
       }
+
+      foreach ($data['answers'] as $key => $answer) {
+        if (isset($answer[$lang]) && isset($answer[$lang]['content'])) {
+          if ($data['type'] === 'math') {
+            $answers[$lang] = [
+              "value" => $answer[$lang]['content'],
+            ];
+          } else {
+            $answers[$lang] = [
+              "content" => $answer[$lang]['content'],
+            ];
+          }
+        }
+      }
+
     }
+
+    // dd($answers);
+
     $question = Question::create([
       ...$contents,
       'type' => $data['type'],
     ]);
 
-    dd($question);
-
     foreach ($data['answers'] as $answer) {
-      if ($data['type'] === 'math') {
-        Answer::create([
-          'question_id' => $question->id,
-          'value' => $answer['content'],
-          'is_correct' => true,
-        ]);
-      } else {
-        Answer::create([
-          'question_id' => $question->id,
-          'content' => $answer['content'],
-          'is_correct' => $answer['is_correct'],
-        ]);
-      }
+      Answer::create([
+        ...$answers,
+        'question_id' => $question->id,
+        'is_correct' => true,
+      ]);
     }
 
     if ($data['type'] === 'photo' && $request->hasFile('photo')) {
