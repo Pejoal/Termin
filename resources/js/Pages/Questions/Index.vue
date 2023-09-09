@@ -7,6 +7,7 @@ import axios from "axios";
 import { ref } from "vue";
 import swal from "sweetalert";
 import { trans } from "laravel-vue-i18n";
+import QuestionLocales from "../Quiz/Partials/QuestionLocales.vue";
 
 const props = defineProps({
   type: String,
@@ -58,8 +59,9 @@ const edit = (id) => {
     form.video = response.data.video;
     form.content = response.data.content;
     form.answers = response.data.answers;
-    locales.forEach(lang => {
+    locales.forEach((lang) => {
       form[lang].content = response.data[lang].content;
+      // form[lang]?.content = response.data[lang]?.content ?? null;
     });
   });
 };
@@ -117,6 +119,9 @@ const destroy = (id) => {
     }
   });
 };
+const active_locale = (newLocale) => {
+  locale.value = newLocale;
+};
 </script>
 
 <template>
@@ -152,10 +157,15 @@ const destroy = (id) => {
                 >
                 <textarea
                   id="question"
-                  v-model="form.content"
+                  v-model="form[locale].content"
                   class="flex-1 rounded-md h-24"
                   required
                 ></textarea>
+                <QuestionLocales
+                  v-on:active_locale="active_locale"
+                  class="mx-2"
+                  :horizontal="true"
+                />
                 <section
                   v-if="props.type === 'photo'"
                   class="border mx-2 w-40 flex items-center justify-center"
@@ -182,14 +192,14 @@ const destroy = (id) => {
                     <input
                       v-if="props.type !== 'math'"
                       type="text"
-                      v-model="form.answers[index].content"
+                      v-model="form.answers[index][locale].content"
                       class="block w-full rounded-md"
                       required
                     />
                     <input
                       v-else-if="props.type === 'math'"
                       type="number"
-                      v-model="form.answers[index].value"
+                      v-model="form.answers[index][locale].value"
                       class="block w-full rounded-md"
                       required
                     />

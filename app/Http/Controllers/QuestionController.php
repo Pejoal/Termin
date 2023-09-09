@@ -33,9 +33,17 @@ class QuestionController extends Controller {
           "content" => $data[$lang]['content'],
         ];
       }
+    }
 
-      foreach ($data['answers'] as $key => $answer) {
+    $question = Question::create([
+      ...$contents,
+      'type' => $data['type'],
+    ]);
+
+    foreach ($data['answers'] as $answer) {
+      foreach ($langs as $lang) {
         if (isset($answer[$lang]) && isset($answer[$lang]['content'])) {
+          $answers['is_correct'] = $answer['is_correct'];
           if ($data['type'] === 'math') {
             $answers[$lang] = [
               "value" => $answer[$lang]['content'],
@@ -48,21 +56,19 @@ class QuestionController extends Controller {
         }
       }
 
-    }
-
-    // dd($answers);
-
-    $question = Question::create([
-      ...$contents,
-      'type' => $data['type'],
-    ]);
-
-    foreach ($data['answers'] as $answer) {
-      Answer::create([
-        ...$answers,
-        'question_id' => $question->id,
-        'is_correct' => true,
-      ]);
+      if ($data['type'] === 'math') {
+        Answer::create([
+          ...$answers,
+          'question_id' => $question->id,
+          'is_correct' => true,
+        ]);
+      } else {
+        Answer::create([
+          ...$answers,
+          'question_id' => $question->id,
+          'is_correct' => $answer['is_correct'],
+        ]);
+      }
     }
 
     if ($data['type'] === 'photo' && $request->hasFile('photo')) {
