@@ -86,7 +86,40 @@ class QuestionController extends Controller {
   }
 
   public function get(Question $question) {
-    $question->load('answers');
+    // $question->load('answers');
+    // $question->getTranslationsArray();
+    $question = Question::with(['answers'])->find($question->id)->toArray();
+    // dd($question);
+
+    $formattedQuestion = [
+      "id" => $question["id"],
+      "content" => $question["content"],
+    ];
+
+    foreach ($question["translations"] as $translation) {
+      $locale = $translation["locale"];
+      $content = $translation["content"];
+      $formattedQuestion[$locale] = ["content" => $content];
+    }
+
+    foreach ($question["answers"] as $answer) {
+      $answerData = [];
+
+      foreach ($answer["translations"] as $translation) {
+        $locale = $translation["locale"];
+        $answerData['id'] = $answer["id"];
+        $answerData['is_correct'] = $answer["is_correct"];
+
+        $answerData[$locale] = [
+          "content" => $translation["content"],
+          "value" => $translation["value"],
+        ];
+      }
+
+      $formattedQuestion["answers"][] = $answerData;
+    }
+
+    dd($formattedQuestion);
     return $question;
   }
 
@@ -135,6 +168,7 @@ class QuestionController extends Controller {
   }
 
   public function destroy(Question $question) {
+    $question->deleteTranslations();
     $question->delete();
   }
 }

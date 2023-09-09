@@ -50,7 +50,7 @@ const edit = (id) => {
     form.photo = response.data.photo;
     form.video = response.data.video;
     form.content = response.data.content;
-    form.correctAnswerIndex = response.data.correct_answer;
+    // form.correctAnswerIndex = response.data.correct_answer;
     form.answers = response.data.answers;
   });
 };
