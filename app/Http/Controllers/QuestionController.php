@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\QuestionRequest;
 use App\Models\Answer;
 use App\Models\Question;
 use Illuminate\Http\Request;
@@ -21,7 +20,6 @@ class QuestionController extends Controller {
 
   public function store(Request $request) {
     $data = $request->all();
-    // dd($data['answers']);
 
     $langs = array_keys(LaravelLocalization::getSupportedLocales());
     $contents = [];
@@ -128,26 +126,43 @@ class QuestionController extends Controller {
   }
 
   public function update(Request $request, Question $question) {
-    dd($request);
-    $question->update([
-      'content' => $request->input('content'),
-      // 'correct_answer' => $request->input('correctAnswerIndex'),
-    ]);
+    $data = $request->all();
 
-    foreach ($request->input('answers') as $index => $answer) {
-      $answerModel = Answer::find($answer['id']);
-      if ($question->type === 'math') {
-        $answerModel->update([
-          'value' => $answer['value'],
-          'is_correct' => true,
-        ]);
-      } else {
-        $answerModel->update([
-          'content' => $answer['content'],
-          'is_correct' => $answer['is_correct'],
-        ]);
+    $langs = array_keys(LaravelLocalization::getSupportedLocales());
+    $contents = [];
+
+    foreach ($langs as $lang) {
+      if (isset($data[$lang])) {
+        $contents[$lang] = [
+          "content" => $data[$lang]['content'] ?? '',
+        ];
       }
     }
+
+    $question->update([
+      ...$contents,
+    ]);
+
+    foreach ($data['answers'] as $answer) {
+      $answerData = [];
+
+      foreach ($langs as $lang) {
+        if (isset($answer[$lang])) {
+          $answerData['is_correct'] = $answer['is_correct'];
+          if ($data['type'] === 'math') {
+            $answerData[$lang] = [
+              "value" => $answer[$lang]['content'] ?? '',
+            ];
+          } else {
+            $answerData[$lang] = [
+              "content" => $answer[$lang]['content'] ?? '',
+            ];
+          }
+        }
+      }
+      Answer::find($answer['id'])->update($answerData);
+    }
+
   }
 
   public function updatePhoto(Request $request, Question $question) {
