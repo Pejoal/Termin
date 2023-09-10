@@ -28,9 +28,9 @@ class QuestionController extends Controller {
     $answers = [];
 
     foreach ($langs as $lang) {
-      if (isset($data[$lang]) && isset($data[$lang]['content'])) {
+      if (isset($data[$lang])) {
         $contents[$lang] = [
-          "content" => $data[$lang]['content'],
+          "content" => $data[$lang]['content'] ?? '',
         ];
       }
     }
@@ -42,15 +42,15 @@ class QuestionController extends Controller {
 
     foreach ($data['answers'] as $answer) {
       foreach ($langs as $lang) {
-        if (isset($answer[$lang]) && isset($answer[$lang]['content'])) {
+        if (isset($answer[$lang])) {
           $answers['is_correct'] = $answer['is_correct'];
           if ($data['type'] === 'math') {
             $answers[$lang] = [
-              "value" => $answer[$lang]['content'],
+              "value" => $answer[$lang]['content'] ?? '',
             ];
           } else {
             $answers[$lang] = [
-              "content" => $answer[$lang]['content'],
+              "content" => $answer[$lang]['content'] ?? '',
             ];
           }
         }
@@ -95,7 +95,6 @@ class QuestionController extends Controller {
     // $question->load('answers');
     // $question->getTranslationsArray();
     $question = Question::with(['answers'])->find($question->id)->toArray();
-    // dd($question);
 
     $formattedQuestion = [
       "id" => $question["id"],
@@ -128,7 +127,8 @@ class QuestionController extends Controller {
     return $formattedQuestion;
   }
 
-  public function update(QuestionRequest $request, Question $question) {
+  public function update(Request $request, Question $question) {
+    dd($request);
     $question->update([
       'content' => $request->input('content'),
       // 'correct_answer' => $request->input('correctAnswerIndex'),
