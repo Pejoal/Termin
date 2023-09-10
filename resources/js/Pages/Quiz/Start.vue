@@ -1,6 +1,6 @@
 <script setup>
 import AuthLayout from "@/Layouts/AuthLayout.vue";
-import { Head } from "@inertiajs/vue3";
+import { Head, Link } from "@inertiajs/vue3";
 import axios from "axios";
 import { ref } from "vue";
 
@@ -142,9 +142,9 @@ const submitAnswers = (answers) => {
           <h2 class="text-2xl font-bold">
             {{ result }} / {{ questions.length }}
           </h2>
-          <p class="btn btn-primary">
+          <Link :href="route('home')" class="btn btn-primary">
             {{ trans("words.congratulations_youve_answered_all_questions") }}
-          </p>
+          </Link>
         </div>
       </section>
     </template>

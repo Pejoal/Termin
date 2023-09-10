@@ -91,7 +91,7 @@ const enableNotifications = (event) => {
           </Transition>
         </form>
 
-        <form
+        <!-- <form
           class="p-2 sm:p-4 shadow sm:rounded-lg"
           @submit.prevent="enableNotifications()"
         >
@@ -103,7 +103,7 @@ const enableNotifications = (event) => {
               name="notifications"
             />
           </section>
-        </form>
+        </form> -->
 
         <div class="p-2 sm:p-4 shadow sm:rounded-lg">
           <DeleteUserForm class="max-w-xl" />
