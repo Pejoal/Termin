@@ -1,29 +1,23 @@
-import { mergeProps, useSSRContext, unref, withCtx, createVNode, withModifiers, toDisplayString, openBlock, createBlock, createCommentVNode, Transition } from "vue";
-import { ssrRenderAttrs, ssrRenderComponent, ssrInterpolate, ssrIncludeBooleanAttr, ssrRenderAttr } from "vue/server-renderer";
-import { A as AuthLayout } from "./AuthLayout-d89e0e9f.mjs";
-import { _ as _export_sfc } from "./_plugin-vue_export-helper-cc2b3d55.mjs";
+import { useSSRContext, unref, withCtx, createVNode, withModifiers, toDisplayString, openBlock, createBlock, createCommentVNode, Transition } from "vue";
+import { ssrRenderComponent, ssrInterpolate, ssrIncludeBooleanAttr, ssrRenderAttr } from "vue/server-renderer";
+import { A as AuthLayout } from "./AuthLayout-1cd28b10.mjs";
 import _sfc_main$4 from "./DeleteUserForm-0636c234.mjs";
 import _sfc_main$3 from "./UpdatePasswordForm-2bb9897a.mjs";
 import _sfc_main$2 from "./UpdateProfileInformationForm-47e92260.mjs";
 import { useForm, Head } from "@inertiajs/vue3";
-import "./Locales-a39ce352.mjs";
+import "./Footer-11875b49.mjs";
+import "./_plugin-vue_export-helper-cc2b3d55.mjs";
+import "./Dropdown-d2a4ee41.mjs";
 import "laravel-vue-i18n";
 import "./TextInput-1899e056.mjs";
 const Switcher_vue_vue_type_style_index_0_scoped_bde7da85_lang = "";
 const _sfc_main$1 = {};
-function _sfc_ssrRender(_ctx, _push, _parent, _attrs) {
-  _push(`<input${ssrRenderAttrs(mergeProps({
-    type: "checkbox",
-    class: "switch w-16 h-6 sm:w-24 sm:h-8"
-  }, _attrs))} data-v-bde7da85>`);
-}
 const _sfc_setup$1 = _sfc_main$1.setup;
 _sfc_main$1.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
   (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/Switcher.vue");
   return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
 };
-const Switcher = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["ssrRender", _sfc_ssrRender], ["__scopeId", "data-v-bde7da85"]]);
 const _sfc_main = {
   __name: "Edit",
   __ssrInlineRender: true,
@@ -40,9 +34,6 @@ const _sfc_main = {
         preserveScroll: true
       });
     }
-    const enableNotifications = (event) => {
-      console.log(event.target.checked);
-    };
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<!--[-->`);
       _push(ssrRenderComponent(unref(Head), {
@@ -82,13 +73,7 @@ const _sfc_main = {
             } else {
               _push2(`<!---->`);
             }
-            _push2(`</form><form class="p-2 sm:p-4 shadow sm:rounded-lg"${_scopeId}><section class="flex justify-between"${_scopeId}><label for="enable-notifications"${_scopeId}>${ssrInterpolate(_ctx.trans("activate_notifications"))}</label>`);
-            _push2(ssrRenderComponent(Switcher, {
-              id: "enable-notifications",
-              onChange: (e) => enableNotifications(e),
-              name: "notifications"
-            }, null, _parent2, _scopeId));
-            _push2(`</section></form><div class="p-2 sm:p-4 shadow sm:rounded-lg"${_scopeId}>`);
+            _push2(`</form><div class="p-2 sm:p-4 shadow sm:rounded-lg"${_scopeId}>`);
             _push2(ssrRenderComponent(_sfc_main$4, { class: "max-w-xl" }, null, _parent2, _scopeId));
             _push2(`</div></div>`);
           } else {
@@ -148,19 +133,6 @@ const _sfc_main = {
                     ]),
                     _: 1
                   })
-                ], 40, ["onSubmit"]),
-                createVNode("form", {
-                  class: "p-2 sm:p-4 shadow sm:rounded-lg",
-                  onSubmit: withModifiers(($event) => enableNotifications(), ["prevent"])
-                }, [
-                  createVNode("section", { class: "flex justify-between" }, [
-                    createVNode("label", { for: "enable-notifications" }, toDisplayString(_ctx.trans("activate_notifications")), 1),
-                    createVNode(Switcher, {
-                      id: "enable-notifications",
-                      onChange: (e) => enableNotifications(e),
-                      name: "notifications"
-                    }, null, 8, ["onChange"])
-                  ])
                 ], 40, ["onSubmit"]),
                 createVNode("div", { class: "p-2 sm:p-4 shadow sm:rounded-lg" }, [
                   createVNode(_sfc_main$4, { class: "max-w-xl" })

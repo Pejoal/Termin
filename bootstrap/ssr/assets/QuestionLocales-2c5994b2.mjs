@@ -1,65 +1,8 @@
-import { onMounted, onUnmounted, computed, ref, mergeProps, unref, useSSRContext, withCtx, createVNode, openBlock, createBlock, Fragment, renderList, toDisplayString } from "vue";
-import { ssrRenderAttrs, ssrRenderSlot, ssrRenderStyle, ssrRenderClass, ssrInterpolate, ssrRenderComponent, ssrRenderList } from "vue/server-renderer";
-import { usePage } from "@inertiajs/vue3";
-import { loadLanguageAsync } from "laravel-vue-i18n";
-const _sfc_main$1 = {
-  __name: "Dropdown",
-  __ssrInlineRender: true,
-  props: {
-    align: {
-      default: "right"
-    },
-    width: {
-      default: "48"
-    },
-    contentClasses: {
-      default: () => ["py-1", "bg-white"]
-    }
-  },
-  setup(__props) {
-    const props = __props;
-    const closeOnEscape = (e) => {
-      if (open.value && e.key === "Escape") {
-        open.value = false;
-      }
-    };
-    onMounted(() => document.addEventListener("keydown", closeOnEscape));
-    onUnmounted(() => document.removeEventListener("keydown", closeOnEscape));
-    const widthClass = computed(() => {
-      return {
-        48: "w-48"
-      }[props.width.toString()];
-    });
-    const alignmentClasses = computed(() => {
-      if (props.align === "left") {
-        return "origin-top-left left-0";
-      } else if (props.align === "right") {
-        return "origin-top-right right-0";
-      } else {
-        return "origin-top";
-      }
-    });
-    const open = ref(false);
-    return (_ctx, _push, _parent, _attrs) => {
-      _push(`<div${ssrRenderAttrs(mergeProps({ class: "relative" }, _attrs))}><div>`);
-      ssrRenderSlot(_ctx.$slots, "trigger", {}, null, _push, _parent);
-      _push(`</div><div style="${ssrRenderStyle(open.value ? null : { display: "none" })}" class="fixed inset-0 z-40"></div><div style="${ssrRenderStyle([
-        open.value ? null : { display: "none" },
-        { "display": "none" }
-      ])}" class="${ssrRenderClass([[unref(widthClass), unref(alignmentClasses)], "absolute z-50 mt-2 rounded-md shadow-lg"])}"><div class="${ssrRenderClass([__props.contentClasses, "rounded-md ring-1 ring-black ring-opacity-5"])}">`);
-      ssrRenderSlot(_ctx.$slots, "content", {}, null, _push, _parent);
-      _push(`</div></div></div>`);
-    };
-  }
-};
-const _sfc_setup$1 = _sfc_main$1.setup;
-_sfc_main$1.setup = (props, ctx) => {
-  const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/Dropdown.vue");
-  return _sfc_setup$1 ? _sfc_setup$1(props, ctx) : void 0;
-};
+import { mergeProps, withCtx, createVNode, openBlock, createBlock, Fragment, renderList, toDisplayString, useSSRContext } from "vue";
+import { ssrRenderAttrs, ssrInterpolate, ssrRenderComponent, ssrRenderList } from "vue/server-renderer";
+import { _ as _sfc_main$1 } from "./Dropdown-d2a4ee41.mjs";
 const _sfc_main = {
-  __name: "Locales",
+  __name: "QuestionLocales",
   __ssrInlineRender: true,
   props: {
     horizontal: {
@@ -71,20 +14,16 @@ const _sfc_main = {
       default: false
     }
   },
-  setup(__props) {
+  emits: ["active_locale"],
+  setup(__props, { emit: emits }) {
     const props = __props;
-    const page = usePage().props;
-    if (page.active_locale_code) {
-      loadLanguageAsync(page.active_locale_code);
-    }
-    const active_locale = (locale, url) => {
-      loadLanguageAsync(locale);
-      location.href = url;
+    const active_locale = (locale) => {
+      emits("active_locale", locale);
     };
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<div${ssrRenderAttrs(mergeProps({
         class: {
-          "hidden md:flex items-center space-x-2 relative": props.horizontal,
+          "items-center space-x-2 relative": props.horizontal,
           "py-2 my-2 border-b flex justify-between items-center": props.vertical
         }
       }, _attrs))}><p>${ssrInterpolate(_ctx.trans("words.choose_locale"))}</p>`);
@@ -120,15 +59,16 @@ const _sfc_main = {
           if (_push2) {
             _push2(`<!--[-->`);
             ssrRenderList(_ctx.$page.props.locales, (locale, code) => {
-              _push2(`<button class="flex justify-between items-center w-full p-2 text-gray-900 hover:text-white bg-white hover:bg-zinc-900"${_scopeId}><span${_scopeId}>${ssrInterpolate(locale.native)}</span><span${_scopeId}>${ssrInterpolate(locale.emoji)}</span></button>`);
+              _push2(`<button type="button" class="flex justify-between items-center w-full p-2 text-gray-900 hover:text-white bg-white hover:bg-zinc-900"${_scopeId}><span${_scopeId}>${ssrInterpolate(locale.native)}</span><span${_scopeId}>${ssrInterpolate(locale.emoji)}</span></button>`);
             });
             _push2(`<!--]-->`);
           } else {
             return [
               (openBlock(true), createBlock(Fragment, null, renderList(_ctx.$page.props.locales, (locale, code) => {
                 return openBlock(), createBlock("button", {
+                  type: "button",
                   class: "flex justify-between items-center w-full p-2 text-gray-900 hover:text-white bg-white hover:bg-zinc-900",
-                  onClick: ($event) => active_locale(code, locale.url),
+                  onClick: ($event) => active_locale(code),
                   key: code
                 }, [
                   createVNode("span", null, toDisplayString(locale.native), 1),
@@ -147,9 +87,9 @@ const _sfc_main = {
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Components/Locales.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Quiz/Partials/QuestionLocales.vue");
   return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
 export {
-  _sfc_main as _
+  _sfc_main as default
 };

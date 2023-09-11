@@ -1,14 +1,16 @@
-import { ref, unref, withCtx, createVNode, toDisplayString, isRef, withModifiers, withDirectives, vModelText, openBlock, createBlock, createCommentVNode, Fragment, renderList, vModelRadio, Transition, Teleport, useSSRContext } from "vue";
-import { ssrRenderComponent, ssrInterpolate, ssrRenderTeleport, ssrRenderAttr, ssrRenderList, ssrIncludeBooleanAttr, ssrLooseEqual } from "vue/server-renderer";
-import { A as AuthLayout } from "./AuthLayout-d89e0e9f.mjs";
-import { useForm, Head } from "@inertiajs/vue3";
+import { ref, unref, withCtx, createVNode, toDisplayString, isRef, withModifiers, withDirectives, vModelText, openBlock, createBlock, createCommentVNode, Fragment, renderList, vModelCheckbox, Transition, Teleport, useSSRContext } from "vue";
+import { ssrRenderComponent, ssrInterpolate, ssrRenderTeleport, ssrRenderAttr, ssrRenderList, ssrIncludeBooleanAttr, ssrLooseContain } from "vue/server-renderer";
+import { A as AuthLayout } from "./AuthLayout-1cd28b10.mjs";
+import { useForm, usePage, Head } from "@inertiajs/vue3";
 import { R as ResuableModal } from "./ResuableModal-2ed3759c.mjs";
 import { T as Toast } from "./Toast-0297fd7e.mjs";
 import axios from "axios";
 import swal from "sweetalert";
 import { trans } from "laravel-vue-i18n";
+import _sfc_main$1 from "./QuestionLocales-2c5994b2.mjs";
+import "./Footer-11875b49.mjs";
 import "./_plugin-vue_export-helper-cc2b3d55.mjs";
-import "./Locales-a39ce352.mjs";
+import "./Dropdown-d2a4ee41.mjs";
 const _sfc_main = {
   __name: "Index",
   __ssrInlineRender: true,
@@ -27,12 +29,24 @@ const _sfc_main = {
     const photoForm = useForm({
       photo: null
     });
+    const videoForm = useForm({
+      video: null
+    });
+    const page = usePage().props;
+    const locale = ref(page.active_locale_code);
+    const locales = Object.keys(page.locales);
+    let formData = {};
+    locales.forEach((lang) => {
+      formData[lang] = {
+        content: ""
+      };
+    });
     const form = useForm({
       id: 0,
+      ...formData,
       photo: "",
-      content: "",
-      correctAnswerIndex: null,
-      answers: ["", "", "", ""],
+      video: "",
+      answers: [],
       type: props.type
     });
     const edit = (id) => {
@@ -40,9 +54,12 @@ const _sfc_main = {
         showModal.value = true;
         form.id = response.data.id;
         form.photo = response.data.photo;
+        form.video = response.data.video;
         form.content = response.data.content;
-        form.correctAnswerIndex = response.data.correct_answer;
         form.answers = response.data.answers;
+        locales.forEach((lang) => {
+          form[lang].content = response.data[lang].content;
+        });
       });
     };
     const update = () => {
@@ -55,6 +72,14 @@ const _sfc_main = {
     };
     function uploadPhoto() {
       photoForm.post(route("question.photo.update", [form.id]), {
+        preserveScroll: true,
+        onSuccess: () => {
+          edit(form.id);
+        }
+      });
+    }
+    function uploadVideo() {
+      videoForm.post(route("question.video.update", [form.id]), {
         preserveScroll: true,
         onSuccess: () => {
           edit(form.id);
@@ -86,6 +111,9 @@ const _sfc_main = {
           new swal(trans("words.question_is_safe"));
         }
       });
+    };
+    const active_locale = (newLocale) => {
+      locale.value = newLocale;
     };
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<!--[-->`);
@@ -128,7 +156,12 @@ const _sfc_main = {
               }, {
                 content: withCtx((_2, _push4, _parent3, _scopeId2) => {
                   if (_push4) {
-                    _push4(`<h3 class="w-full text-center font-bold text-xl"${_scopeId2}>${ssrInterpolate(unref(trans)(`words.${__props.type}_questions`))}</h3><form${_scopeId2}><section class="flex items-center p-2"${_scopeId2}><label for="question" class="w-24"${_scopeId2}>${ssrInterpolate(unref(trans)("words.question"))}:</label><textarea id="question" class="flex-1 rounded-md h-24" required${_scopeId2}>${ssrInterpolate(unref(form).content)}</textarea>`);
+                    _push4(`<h3 class="w-full text-center font-bold text-xl"${_scopeId2}>${ssrInterpolate(unref(trans)(`words.${__props.type}_questions`))}</h3><form${_scopeId2}><section class="flex items-center p-2"${_scopeId2}><label for="question" class="w-24"${_scopeId2}>${ssrInterpolate(unref(trans)("words.question"))}:</label><textarea id="question" class="flex-1 rounded-md h-24" required${_scopeId2}>${ssrInterpolate(unref(form)[locale.value].content)}</textarea>`);
+                    _push4(ssrRenderComponent(_sfc_main$1, {
+                      onActive_locale: active_locale,
+                      class: "mx-2",
+                      horizontal: true
+                    }, null, _parent3, _scopeId2));
                     if (props.type === "photo") {
                       _push4(`<section class="border mx-2 w-40 flex items-center justify-center"${_scopeId2}>`);
                       if (unref(form).photo) {
@@ -148,7 +181,15 @@ const _sfc_main = {
                     }
                     _push4(`<section class="p-2"${_scopeId2}><label${_scopeId2}>${ssrInterpolate(unref(trans)("words.answers"))}:</label><!--[-->`);
                     ssrRenderList(unref(form).answers, (answer, index) => {
-                      _push4(`<section class="flex items-center gap-2 p-2"${_scopeId2}><label${ssrRenderAttr("for", "answer" + index)} class="w-3/4"${_scopeId2}><input type="text"${ssrRenderAttr("value", unref(form).answers[index].content)} class="block w-full rounded-md" required${_scopeId2}></label><input type="radio"${ssrRenderAttr("id", "answer" + index)}${ssrRenderAttr("value", index)}${ssrIncludeBooleanAttr(ssrLooseEqual(unref(form).correctAnswerIndex, index)) ? " checked" : ""}${_scopeId2}></section>`);
+                      _push4(`<section class="flex items-center gap-2 p-2"${_scopeId2}><label${ssrRenderAttr("for", "answer" + index)} class="w-3/4"${_scopeId2}>`);
+                      if (props.type !== "math") {
+                        _push4(`<input type="text"${ssrRenderAttr("value", unref(form).answers[index][locale.value].content)} class="block w-full rounded-md" required${_scopeId2}>`);
+                      } else if (props.type === "math") {
+                        _push4(`<input type="number"${ssrRenderAttr("value", unref(form).answers[index][locale.value].value)} class="block w-full rounded-md" required${_scopeId2}>`);
+                      } else {
+                        _push4(`<!---->`);
+                      }
+                      _push4(`</label><input type="checkbox"${ssrRenderAttr("id", "answer" + index)}${ssrRenderAttr("value", index)}${ssrIncludeBooleanAttr(Array.isArray(unref(form).answers[index].is_correct) ? ssrLooseContain(unref(form).answers[index].is_correct, index) : unref(form).answers[index].is_correct) ? " checked" : ""}${_scopeId2}></section>`);
                     });
                     _push4(`<!--]--></section>`);
                     if (unref(form).errors.answers) {
@@ -178,6 +219,32 @@ const _sfc_main = {
                     } else {
                       _push4(`<!---->`);
                     }
+                    if (props.type === "video") {
+                      _push4(`<form class="p-2"${_scopeId2}><section class="flex justify-between flex-col sm:flex-row"${_scopeId2}><div class="my-2"${_scopeId2}><label class="pr-2" for="video"${_scopeId2}>${ssrInterpolate(unref(trans)("words.video"))}</label><input id="video" type="file"${_scopeId2}></div><button class="btn btn-success" type="submit"${ssrIncludeBooleanAttr(unref(videoForm).processing) ? " disabled" : ""}${_scopeId2}>${ssrInterpolate(unref(trans)("words.upload"))}</button></section>`);
+                      if (unref(videoForm).errors.video) {
+                        _push4(`<p class="text-sm bg-red-600 rounded-md my-1 px-2 py-1"${_scopeId2}>${ssrInterpolate(unref(videoForm).errors.video)}</p>`);
+                      } else {
+                        _push4(`<!---->`);
+                      }
+                      if (unref(videoForm).progress) {
+                        _push4(`<progress${ssrRenderAttr("value", unref(videoForm).progress.percentage)} max="100"${_scopeId2}>${ssrInterpolate(unref(videoForm).progress.percentage)}% </progress>`);
+                      } else {
+                        _push4(`<!---->`);
+                      }
+                      if (unref(videoForm).recentlySuccessful) {
+                        _push4(`<p class="text-sm"${_scopeId2}>${ssrInterpolate(unref(trans)("words.uploaded"))}</p>`);
+                      } else {
+                        _push4(`<!---->`);
+                      }
+                      _push4(`</form>`);
+                    } else {
+                      _push4(`<!---->`);
+                    }
+                    if (unref(form).video) {
+                      _push4(`<section class="flex justify-center h-[40vh]"${_scopeId2}><video class="max-w-full" controls${_scopeId2}><source${ssrRenderAttr("src", unref(form).video)}${_scopeId2}></video></section>`);
+                    } else {
+                      _push4(`<!---->`);
+                    }
                   } else {
                     return [
                       createVNode("h3", { class: "w-full text-center font-bold text-xl" }, toDisplayString(unref(trans)(`words.${__props.type}_questions`)), 1),
@@ -191,12 +258,17 @@ const _sfc_main = {
                           }, toDisplayString(unref(trans)("words.question")) + ":", 1),
                           withDirectives(createVNode("textarea", {
                             id: "question",
-                            "onUpdate:modelValue": ($event) => unref(form).content = $event,
+                            "onUpdate:modelValue": ($event) => unref(form)[locale.value].content = $event,
                             class: "flex-1 rounded-md h-24",
                             required: ""
                           }, null, 8, ["onUpdate:modelValue"]), [
-                            [vModelText, unref(form).content]
+                            [vModelText, unref(form)[locale.value].content]
                           ]),
+                          createVNode(_sfc_main$1, {
+                            onActive_locale: active_locale,
+                            class: "mx-2",
+                            horizontal: true
+                          }),
                           props.type === "photo" ? (openBlock(), createBlock("section", {
                             key: 0,
                             class: "border mx-2 w-40 flex items-center justify-center"
@@ -223,22 +295,31 @@ const _sfc_main = {
                                 for: "answer" + index,
                                 class: "w-3/4"
                               }, [
-                                withDirectives(createVNode("input", {
+                                props.type !== "math" ? withDirectives((openBlock(), createBlock("input", {
+                                  key: 0,
                                   type: "text",
-                                  "onUpdate:modelValue": ($event) => unref(form).answers[index].content = $event,
+                                  "onUpdate:modelValue": ($event) => unref(form).answers[index][locale.value].content = $event,
                                   class: "block w-full rounded-md",
                                   required: ""
-                                }, null, 8, ["onUpdate:modelValue"]), [
-                                  [vModelText, unref(form).answers[index].content]
-                                ])
+                                }, null, 8, ["onUpdate:modelValue"])), [
+                                  [vModelText, unref(form).answers[index][locale.value].content]
+                                ]) : props.type === "math" ? withDirectives((openBlock(), createBlock("input", {
+                                  key: 1,
+                                  type: "number",
+                                  "onUpdate:modelValue": ($event) => unref(form).answers[index][locale.value].value = $event,
+                                  class: "block w-full rounded-md",
+                                  required: ""
+                                }, null, 8, ["onUpdate:modelValue"])), [
+                                  [vModelText, unref(form).answers[index][locale.value].value]
+                                ]) : createCommentVNode("", true)
                               ], 8, ["for"]),
                               withDirectives(createVNode("input", {
-                                type: "radio",
+                                type: "checkbox",
                                 id: "answer" + index,
                                 value: index,
-                                "onUpdate:modelValue": ($event) => unref(form).correctAnswerIndex = $event
+                                "onUpdate:modelValue": ($event) => unref(form).answers[index].is_correct = $event
                               }, null, 8, ["id", "value", "onUpdate:modelValue"]), [
-                                [vModelRadio, unref(form).correctAnswerIndex]
+                                [vModelCheckbox, unref(form).answers[index].is_correct]
                               ])
                             ]);
                           }), 128))
@@ -297,7 +378,66 @@ const _sfc_main = {
                           ]),
                           _: 1
                         })
-                      ], 40, ["onSubmit"])) : createCommentVNode("", true)
+                      ], 40, ["onSubmit"])) : createCommentVNode("", true),
+                      props.type === "video" ? (openBlock(), createBlock("form", {
+                        key: 1,
+                        onSubmit: withModifiers(uploadVideo, ["prevent"]),
+                        class: "p-2"
+                      }, [
+                        createVNode("section", { class: "flex justify-between flex-col sm:flex-row" }, [
+                          createVNode("div", { class: "my-2" }, [
+                            createVNode("label", {
+                              class: "pr-2",
+                              for: "video"
+                            }, toDisplayString(unref(trans)("words.video")), 1),
+                            createVNode("input", {
+                              id: "video",
+                              type: "file",
+                              onInput: ($event) => unref(videoForm).video = $event.target.files[0]
+                            }, null, 40, ["onInput"])
+                          ]),
+                          createVNode("button", {
+                            class: "btn btn-success",
+                            type: "submit",
+                            disabled: unref(videoForm).processing
+                          }, toDisplayString(unref(trans)("words.upload")), 9, ["disabled"])
+                        ]),
+                        unref(videoForm).errors.video ? (openBlock(), createBlock("p", {
+                          key: 0,
+                          class: "text-sm bg-red-600 rounded-md my-1 px-2 py-1"
+                        }, toDisplayString(unref(videoForm).errors.video), 1)) : createCommentVNode("", true),
+                        unref(videoForm).progress ? (openBlock(), createBlock("progress", {
+                          key: 1,
+                          value: unref(videoForm).progress.percentage,
+                          max: "100"
+                        }, toDisplayString(unref(videoForm).progress.percentage) + "% ", 9, ["value"])) : createCommentVNode("", true),
+                        createVNode(Transition, {
+                          "enter-from-class": "opacity-0",
+                          "leave-to-class": "opacity-0",
+                          class: "transition ease-in-out"
+                        }, {
+                          default: withCtx(() => [
+                            unref(videoForm).recentlySuccessful ? (openBlock(), createBlock("p", {
+                              key: 0,
+                              class: "text-sm"
+                            }, toDisplayString(unref(trans)("words.uploaded")), 1)) : createCommentVNode("", true)
+                          ]),
+                          _: 1
+                        })
+                      ], 40, ["onSubmit"])) : createCommentVNode("", true),
+                      unref(form).video ? (openBlock(), createBlock("section", {
+                        key: 2,
+                        class: "flex justify-center h-[40vh]"
+                      }, [
+                        createVNode("video", {
+                          class: "max-w-full",
+                          controls: ""
+                        }, [
+                          createVNode("source", {
+                            src: unref(form).video
+                          }, null, 8, ["src"])
+                        ])
+                      ])) : createCommentVNode("", true)
                     ];
                   }
                 }),
@@ -338,12 +478,17 @@ const _sfc_main = {
                         }, toDisplayString(unref(trans)("words.question")) + ":", 1),
                         withDirectives(createVNode("textarea", {
                           id: "question",
-                          "onUpdate:modelValue": ($event) => unref(form).content = $event,
+                          "onUpdate:modelValue": ($event) => unref(form)[locale.value].content = $event,
                           class: "flex-1 rounded-md h-24",
                           required: ""
                         }, null, 8, ["onUpdate:modelValue"]), [
-                          [vModelText, unref(form).content]
+                          [vModelText, unref(form)[locale.value].content]
                         ]),
+                        createVNode(_sfc_main$1, {
+                          onActive_locale: active_locale,
+                          class: "mx-2",
+                          horizontal: true
+                        }),
                         props.type === "photo" ? (openBlock(), createBlock("section", {
                           key: 0,
                           class: "border mx-2 w-40 flex items-center justify-center"
@@ -370,22 +515,31 @@ const _sfc_main = {
                               for: "answer" + index,
                               class: "w-3/4"
                             }, [
-                              withDirectives(createVNode("input", {
+                              props.type !== "math" ? withDirectives((openBlock(), createBlock("input", {
+                                key: 0,
                                 type: "text",
-                                "onUpdate:modelValue": ($event) => unref(form).answers[index].content = $event,
+                                "onUpdate:modelValue": ($event) => unref(form).answers[index][locale.value].content = $event,
                                 class: "block w-full rounded-md",
                                 required: ""
-                              }, null, 8, ["onUpdate:modelValue"]), [
-                                [vModelText, unref(form).answers[index].content]
-                              ])
+                              }, null, 8, ["onUpdate:modelValue"])), [
+                                [vModelText, unref(form).answers[index][locale.value].content]
+                              ]) : props.type === "math" ? withDirectives((openBlock(), createBlock("input", {
+                                key: 1,
+                                type: "number",
+                                "onUpdate:modelValue": ($event) => unref(form).answers[index][locale.value].value = $event,
+                                class: "block w-full rounded-md",
+                                required: ""
+                              }, null, 8, ["onUpdate:modelValue"])), [
+                                [vModelText, unref(form).answers[index][locale.value].value]
+                              ]) : createCommentVNode("", true)
                             ], 8, ["for"]),
                             withDirectives(createVNode("input", {
-                              type: "radio",
+                              type: "checkbox",
                               id: "answer" + index,
                               value: index,
-                              "onUpdate:modelValue": ($event) => unref(form).correctAnswerIndex = $event
+                              "onUpdate:modelValue": ($event) => unref(form).answers[index].is_correct = $event
                             }, null, 8, ["id", "value", "onUpdate:modelValue"]), [
-                              [vModelRadio, unref(form).correctAnswerIndex]
+                              [vModelCheckbox, unref(form).answers[index].is_correct]
                             ])
                           ]);
                         }), 128))
@@ -444,7 +598,66 @@ const _sfc_main = {
                         ]),
                         _: 1
                       })
-                    ], 40, ["onSubmit"])) : createCommentVNode("", true)
+                    ], 40, ["onSubmit"])) : createCommentVNode("", true),
+                    props.type === "video" ? (openBlock(), createBlock("form", {
+                      key: 1,
+                      onSubmit: withModifiers(uploadVideo, ["prevent"]),
+                      class: "p-2"
+                    }, [
+                      createVNode("section", { class: "flex justify-between flex-col sm:flex-row" }, [
+                        createVNode("div", { class: "my-2" }, [
+                          createVNode("label", {
+                            class: "pr-2",
+                            for: "video"
+                          }, toDisplayString(unref(trans)("words.video")), 1),
+                          createVNode("input", {
+                            id: "video",
+                            type: "file",
+                            onInput: ($event) => unref(videoForm).video = $event.target.files[0]
+                          }, null, 40, ["onInput"])
+                        ]),
+                        createVNode("button", {
+                          class: "btn btn-success",
+                          type: "submit",
+                          disabled: unref(videoForm).processing
+                        }, toDisplayString(unref(trans)("words.upload")), 9, ["disabled"])
+                      ]),
+                      unref(videoForm).errors.video ? (openBlock(), createBlock("p", {
+                        key: 0,
+                        class: "text-sm bg-red-600 rounded-md my-1 px-2 py-1"
+                      }, toDisplayString(unref(videoForm).errors.video), 1)) : createCommentVNode("", true),
+                      unref(videoForm).progress ? (openBlock(), createBlock("progress", {
+                        key: 1,
+                        value: unref(videoForm).progress.percentage,
+                        max: "100"
+                      }, toDisplayString(unref(videoForm).progress.percentage) + "% ", 9, ["value"])) : createCommentVNode("", true),
+                      createVNode(Transition, {
+                        "enter-from-class": "opacity-0",
+                        "leave-to-class": "opacity-0",
+                        class: "transition ease-in-out"
+                      }, {
+                        default: withCtx(() => [
+                          unref(videoForm).recentlySuccessful ? (openBlock(), createBlock("p", {
+                            key: 0,
+                            class: "text-sm"
+                          }, toDisplayString(unref(trans)("words.uploaded")), 1)) : createCommentVNode("", true)
+                        ]),
+                        _: 1
+                      })
+                    ], 40, ["onSubmit"])) : createCommentVNode("", true),
+                    unref(form).video ? (openBlock(), createBlock("section", {
+                      key: 2,
+                      class: "flex justify-center h-[40vh]"
+                    }, [
+                      createVNode("video", {
+                        class: "max-w-full",
+                        controls: ""
+                      }, [
+                        createVNode("source", {
+                          src: unref(form).video
+                        }, null, 8, ["src"])
+                      ])
+                    ])) : createCommentVNode("", true)
                   ]),
                   _: 1
                 }, 8, ["header", "show", "onClose"])

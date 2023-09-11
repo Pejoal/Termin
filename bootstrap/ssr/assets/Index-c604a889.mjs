@@ -1,12 +1,13 @@
 import { unref, withCtx, createVNode, toDisplayString, openBlock, createBlock, Fragment, renderList, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrInterpolate, ssrRenderList } from "vue/server-renderer";
-import _sfc_main$1 from "./Appointments-4a8d9f12.mjs";
-import { A as AuthLayout } from "./AuthLayout-d89e0e9f.mjs";
+import _sfc_main$1 from "./Appointments-88c27fb6.mjs";
+import { A as AuthLayout } from "./AuthLayout-1cd28b10.mjs";
 import { Head } from "@inertiajs/vue3";
 import "./ResuableModal-2ed3759c.mjs";
 import "./_plugin-vue_export-helper-cc2b3d55.mjs";
-import "./AppointmentModal-839a51f7.mjs";
-import "./Locales-a39ce352.mjs";
+import "./AppointmentModal-91aba976.mjs";
+import "./Footer-11875b49.mjs";
+import "./Dropdown-d2a4ee41.mjs";
 import "laravel-vue-i18n";
 const _sfc_main = {
   __name: "Index",

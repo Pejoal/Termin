@@ -1,17 +1,17 @@
 import { unref, withCtx, createVNode, toDisplayString, useSSRContext } from "vue";
 import { ssrRenderComponent, ssrInterpolate } from "vue/server-renderer";
-import _sfc_main$1 from "./Questions-e9219aa3.mjs";
-import { A as AuthLayout } from "./AuthLayout-d89e0e9f.mjs";
+import _sfc_main$1 from "./Quiz-39c4c040.mjs";
+import { A as AuthLayout } from "./AuthLayout-1cd28b10.mjs";
 import { Head } from "@inertiajs/vue3";
-import "./ResuableModal-2ed3759c.mjs";
+import "./Footer-11875b49.mjs";
 import "./_plugin-vue_export-helper-cc2b3d55.mjs";
-import "./Toast-0297fd7e.mjs";
+import "./Dropdown-d2a4ee41.mjs";
 import "laravel-vue-i18n";
-import "./Locales-a39ce352.mjs";
 const _sfc_main = {
-  __name: "Admin",
+  __name: "Client",
   __ssrInlineRender: true,
   props: {
+    test_questions_count: Number,
     text_questions_count: Number,
     math_questions_count: Number,
     photo_questions_count: Number,
@@ -42,7 +42,11 @@ const _sfc_main = {
         }),
         content: withCtx((_, _push2, _parent2, _scopeId) => {
           if (_push2) {
-            _push2(`<main class="p-4 space-y-2"${_scopeId}>`);
+            _push2(`<section class="p-4 space-y-2"${_scopeId}>`);
+            _push2(ssrRenderComponent(_sfc_main$1, {
+              type: "test",
+              questions_count: __props.test_questions_count
+            }, null, _parent2, _scopeId));
             _push2(ssrRenderComponent(_sfc_main$1, {
               type: "text",
               questions_count: __props.text_questions_count
@@ -59,10 +63,14 @@ const _sfc_main = {
               type: "video",
               questions_count: __props.video_questions_count
             }, null, _parent2, _scopeId));
-            _push2(`</main>`);
+            _push2(`</section>`);
           } else {
             return [
-              createVNode("main", { class: "p-4 space-y-2" }, [
+              createVNode("section", { class: "p-4 space-y-2" }, [
+                createVNode(_sfc_main$1, {
+                  type: "test",
+                  questions_count: __props.test_questions_count
+                }, null, 8, ["questions_count"]),
                 createVNode(_sfc_main$1, {
                   type: "text",
                   questions_count: __props.text_questions_count
@@ -92,7 +100,7 @@ const _sfc_main = {
 const _sfc_setup = _sfc_main.setup;
 _sfc_main.setup = (props, ctx) => {
   const ssrContext = useSSRContext();
-  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Quiz/Admin.vue");
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("resources/js/Pages/Quiz/Client.vue");
   return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
 };
 export {

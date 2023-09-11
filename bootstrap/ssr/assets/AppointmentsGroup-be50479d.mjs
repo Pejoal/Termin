@@ -1,17 +1,17 @@
-import { ref, mergeProps, useSSRContext } from "vue";
+import { mergeProps, useSSRContext } from "vue";
 import { ssrRenderAttrs, ssrInterpolate, ssrRenderList, ssrRenderComponent } from "vue/server-renderer";
-import _sfc_main$1 from "./Appointment-da054933.mjs";
+import _sfc_main$1 from "./Appointment-4ec97797.mjs";
 import "./ResuableModal-2ed3759c.mjs";
 import "./_plugin-vue_export-helper-cc2b3d55.mjs";
-import "./AppointmentModal-839a51f7.mjs";
+import "./AppointmentModal-91aba976.mjs";
 import "@inertiajs/vue3";
 const _sfc_main = {
   __name: "AppointmentsGroup",
   __ssrInlineRender: true,
   props: {
     appointments: {
-      type: Array,
-      default: []
+      type: Object,
+      default: {}
     },
     header: {
       type: String,
@@ -20,7 +20,6 @@ const _sfc_main = {
   },
   setup(__props) {
     const props = __props;
-    ref(false);
     return (_ctx, _push, _parent, _attrs) => {
       _push(`<section${ssrRenderAttrs(mergeProps({ class: "p-2 bg-sky-200 rounded-lg space-y-2" }, _attrs))}><h2 class="text-xl font-black">${ssrInterpolate(_ctx.trans(`words.${__props.header}`))}</h2><!--[-->`);
       ssrRenderList(props.appointments, (appointment) => {
