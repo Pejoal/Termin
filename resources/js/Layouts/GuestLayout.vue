@@ -67,7 +67,7 @@ const toggleNav = () => {
         @click="showNav = false"
       ></div>
     </header>
-    <div class="grid place-items-center">
+    <div>
       <slot />
     </div>
   </div>
