@@ -46,10 +46,10 @@ import Navigations from "@/Components/Navigations.vue";
           <hr />
 
           <p class="mt-2 text-gray-200">
-            <a href="#">Mobil-Nr: 0176/40172874 </a>
+            <a href="tel:0176/40172874">Mobil-Nr: 0176/40172874 </a>
           </p>
           <p class="text-gray-200">
-            <a href="#">E-Mail: kgv1948@web.de </a>
+            <a href="mailto:kgv1948@web.de">E-Mail: kgv1948@web.de </a>
           </p>
         </article>
       </section>
