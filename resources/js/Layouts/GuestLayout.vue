@@ -2,6 +2,7 @@
 import Locales from "@/Components/Locales.vue";
 import Navigations from "@/Components/Navigations.vue";
 import Hamburger from "@/Components/Hamburger.vue";
+import Footer from "./Partials/Footer.vue";
 import { Link } from "@inertiajs/vue3";
 
 import { ref } from "vue";
@@ -70,5 +71,6 @@ const toggleNav = () => {
     <div>
       <slot />
     </div>
+    <Footer />
   </div>
 </template>

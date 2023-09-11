@@ -4,6 +4,7 @@ import { Link } from "@inertiajs/vue3";
 import Navigations from "@/Components/Navigations.vue";
 import Hamburger from "@/Components/Hamburger.vue";
 import Locales from "@/Components/Locales.vue";
+import Footer from "./Partials/Footer.vue";
 
 const showNav = ref(false);
 const toggleNav = () => {
@@ -31,7 +32,7 @@ const toggleNav = () => {
       <Navigations :horizontal="true" />
 
       <Hamburger class="md:hidden" @close="toggleNav" :show="showNav" />
-      
+
       <!-- Side Menu  -->
       <transition name="slide">
         <div
@@ -95,6 +96,7 @@ const toggleNav = () => {
         </div>
       </div>
     </main>
+    <Footer />
   </div>
 </template>
 <style scoped>
