@@ -56,6 +56,8 @@ Route::group([], function () {
   require __DIR__ . '/auth.php';
   
   Route::get('/home', [HomeController::class, 'index'])->name('home');
+  Route::get('/data-protection', [HomeController::class, 'data_protection'])->name('data-protection');
+  Route::get('/imprint', [HomeController::class, 'imprint'])->name('imprint');
 
   Route::middleware(['auth', 'verified'])->group(function () {
 

@@ -21,7 +21,7 @@ const active_locale = (locale) => {
 <template>
   <div
     :class="{
-      'hidden md:flex items-center space-x-2 relative': props.horizontal,
+      'items-center space-x-2 relative': props.horizontal,
       'py-2 my-2 border-b flex justify-between items-center': props.vertical,
     }"
   >

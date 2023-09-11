@@ -125,5 +125,7 @@ return [
   'already_registered' => "Already Registered",
   'choose_a_user' => "Choose a user",
   'filter_by_user' => "Filter By User",
+  'data_protection' => "Data Protection",
+  'imprint' => "Imprint",
 
 ];
