@@ -4,8 +4,10 @@ import { Head } from "@inertiajs/vue3";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 import { ref } from "vue";
 
-const editor = ClassicEditor;
-const editorData = ref("<p>Content of the editor.</p>");
+const imprint = ClassicEditor;
+const imprintData = ref("<p>Imprint.</p>");
+const dataProtection = ClassicEditor;
+const dataProtectionData = ref("<p>Data Protection.</p>");
 const editorConfig = {};
 
 const props = defineProps({
@@ -29,10 +31,29 @@ const props = defineProps({
           </h2>
         </header>
         <main class="space-y-2 rounded-lg">
-          <ckeditor :editor="editor" v-model="editorData" :config="editorConfig"></ckeditor>
+          <section>
+            <h3 class="text-2xl">{{ trans("words.imprint") }}</h3>
+            <ckeditor
+              :editor="imprint"
+              v-model="imprintData"
+              :config="editorConfig"
+            ></ckeditor>
+          </section>
+          <section>
+            <h3 class="text-2xl">{{ trans("words.data_protection") }}</h3>
+            <ckeditor
+              :editor="dataProtection"
+              v-model="dataProtectionData"
+              :config="editorConfig"
+            ></ckeditor>
+          </section>
         </main>
       </section>
     </template>
   </AuthLayout>
 </template>
-<style></style>
+<style>
+.ck-content {
+  height: 50rem;
+}
+</style>
