@@ -85,6 +85,7 @@ Route::group([], function () {
     // Admin
     Route::group(['middleware' => 'admins-only'], function () {
       Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+      Route::get('admin/screens', [AdminController::class, 'screens'])->name('admin.screens');
 
       Route::put('appointment/{appointment}/approve', [AppointmentController::class, 'approve'])->name('appointment.approve');
       Route::put('appointment/{appointment}/decline', [AppointmentController::class, 'decline'])->name('appointment.decline');

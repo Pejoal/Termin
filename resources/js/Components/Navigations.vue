@@ -76,6 +76,16 @@ const props = defineProps({
       >
         {{ trans("words.quiz") }}
       </Link>
+      <Link
+        :href="route('admin.screens')"
+        class="hover:font-bold"
+        :class="{
+          'text-zinc-700 hover:text-zinc-800': props.dark,
+          'underline  font-bold': route().current('admin.screens'),
+        }"
+      >
+        {{ trans("words.screens") }}
+      </Link>
     </template>
     <template v-if="$page.props.auth?.user?.type === 'client'">
       <Link

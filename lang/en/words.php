@@ -127,5 +127,7 @@ return [
   'filter_by_user' => "Filter By User",
   'data_protection' => "Data Protection",
   'imprint' => "Imprint",
+  'screens' => "Screens",
+  'control_screens' => "Control Screens",
 
 ];

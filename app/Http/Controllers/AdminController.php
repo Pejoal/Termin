@@ -71,4 +71,9 @@ class AdminController extends Controller {
     ]);
   }
 
+  public function screens() {
+    return Inertia::render('Screens/Index', [
+    ]);
+  }
+
 }
