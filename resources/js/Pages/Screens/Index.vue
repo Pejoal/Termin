@@ -1,20 +1,41 @@
 <script setup>
 import AuthLayout from "@/Layouts/AuthLayout.vue";
-import { Head } from "@inertiajs/vue3";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import { ref } from "vue";
-
-const imprint = ClassicEditor;
-const imprintData = ref("<p>Imprint.</p>");
-const dataProtection = ClassicEditor;
-const dataProtectionData = ref("<p>Data Protection.</p>");
-const editorConfig = {};
+import { Head, usePage } from "@inertiajs/vue3";
+import axios from "axios";
 
 const props = defineProps({
   // previousAppointments: {
   //   type: Object,
   //   default: {},
   // },
+});
+const page = usePage().props;
+
+const save_home = () => {
+  axios.post(route("appointment.store"), CKEDITOR.instances.home.getData());
+};
+
+const save_imprint = () => {
+  axios.post(route("appointment.store"), CKEDITOR.instances.imprint.getData());
+};
+
+const save_data_protection = () => {
+  axios.post(route("appointment.store"), CKEDITOR.instances.data_protection.getData());
+};
+
+$(document).ready(function () {
+  CKEDITOR.replace("home", {
+    language: page.active_locale_code,
+    uiColor: "#eeeeee",
+  });
+  CKEDITOR.replace("imprint", {
+    language: page.active_locale_code,
+    uiColor: "#eeeeee",
+  });
+  CKEDITOR.replace("data_protection", {
+    language: page.active_locale_code,
+    uiColor: "#eeeeee",
+  });
 });
 </script>
 
@@ -25,27 +46,38 @@ const props = defineProps({
     <template #left-sidebar> </template>
     <template #content>
       <section class="p-4">
-        <header class="flex items-center justify-center mb-2">
+        <header class="flex items-center justify-center">
           <h2 class="text-xl font-bold pb-1 border-b border-b-black">
-            {{ trans("words.control_screens") }}
+            {{ trans("words.screens") }}
           </h2>
         </header>
         <main class="space-y-2 rounded-lg">
-          <section>
-            <h3 class="text-2xl">{{ trans("words.imprint") }}</h3>
-            <ckeditor
-              :editor="imprint"
-              v-model="imprintData"
-              :config="editorConfig"
-            ></ckeditor>
+          <section class="py-2 border-b border-black">
+            <h3 class="text-2xl">{{ trans("words.home") }}</h3>
+            <textarea name="home" id="home">
+                xxx
+            </textarea>
+            <button @click="save_home" class="btn btn-primary my-2">
+              {{ trans("words.save") }}
+            </button>
           </section>
-          <section>
+          <section class="py-2 border-b border-black">
+            <h3 class="text-2xl">{{ trans("words.imprint") }}</h3>
+            <textarea name="imprint" id="imprint">
+                xxx
+            </textarea>
+            <button @click="save_imprint" class="btn btn-primary my-2">
+              {{ trans("words.save") }}
+            </button>
+          </section>
+          <section class="py-2 border-b border-black">
             <h3 class="text-2xl">{{ trans("words.data_protection") }}</h3>
-            <ckeditor
-              :editor="dataProtection"
-              v-model="dataProtectionData"
-              :config="editorConfig"
-            ></ckeditor>
+            <textarea name="data_protection" id="data_protection">
+                xxx
+            </textarea>
+            <button @click="save_data_protection" class="btn btn-primary my-2">
+              {{ trans("words.save") }}
+            </button>
           </section>
         </main>
       </section>
@@ -53,7 +85,7 @@ const props = defineProps({
   </AuthLayout>
 </template>
 <style>
-.ck-content {
-  height: 50rem;
+.cke_contents {
+  height: 50rem !important;
 }
 </style>

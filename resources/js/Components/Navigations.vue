@@ -139,7 +139,7 @@ const props = defineProps({
         'underline  font-bold': route().current('login'),
       }"
     >
-      {{ trans("login") }}
+      {{ trans("words.login") }}
     </Link>
   </nav>
 </template>

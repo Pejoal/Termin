@@ -128,6 +128,5 @@ return [
   'data_protection' => "Data Protection",
   'imprint' => "Imprint",
   'screens' => "Screens",
-  'control_screens' => "Control Screens",
 
 ];

@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="{{ asset('plugins/chosen/chosen.min.css') }}">
   <script src="{{ asset('plugins/jquery.min.js') }}"></script>
   <script src="{{ asset('plugins/chosen/chosen.jquery.min.js') }}"></script>
+  <script src="{{ asset('plugins/ckeditor/ckeditor.js') }}"></script>
 </body>
 
 </html>
