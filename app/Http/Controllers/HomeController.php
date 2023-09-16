@@ -9,7 +9,9 @@ use Inertia\Inertia;
 class HomeController extends Controller {
 
   public function index() {
+    $screen = Screen::where('name', 'home')->first();
     return Inertia::render('Home', [
+      'screen' => $screen,
     ]);
   }
 
@@ -19,8 +21,10 @@ class HomeController extends Controller {
     ]);
   }
 
-  public function data_protection() {
-    return Inertia::render('DataProtection/Index', [
+  public function imprint() {
+    $screen = Screen::where('name', 'imprint')->first();
+    return Inertia::render('Imprint/Index', [
+      'screen' => $screen,
     ]);
   }
 
@@ -30,8 +34,10 @@ class HomeController extends Controller {
     ]);
   }
 
-  public function imprint() {
-    return Inertia::render('Imprint/Index', [
+  public function data_protection() {
+    $screen = Screen::where('name', 'data_protection')->first();
+    return Inertia::render('DataProtection/Index', [
+      'screen' => $screen,
     ]);
   }
 

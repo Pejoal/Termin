@@ -1,6 +1,12 @@
 <script setup>
 import GuestLayout from "@/Layouts/GuestLayout.vue";
 import { Head } from "@inertiajs/vue3";
+const props = defineProps({
+  screen: {
+    type: Object,
+    default: {},
+  },
+});
 </script>
 
 <template>
@@ -8,6 +14,7 @@ import { Head } from "@inertiajs/vue3";
     <title>{{ trans("words.home") }}</title>
   </Head>
   <GuestLayout>
-    {{ trans("words.welcome") }}
+    <main v-html="screen.content">
+    </main>
   </GuestLayout>
 </template>
