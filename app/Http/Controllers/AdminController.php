@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Appointment;
+use App\Models\Screen;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -72,7 +73,9 @@ class AdminController extends Controller {
   }
 
   public function screens() {
+    $screens = Screen::get();
     return Inertia::render('Screens/Index', [
+      'screens' => $screens,
     ]);
   }
 

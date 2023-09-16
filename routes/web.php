@@ -56,11 +56,11 @@ Route::group([], function () {
   require __DIR__ . '/auth.php';
   
   Route::get('home', [HomeController::class, 'index'])->name('home');
-  Route::get('home/store', [HomeController::class, 'storeHome'])->name('home.store');
+  Route::post('home/store', [HomeController::class, 'storeHome'])->name('home.store');
   Route::get('imprint', [HomeController::class, 'imprint'])->name('imprint');
-  Route::get('imprint/store', [imprintController::class, 'storeImprint'])->name('imprint.store');
+  Route::post('imprint/store', [HomeController::class, 'storeImprint'])->name('imprint.store');
   Route::get('data-protection', [HomeController::class, 'data_protection'])->name('data-protection');
-  Route::get('data-protection/store', [HomeController::class, 'storeDataProtection'])->name('data-protection.store');
+  Route::post('data-protection/store', [HomeController::class, 'storeDataProtection'])->name('data-protection.store');
 
   Route::middleware(['auth', 'verified'])->group(function () {
 

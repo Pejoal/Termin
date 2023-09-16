@@ -2,9 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Comment;
-use App\Models\Like;
-use App\Models\Reply;
+use App\Models\Screen;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -48,6 +46,19 @@ class SetupSeeder extends Seeder {
       'type' => 'client',
     ]);
 
-  
+    Screen::create([
+      'name' => 'home',
+      'content' => '',
+    ]);
+
+    Screen::create([
+      'name' => 'imprint',
+      'content' => '',
+    ]);
+
+    Screen::create([
+      'name' => 'data_protection',
+      'content' => '',
+    ]);
   }
 }

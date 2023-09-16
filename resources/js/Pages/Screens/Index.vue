@@ -4,23 +4,29 @@ import { Head, usePage } from "@inertiajs/vue3";
 import axios from "axios";
 
 const props = defineProps({
-  // previousAppointments: {
-  //   type: Object,
-  //   default: {},
-  // },
+  screens: {
+    type: Array,
+    default: [],
+  },
 });
 const page = usePage().props;
 
 const save_home = () => {
-  axios.post(route("appointment.store"), CKEDITOR.instances.home.getData());
+  axios.post(route("home.store"), {
+    content: CKEDITOR.instances.home.getData(),
+  });
 };
 
 const save_imprint = () => {
-  axios.post(route("appointment.store"), CKEDITOR.instances.imprint.getData());
+  axios.post(route("imprint.store"), {
+    content: CKEDITOR.instances.imprint.getData(),
+  });
 };
 
 const save_data_protection = () => {
-  axios.post(route("appointment.store"), CKEDITOR.instances.data_protection.getData());
+  axios.post(route("data-protection.store"), {
+    content: CKEDITOR.instances.data_protection.getData(),
+  });
 };
 
 $(document).ready(function () {
@@ -55,7 +61,7 @@ $(document).ready(function () {
           <section class="py-2 border-b border-black">
             <h3 class="text-2xl">{{ trans("words.home") }}</h3>
             <textarea name="home" id="home">
-                xxx
+              {{ screens[0].content }}
             </textarea>
             <button @click="save_home" class="btn btn-primary my-2">
               {{ trans("words.save") }}
@@ -64,7 +70,7 @@ $(document).ready(function () {
           <section class="py-2 border-b border-black">
             <h3 class="text-2xl">{{ trans("words.imprint") }}</h3>
             <textarea name="imprint" id="imprint">
-                xxx
+              {{ screens[1].content }}
             </textarea>
             <button @click="save_imprint" class="btn btn-primary my-2">
               {{ trans("words.save") }}
@@ -73,7 +79,7 @@ $(document).ready(function () {
           <section class="py-2 border-b border-black">
             <h3 class="text-2xl">{{ trans("words.data_protection") }}</h3>
             <textarea name="data_protection" id="data_protection">
-                xxx
+              {{ screens[2].content }}
             </textarea>
             <button @click="save_data_protection" class="btn btn-primary my-2">
               {{ trans("words.save") }}
