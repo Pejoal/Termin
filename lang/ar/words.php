@@ -123,5 +123,8 @@ return [
   'already_registered' => "مُسجّل بالفعل",
   'choose_a_user' => "اختر مستخدمًا",
   'filter_by_user' => "تصفية حسب المستخدم",
-  
+  'data_protection' => "حماية البيانات",
+  'imprint' => "بصمة",
+  'screens' => "شاشات",
+
 ];

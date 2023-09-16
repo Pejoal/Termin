@@ -124,5 +124,8 @@ return [
   'already_registered' => "Déjà enregistré",
   'choose_a_user' => "Choisissez un utilisateur",
   'filter_by_user' => "Filtrer par utilisateur",
-
+  'data_protection' => "Protection des données",
+  'imprint' => "Mentions légales",
+  'screens' => "Écrans",
+  
 ];

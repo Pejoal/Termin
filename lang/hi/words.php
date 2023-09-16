@@ -124,5 +124,8 @@ return [
   'already_registered' => "पहले से पंजीकृत",
   'choose_a_user' => "एक उपयोगकर्ता चुनें",
   'filter_by_user' => "उपयोगकर्ता द्वारा फ़िल्टर करें",
-
+  'data_protection' => "डेटा सुरक्षा",
+  'imprint' => "प्रिंट",
+  'screens' => "स्क्रीन्स",
+  
 ];

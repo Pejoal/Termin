@@ -124,5 +124,8 @@ return [
   'already_registered' => "已注册",
   'choose_a_user' => "选择用户",
   'filter_by_user' => "按用户筛选",
-
+  'data_protection' => "数据保护",
+  'imprint' => "印记",
+  'screens' => "屏幕",
+  
 ];

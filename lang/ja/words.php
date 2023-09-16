@@ -124,5 +124,8 @@ return [
   'already_registered' => "既に登録済み",
   'choose_a_user' => "ユーザーを選択",
   'filter_by_user' => "ユーザーでフィルタリング",
-
+  'data_protection' => "データ保護",
+  'imprint' => "インプリント",
+  'screens' => "画面",
+  
 ];

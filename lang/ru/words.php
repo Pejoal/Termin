@@ -124,5 +124,8 @@ return [
   'already_registered' => "Уже зарегистрирован",
   'choose_a_user' => "Выберите пользователя",
   'filter_by_user' => "Фильтр по пользователю",
+  'data_protection' => "Защита данных",
+  'imprint' => "Импринт",
+  'screens' => "Экраны",
 
 ];
