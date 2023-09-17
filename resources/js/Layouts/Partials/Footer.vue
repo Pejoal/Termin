@@ -5,11 +5,9 @@ import Navigations from "@/Components/Navigations.vue";
 <template>
   <footer class="bg-gray-900 text-white py-8">
     <main class="container mx-auto flex flex-wrap justify-between">
-      <!-- About Us Section -->
       <section class="w-full sm:w-1/2 md:w-1/4 px-4 mb-8">
         <h2 class="h-20 text-2xl font-semibold mb-4">
-          <span class="font-bold text-green-400"> KGV </span>
-          papenwinkel e.V.Höxter
+          {{ trans("words.my_drive_school") }}
         </h2>
         <p>
           Seit 1948 gibt es nun schon den KGV Papenwinkel im Herzen des
@@ -17,19 +15,16 @@ import Navigations from "@/Components/Navigations.vue";
         </p>
       </section>
 
-      <!-- Contact Us Section -->
       <section class="w-full sm:w-1/2 md:w-1/4 px-4 mb-8">
         <h2 class="h-20 text-2xl font-semibold mb-4">Links Unsere Web Seite</h2>
         <Navigations :vertical="true" />
       </section>
 
-      <!-- Social Media Section -->
       <section class="w-full sm:w-1/2 md:w-1/4 px-4 mb-8">
         <h2 class="h-20 text-2xl font-semibold mb-4">Best Of KGV</h2>
         ABC
       </section>
 
-      <!-- Copyright Section -->
       <section class="w-full sm:w-1/2 md:w-1/4 px-4 mb-8">
         <h2 class="h-20 text-2xl font-semibold mb-4">Aushang</h2>
 
@@ -55,4 +50,25 @@ import Navigations from "@/Components/Navigations.vue";
       </section>
     </main>
   </footer>
+  <section class="text-lg bg-zinc-900 text-white flex flex-col items-center justify-center p-4">
+    <p>
+      Copyright © 2023 - All Rights Reserved -
+      {{ trans("words.my_drive_school") }}
+    </p>
+    <p>
+      <a
+        href="mailto:pejoal.official@gmail.com"
+        title="Mail Me"
+      >
+        Pejoal
+      </a>
+      -
+      <a
+        href="mailto:pejoal.official@gmail.com"
+        title="Mail Me"
+      >
+        Zana
+      </a>
+    </p>
+  </section>
 </template>
