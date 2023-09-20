@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\QuestionController;
 use App\Http\Controllers\QuizController;
+use App\Models\Settings;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -22,6 +23,7 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 |
  */
 Route::group([], function () {
+  $settings = Settings::first();
   $locales = collect(LaravelLocalization::getSupportedLocales())->map(function ($properties, $localeCode) {
     return [
       'code' => $localeCode,
@@ -33,6 +35,7 @@ Route::group([], function () {
   Inertia::share([
     'locales' => $locales,
     'active_locale_code' => LaravelLocalization::getCurrentLocale(),
+    'logo' => $settings->logo,
   ]);
 
   Route::get('/', function () {
@@ -64,10 +67,10 @@ Route::group([], function () {
 
   Route::middleware(['auth', 'verified'])->group(function () {
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::post('/profile/photo/update', [ProfileController::class, 'updateProfilePhoto'])->name('profile.photo.update');
+    Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::post('profile/photo/update', [ProfileController::class, 'updateProfilePhoto'])->name('profile.photo.update');
 
     Route::put('appointment/{appointment}/update', [AppointmentController::class, 'update'])->name('appointment.update');
     Route::delete('appointment/{appointment}/delete', [AppointmentController::class, 'delete'])->name('appointment.delete');
@@ -89,6 +92,7 @@ Route::group([], function () {
     Route::group(['middleware' => 'admins-only'], function () {
       Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
       Route::get('admin/screens', [AdminController::class, 'screens'])->name('admin.screens');
+      Route::post('admin/logo/update', [AdminController::class, 'updateLogo'])->name('admin.logo.update');
 
       Route::put('appointment/{appointment}/approve', [AppointmentController::class, 'approve'])->name('appointment.approve');
       Route::put('appointment/{appointment}/decline', [AppointmentController::class, 'decline'])->name('appointment.decline');

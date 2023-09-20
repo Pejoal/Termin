@@ -1,6 +1,6 @@
 <script setup>
 import AuthLayout from "@/Layouts/AuthLayout.vue";
-import { Head, usePage } from "@inertiajs/vue3";
+import { Head, useForm, usePage } from "@inertiajs/vue3";
 import axios from "axios";
 
 const props = defineProps({
@@ -10,6 +10,16 @@ const props = defineProps({
   },
 });
 const page = usePage().props;
+
+const form = useForm({
+  logo: null,
+});
+
+function uploadLogo() {
+  form.post(route("admin.logo.update"), {
+    preserveScroll: true,
+  });
+}
 
 const save_home = () => {
   axios.post(route("home.store"), {
@@ -57,6 +67,54 @@ $(document).ready(function () {
             {{ trans("words.screens") }}
           </h2>
         </header>
+
+        <form
+          class="p-2 sm:p-4 shadow sm:rounded-lg"
+          @submit.prevent="uploadLogo"
+        >
+          <section class="flex justify-between flex-col sm:flex-row">
+            <div class="my-2">
+              <label class="pr-2" for="logo">
+                {{ trans("words.logo") }}
+              </label>
+              <input
+                id="logo"
+                type="file"
+                @input="form.logo = $event.target.files[0]"
+              />
+            </div>
+            <button
+              class="btn btn-success"
+              type="submit"
+              :disabled="form.processing"
+            >
+              {{ trans("words.upload") }}
+            </button>
+          </section>
+          <p
+            v-if="form.errors.logo"
+            class="text-sm bg-red-600 rounded-md my-1 px-2 py-1"
+          >
+            {{ form.errors.logo }}
+          </p>
+          <progress
+            v-if="form.progress"
+            :value="form.progress.percentage"
+            max="100"
+          >
+            {{ form.progress.percentage }}%
+          </progress>
+          <Transition
+            enter-from-class="opacity-0"
+            leave-to-class="opacity-0"
+            class="transition ease-in-out"
+          >
+            <p v-if="form.recentlySuccessful" class="text-sm">
+              {{ trans("words.uploaded") }}
+            </p>
+          </Transition>
+        </form>
+
         <main class="space-y-2 rounded-lg">
           <section class="py-2 border-b border-black">
             <h3 class="text-2xl">{{ trans("words.home") }}</h3>

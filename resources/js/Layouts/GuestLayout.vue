@@ -18,9 +18,17 @@ const toggleNav = () => {
     <header
       class="flex items-center justify-between h-20 bg-zinc-400 py-2 px-4 sm:px-6 lg:px-8"
     >
-      <Link class="font-bold text-xl" :href="route('home')">
-        {{ trans("words.my_drive_school") }}
-      </Link>
+      <section class="flex items-center gap-2">
+        <img
+          class="rounded-full w-14 h-14 md:w-16 md:h-16"
+          v-if="$page?.props?.logo"
+          :src="$page?.props?.logo"
+          :alt="trans('words.logo')"
+        />
+        <Link class="font-bold text-xl" :href="route('home')">
+          {{ trans("words.my_drive_school") }}
+        </Link>
+      </section>
       <Locales :horizontal="true" />
 
       <Navigations :horizontal="true" />
