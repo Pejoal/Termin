@@ -127,5 +127,9 @@ return [
   'data_protection' => "Ochrona Danych",
   'imprint' => "Odbitka",
   'screens' => "Ekrany",
+  'links_of_website' => "Linki do strony internetowej",
+  'logo' => "Logo",
+  'copyright_all_rights_reserved' => "Prawa autorskie © 2023 - Wszelkie prawa zastrzeżone",
+  'best_of_my_drive_school' => "Najlepsza ze Szkoły Jazdy",
 
 ];

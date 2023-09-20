@@ -126,5 +126,9 @@ return [
   'data_protection' => "Protección de datos",
   'imprint' => "Aviso legal",
   'screens' => "Pantallas",
-  
+  'links_of_website' => "Enlaces del sitio web",
+  'logo' => "Logotipo",
+  'copyright_all_rights_reserved' => "Derechos de autor © 2023 - Todos los derechos reservados",
+  'best_of_my_drive_school' => "Lo mejor de mi autoescuela",
+
 ];

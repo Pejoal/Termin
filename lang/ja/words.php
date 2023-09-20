@@ -127,5 +127,9 @@ return [
   'data_protection' => "データ保護",
   'imprint' => "インプリント",
   'screens' => "画面",
-  
+  'links_of_website' => "ウェブサイトのリンク",
+  'logo' => "ロゴ",
+  'copyright_all_rights_reserved' => "著作権 © 2023 - すべての権利保有",
+  'best_of_my_drive_school' => "私の運転学校のベスト",
+
 ];

@@ -127,5 +127,9 @@ return [
   'data_protection' => "डेटा सुरक्षा",
   'imprint' => "प्रिंट",
   'screens' => "स्क्रीन्स",
-  
+  'links_of_website' => "वेबसाइट के लिंक",
+  'logo' => "लोगो",
+  'copyright_all_rights_reserved' => "कॉपीराइट © 2023 - सभी अधिकार सुरक्षित",
+  'best_of_my_drive_school' => "मेरे ड्राइव स्कूल का सर्वश्रेष्ठ",
+
 ];

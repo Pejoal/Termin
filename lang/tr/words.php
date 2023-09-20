@@ -127,5 +127,9 @@ return [
   'data_protection' => "Veri Koruma",
   'imprint' => "İmza",
   'screens' => "Ekranlar",
+  'links_of_website' => "Web Sitesi Bağlantıları",
+  'logo' => "Logo",
+  'copyright_all_rights_reserved' => "Telif Hakkı © 2023 - Tüm Hakları Saklıdır",
+  'best_of_my_drive_school' => "Sürücü Okulumun En İyisi",
 
 ];

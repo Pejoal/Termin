@@ -127,5 +127,9 @@ return [
   'data_protection' => "Protezione dei dati",
   'imprint' => "Impressum",
   'screens' => "Schermi",
-  
+  'links_of_website' => "Link del sito web",
+  'logo' => "Logo",
+  'copyright_all_rights_reserved' => "Copyright © 2023 - Tutti i diritti riservati",
+  'best_of_my_drive_school' => "Il meglio della mia scuola di guida",
+
 ];

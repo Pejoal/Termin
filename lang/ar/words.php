@@ -126,5 +126,9 @@ return [
   'data_protection' => "حماية البيانات",
   'imprint' => "بصمة",
   'screens' => "شاشات",
-
+  'links_of_website' => "روابط الموقع",
+  'logo' => "شعار",
+  'copyright_all_rights_reserved' => "حقوق النشر © 2023 - جميع الحقوق محفوظة",
+  'best_of_my_drive_school' => "أفضل من مدرستي لتعليم القيادة",
+  
 ];

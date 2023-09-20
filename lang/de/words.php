@@ -127,5 +127,9 @@ return [
   'data_protection' => "Datenschutz",
   'imprint' => "Impressum",
   'screens' => "Bildschirme",
-  
+  'links_of_website' => "Links der Webseite",
+  'logo' => "Logo",
+  'copyright_all_rights_reserved' => "Urheberrecht © 2023 - Alle Rechte vorbehalten",
+  'best_of_my_drive_school' => "Das Beste von Meiner Fahrschule",
+
 ];

@@ -128,5 +128,9 @@ return [
   'data_protection' => "Protecția Datelor",
   'imprint' => "Imprimare",
   'screens' => "Ecrane",
+  'links_of_website' => "Link-uri către site",
+  'logo' => "Logo",
+  'copyright_all_rights_reserved' => "Drept de autor © 2023 - Toate drepturile rezervate",
+  'best_of_my_drive_school' => "Cea mai bună școală de conducere a mea",
 
 ];

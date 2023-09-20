@@ -127,5 +127,9 @@ return [
   'data_protection' => "数据保护",
   'imprint' => "印记",
   'screens' => "屏幕",
-  
+  'links_of_website' => "网站链接",
+  'logo' => "标志",
+  'copyright_all_rights_reserved' => "版权 © 2023 - 版权所有",
+  'best_of_my_drive_school' => "我的驾校之精选",
+
 ];
