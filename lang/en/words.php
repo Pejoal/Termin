@@ -128,5 +128,9 @@ return [
   'data_protection' => "Data Protection",
   'imprint' => "Imprint",
   'screens' => "Screens",
+  'links_of_website' => "Links of website",
+  'logo' => "logo",
+  'copyright_all_rights_reserved' => "Copyright © 2023 - All Rights Reserved",
+  'best_of_my_drive_school' => "Best of My Drive School",
 
 ];

@@ -1,5 +1,6 @@
 <script setup>
 import Dropdown from "@/Components/Dropdown.vue";
+import { usePage } from "@inertiajs/vue3";
 
 const props = defineProps({
   horizontal: {
@@ -12,9 +13,11 @@ const props = defineProps({
   },
 });
 
-const emits = defineEmits(["active_locale"]);
+let active_locale_code = usePage().props.active_locale_code;
 
+const emits = defineEmits(["active_locale"]);
 const active_locale = (locale) => {
+  active_locale_code = locale;
   emits("active_locale", locale);
 };
 </script>
@@ -31,7 +34,7 @@ const active_locale = (locale) => {
         <span class="inline-flex rounded-md">
           <button
             type="button"
-            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+            class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-gray-800 hover:text-gray-300 focus:outline-none transition ease-in-out duration-150"
           >
             <svg
               class="ml-2 -mr-0.5 h-4 w-4"
@@ -53,7 +56,12 @@ const active_locale = (locale) => {
         <button
           type="button"
           v-for="(locale, code) in $page.props.locales"
-          class="flex justify-between items-center w-full p-2 text-gray-900 hover:text-white bg-white hover:bg-zinc-900"
+          class="flex justify-between items-center w-full p-2 bg-white hover:bg-zinc-900"
+          :class="
+            code === active_locale_code
+              ? 'bg-zinc-900 text-white'
+              : 'text-gray-900 hover:text-white'
+          "
           @click="active_locale(code)"
           :key="code"
         >

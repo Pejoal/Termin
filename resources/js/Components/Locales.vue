@@ -58,7 +58,12 @@ const active_locale = (locale, url) => {
       <template #content>
         <button
           v-for="(locale, code) in $page.props.locales"
-          class="flex justify-between items-center w-full p-2 text-gray-900 hover:text-white bg-white hover:bg-zinc-900"
+          class="flex justify-between items-center w-full p-2 bg-white hover:bg-zinc-900"
+          :class="
+            code === $page.props.active_locale_code
+              ? 'bg-zinc-900 text-white'
+              : 'text-gray-900 hover:text-white'
+          "
           @click="active_locale(code, locale.url)"
           :key="code"
         >

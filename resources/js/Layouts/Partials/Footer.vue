@@ -16,12 +16,16 @@ import Navigations from "@/Components/Navigations.vue";
       </section>
 
       <section class="w-full sm:w-1/2 md:w-1/4 px-4 mb-8">
-        <h2 class="h-20 text-2xl font-semibold mb-4">Links Unsere Web Seite</h2>
+        <h2 class="h-20 text-2xl font-semibold mb-4">
+          {{ trans("words.links_of_website") }}
+        </h2>
         <Navigations :vertical="true" />
       </section>
 
       <section class="w-full sm:w-1/2 md:w-1/4 px-4 mb-8">
-        <h2 class="h-20 text-2xl font-semibold mb-4">Best Of KGV</h2>
+        <h2 class="h-20 text-2xl font-semibold mb-4">
+          {{ trans("words.best_of_my_drive_school") }}
+        </h2>
         ABC
       </section>
 
@@ -50,25 +54,17 @@ import Navigations from "@/Components/Navigations.vue";
       </section>
     </main>
   </footer>
-  <section class="text-lg bg-zinc-900 text-white flex flex-col items-center justify-center p-4">
+  <section
+    class="text-lg bg-zinc-900 text-white flex flex-col items-center justify-center p-4"
+  >
     <p>
-      Copyright © 2023 - All Rights Reserved -
+      {{ trans("words.copyright_all_rights_reserved") }}
       {{ trans("words.my_drive_school") }}
     </p>
     <p>
-      <a
-        href="mailto:pejoal.official@gmail.com"
-        title="Mail Me"
-      >
-        Pejoal
-      </a>
+      <a href="mailto:pejoal.official@gmail.com" title="Mail Me"> Pejoal </a>
       -
-      <a
-        href="mailto:pejoal.official@gmail.com"
-        title="Mail Me"
-      >
-        Zana
-      </a>
+      <a href="mailto:pejoal.official@gmail.com" title="Mail Me"> Zana </a>
     </p>
   </section>
 </template>
