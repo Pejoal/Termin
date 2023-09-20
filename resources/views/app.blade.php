@@ -22,7 +22,7 @@
 
 <body class="font-sans antialiased">
   @inertia
-  <section class="fixed z-50 top-2 right-2 bg-transparent transform transition-all duration-300 ease-in-out"
+  <section class="fixed z-[990] top-2 right-2 bg-transparent transform transition-all duration-300 ease-in-out"
     id="toasts">
   </section>
   <section id="modal"></section>

@@ -25,7 +25,7 @@ const props = defineProps({
   position: relative;
   width: 30px;
   height: 20px;
-  z-index: 998;
+  z-index: 980;
 }
 .hamburger-icon.active {
   position: fixed;
