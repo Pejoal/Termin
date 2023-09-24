@@ -131,5 +131,12 @@ return [
   'logo' => "लोगो",
   'copyright_all_rights_reserved' => "कॉपीराइट © 2023 - सभी अधिकार सुरक्षित",
   'best_of_my_drive_school' => "मेरे ड्राइव स्कूल का सर्वश्रेष्ठ",
-
+  'Sunday' => "रविवार",
+  'Monday' => "सोमवार",
+  'Tuesday' => "मंगलवार",
+  'Wednesday' => "बुधवार",
+  'Thursday' => "गुरुवार",
+  'Friday' => "शुक्रवार",
+  'Saturday' => "शनिवार",
+  
 ];

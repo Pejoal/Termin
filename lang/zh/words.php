@@ -131,5 +131,12 @@ return [
   'logo' => "标志",
   'copyright_all_rights_reserved' => "版权 © 2023 - 版权所有",
   'best_of_my_drive_school' => "我的驾校之精选",
-
+  'Sunday' => "星期日",
+  'Monday' => "星期一",
+  'Tuesday' => "星期二",
+  'Wednesday' => "星期三",
+  'Thursday' => "星期四",
+  'Friday' => "星期五",
+  'Saturday' => "星期六",
+  
 ];

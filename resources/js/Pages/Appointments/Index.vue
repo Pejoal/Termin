@@ -45,7 +45,7 @@ const save = () => {
               {{ appointment.date }}
             </h5>
             <h5 class="text-center">
-              <b> {{ appointment.day_name }}</b>
+              <b> {{ trans('words.' + appointment.day_name) }}</b>
             </h5>
             <section v-if="!appointment.off">
               <AvailableAppointment

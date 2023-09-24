@@ -13,7 +13,7 @@ return [
   |
    */
 
-  'my_drive_school' => 'مدرسة القيادة الخاصة بي',
+  'my_drive_school' => 'مدرستي لتعليم القيادة',
   'home' => 'الرئيسية',
   'welcome' => 'مرحبًا',
   'choose_locale' => 'اختر اللغة',
@@ -129,6 +129,13 @@ return [
   'links_of_website' => "روابط الموقع",
   'logo' => "شعار",
   'copyright_all_rights_reserved' => "حقوق النشر © 2023 - جميع الحقوق محفوظة",
-  'best_of_my_drive_school' => "أفضل من مدرستي لتعليم القيادة",
-  
+  'best_of_my_drive_school' => "الأفضل من مدرستي لتعليم القيادة",
+  'Sunday' => "الأحد",
+  'Monday' => "الاثنين",
+  'Tuesday' => "الثلاثاء",
+  'Wednesday' => "الأربعاء",
+  'Thursday' => "الخميس",
+  'Friday' => "الجمعة",
+  'Saturday' => "السبت",
+
 ];

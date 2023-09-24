@@ -131,5 +131,12 @@ return [
   'logo' => "Логотип",
   'copyright_all_rights_reserved' => "Авторское право © 2023 - Все права защищены",
   'best_of_my_drive_school' => "Лучшее от моей автошколы",
-
+  'Sunday' => "Воскресенье",
+  'Monday' => "Понедельник",
+  'Tuesday' => "Вторник",
+  'Wednesday' => "Среда",
+  'Thursday' => "Четверг",
+  'Friday' => "Пятница",
+  'Saturday' => "Суббота",
+  
 ];

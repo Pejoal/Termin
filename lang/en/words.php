@@ -132,5 +132,12 @@ return [
   'logo' => "logo",
   'copyright_all_rights_reserved' => "Copyright © 2023 - All Rights Reserved",
   'best_of_my_drive_school' => "Best of My Drive School",
+  'Sunday' => "Sunday",
+  'Monday' => "Monday",
+  'Tuesday' => "Tuesday",
+  'Wednesday' => "Wednesday",
+  'Thursday' => "Thursday",
+  'Friday' => "Friday",
+  'Saturday' => "Saturday",
 
 ];

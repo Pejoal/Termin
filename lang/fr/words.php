@@ -131,5 +131,12 @@ return [
   'logo' => "Logo",
   'copyright_all_rights_reserved' => "Droits d'auteur © 2023 - Tous droits réservés",
   'best_of_my_drive_school' => "Le meilleur de mon auto-école",
-
+  'Sunday' => "Dimanche",
+  'Monday' => "Lundi",
+  'Tuesday' => "Mardi",
+  'Wednesday' => "Mercredi",
+  'Thursday' => "Jeudi",
+  'Friday' => "Vendredi",
+  'Saturday' => "Samedi",
+  
 ];

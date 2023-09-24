@@ -131,5 +131,12 @@ return [
   'logo' => "Logo",
   'copyright_all_rights_reserved' => "Telif Hakkı © 2023 - Tüm Hakları Saklıdır",
   'best_of_my_drive_school' => "Sürücü Okulumun En İyisi",
-
+  'Sunday' => "Pazar",
+  'Monday' => "Pazartesi",
+  'Tuesday' => "Salı",
+  'Wednesday' => "Çarşamba",
+  'Thursday' => "Perşembe",
+  'Friday' => "Cuma",
+  'Saturday' => "Cumartesi",
+  
 ];

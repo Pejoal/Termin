@@ -132,5 +132,12 @@ return [
   'logo' => "Logo",
   'copyright_all_rights_reserved' => "Drept de autor © 2023 - Toate drepturile rezervate",
   'best_of_my_drive_school' => "Cea mai bună școală de conducere a mea",
-
+  'Sunday' => "Duminică",
+  'Monday' => "Luni",
+  'Tuesday' => "Marți",
+  'Wednesday' => "Miercuri",
+  'Thursday' => "Joi",
+  'Friday' => "Vineri",
+  'Saturday' => "Sâmbătă",
+  
 ];

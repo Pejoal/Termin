@@ -131,5 +131,12 @@ return [
   'logo' => "ロゴ",
   'copyright_all_rights_reserved' => "著作権 © 2023 - すべての権利保有",
   'best_of_my_drive_school' => "私の運転学校のベスト",
-
+  'Sunday' => "日曜日",
+  'Monday' => "月曜日",
+  'Tuesday' => "火曜日",
+  'Wednesday' => "水曜日",
+  'Thursday' => "木曜日",
+  'Friday' => "金曜日",
+  'Saturday' => "土曜日",
+  
 ];

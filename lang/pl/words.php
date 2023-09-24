@@ -131,5 +131,12 @@ return [
   'logo' => "Logo",
   'copyright_all_rights_reserved' => "Prawa autorskie © 2023 - Wszelkie prawa zastrzeżone",
   'best_of_my_drive_school' => "Najlepsza ze Szkoły Jazdy",
-
+  'Sunday' => "Niedziela",
+  'Monday' => "Poniedziałek",
+  'Tuesday' => "Wtorek",
+  'Wednesday' => "Środa",
+  'Thursday' => "Czwartek",
+  'Friday' => "Piątek",
+  'Saturday' => "Sobota",
+  
 ];

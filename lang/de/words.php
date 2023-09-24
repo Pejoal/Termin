@@ -131,5 +131,12 @@ return [
   'logo' => "Logo",
   'copyright_all_rights_reserved' => "Urheberrecht © 2023 - Alle Rechte vorbehalten",
   'best_of_my_drive_school' => "Das Beste von Meiner Fahrschule",
-
+  'Sunday' => "Sonntag",
+  'Monday' => "Montag",
+  'Tuesday' => "Dienstag",
+  'Wednesday' => "Mittwoch",
+  'Thursday' => "Donnerstag",
+  'Friday' => "Freitag",
+  'Saturday' => "Samstag",
+  
 ];
