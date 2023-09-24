@@ -135,6 +135,7 @@ class QuestionController extends Controller {
       if (isset($data[$lang])) {
         $contents[$lang] = [
           "content" => $data[$lang]['content'] ?? '',
+          "value" => $data[$lang]['value'] ?? '',
         ];
       }
     }
@@ -151,7 +152,7 @@ class QuestionController extends Controller {
           $answerData['is_correct'] = $answer['is_correct'];
           if ($data['type'] === 'math') {
             $answerData[$lang] = [
-              "value" => $answer[$lang]['content'] ?? '',
+              "value" => $answer[$lang]['value'] ?? '',
             ];
           } else {
             $answerData[$lang] = [
