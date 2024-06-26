@@ -2,14 +2,14 @@
 
 #### [Live Demo](http://)
 
-![Example Image]("public/docs/images/Screenshot 2024-06-26 194716.png")
-![Example Image]("public/docs/images/Screenshot 2024-06-24 185828.png")
-![Example Image]("public/docs/images/Screenshot 2024-06-26 195035.png")
-![Example Image]("public/docs/images/Screenshot 2024-06-26 195023.png")
-![Example Image]("public/docs/images/Screenshot 2024-06-26 195011.png")
-![Example Image]("public/docs/images/Screenshot 2024-06-26 194957.png")
-![Example Image]("public/docs/images/Screenshot 2024-06-26 194740.png")
-![Example Image]("public/docs/images/Screenshot 2024-06-26 194728.png")
+![Example Image]("public/docs/images/Screenshot1.png)
+![Example Image]("public/docs/images/Screenshot2.png)
+![Example Image]("public/docs/images/Screenshot3.png)
+![Example Image]("public/docs/images/Screenshot4.png)
+![Example Image]("public/docs/images/Screenshot5.png)
+![Example Image]("public/docs/images/Screenshot6.png)
+![Example Image]("public/docs/images/Screenshot7.png)
+![Example Image]("public/docs/images/Screenshot8.png)
 
 ---
 
@@ -38,7 +38,6 @@ cp .env.example .env
 ### Front-End
 
 - #### Install NVM
-
 ```shell
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash
 ```
@@ -52,6 +51,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 nvm install 19.1.0
 ```
 
+
 ```shell
 npm install
 ```
@@ -61,6 +61,7 @@ npm install
 ### Back-End
 
 - #### Install Composer V2 at Least, Then
+
 
 ```shell
 composer require laravel/sail --dev --ignore-platform-reqs
@@ -77,6 +78,7 @@ sail up -d
 ```shell
 sail composer install --ignore-platform-reqs
 ```
+
 
 ```shell
 sail artisan storage:link
@@ -106,8 +108,8 @@ npm run dev
 ### Features
 
 1. Register System Included ( Email / Username )
-   > - Email Must Be Verified
-   > - Forget Password ( Sending Reset Password Email Functionality )
+> - Email Must Be Verified
+> - Forget Password ( Sending Reset Password Email Functionality )
 
 ---
 
@@ -130,6 +132,6 @@ npm run dev
 
 ---
 
-## For Support..
+## For Support.. 
 
 - [My Email](pejoal.official@gmail.com)
