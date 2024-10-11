@@ -9,6 +9,8 @@
 ![Example Image](public/docs/images/Screenshot5.png)
 ![Example Image](public/docs/images/Screenshot6.png)
 ![Example Image](public/docs/images/Screenshot7.png)
+![Example Image](public/docs/images/Screenshot8.png)
+![Example Image](public/docs/images/Screenshot9.png)
 
 ---
 
